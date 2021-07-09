@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+});
+
+Route::middleware(['auth:sanctum', 'verified', 'adminauth'])->group(function () {
+    Route::get('adminpage', function () {
+        return "this is admin page";
+    });
+});
