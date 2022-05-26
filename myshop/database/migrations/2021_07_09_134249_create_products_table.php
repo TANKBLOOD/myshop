@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration
             $table->string('slug', 128);
             $table->tinyText('summary');
             $table->smallInteger('type');
-            $table->string('sku', 100);
             $table->float('price');
             $table->float('discount');
             $table->smallInteger('quantity');
