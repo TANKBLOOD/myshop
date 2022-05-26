@@ -27,7 +27,7 @@ class CreateProductsTable extends Migration
             $table->smallInteger('quantity');
             $table->boolean('shop')->default(0);
             $table->dateTime('published_at');
-            $table->dateTime('stars_at');
+            $table->dateTime('starts_at');
             $table->dateTime('ends_at');
             $table->text('content');
             $table->timestamps();
