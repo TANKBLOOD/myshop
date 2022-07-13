@@ -11,9 +11,16 @@ export const CategoryProvider= ({children})=> {
                 console.log(response.data.categories);
             })
     }
+    const createCategory= (params) => {
+        axios.post('http://127.0.0.1:8000/api/category/create', params)
+        .then(response => {
+            console.log(response);
+        })
+    }
     return <CategoryContext.Provider value={{
         categoryList: categoryList,
         getCategories: getCategories,
+        createCategory: createCategory,
     }}>
         {children}
     </CategoryContext.Provider>
