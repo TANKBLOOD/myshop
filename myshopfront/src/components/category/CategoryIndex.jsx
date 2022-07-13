@@ -6,8 +6,7 @@ import CategoryCreateModal from "./CategoryCreateModal";
 import { BsFillTrashFill, BsFillPencilFill, BsFillEyeFill } from 'react-icons/bs'
 
 const CategoryIndex = () => {
-    const {categoryList, getCategories}= useContext(CategoryContext);
-    const [openModalFlag, setOpenModalFlag]= useState(0);
+    const {categoryList, getCategories, openModalFlag, setOpenModalFlag}= useContext(CategoryContext);
     let listCounter= 0;
     useEffect(()=> {
         getCategories();

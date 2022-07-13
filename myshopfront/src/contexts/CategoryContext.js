@@ -4,6 +4,7 @@ const CategoryContext= createContext();
 
 export const CategoryProvider= ({children})=> {
     const [categoryList, setCategoryList]= useState([]);
+    const [openModalFlag, setOpenModalFlag]= useState(0);
     const getCategories= ()=> {
         axios.get(`http://127.0.0.1:8000/api/category/index`)
             .then(response => {
@@ -21,6 +22,8 @@ export const CategoryProvider= ({children})=> {
         categoryList: categoryList,
         getCategories: getCategories,
         createCategory: createCategory,
+        openModalFlag: openModalFlag,
+        setOpenModalFlag: setOpenModalFlag,
     }}>
         {children}
     </CategoryContext.Provider>
