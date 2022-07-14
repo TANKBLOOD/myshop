@@ -16,6 +16,24 @@ export const CategoryProvider= ({children})=> {
         axios.post('http://127.0.0.1:8000/api/category/create', params)
         .then(response => {
             console.log(response);
+            setCategoryList((pervList)=> {
+                return [
+                    ...pervList,
+                    response.data.newCat
+                ]
+            })
+        })
+    }
+    const deleteCategory= (id) => {
+        axios.post('http://127.0.0.1:8000/api/category/delete', {
+            catId: id,
+        })
+        .then(response => {
+            setCategoryList((pervList)=> {
+                return pervList.filter((category)=> {
+                    return category.id !== id;
+                })
+            })
         })
     }
     return <CategoryContext.Provider value={{
@@ -24,6 +42,7 @@ export const CategoryProvider= ({children})=> {
         createCategory: createCategory,
         openModalFlag: openModalFlag,
         setOpenModalFlag: setOpenModalFlag,
+        deleteCategory: deleteCategory,
     }}>
         {children}
     </CategoryContext.Provider>
