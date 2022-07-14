@@ -28,6 +28,17 @@ class CategoryController extends Controller
 
         return response()->json([
             'status'=> ' we are okay',
+            'newCat'=> $newCat,
+        ]);
+    }
+
+    public function delete(Request $request) {
+        $cat= Category::findOrFail($request->catId);
+
+        $cat->delete();
+
+        return response()->json([
+            'deleted'=> true,
         ]);
     }
 }
