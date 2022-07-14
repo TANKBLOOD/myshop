@@ -5,9 +5,14 @@ import CategoryContext from "../../contexts/CategoryContext";
 import CategoryCreateModal from "./CategoryCreateModal";
 import ConfirmDeleteModal from "../shared/ConfirmDeleteModal";
 import { BsFillTrashFill, BsFillPencilFill, BsFillEyeFill } from 'react-icons/bs'
+import CategoryEditModal from "./CategoryEditModal";
 
 const CategoryIndex = () => {
-    const {categoryList, getCategories, openModalFlag, setOpenModalFlag}= useContext(CategoryContext);
+    const {
+        categoryList, getCategories, openModalFlag,
+        setOpenModalFlag, editModalFlag, setEditModalFlag,
+        setToEditCategroy
+    }= useContext(CategoryContext);
     let listCounter= 0;
 
     const [toDeleteCategory, setToDeleteCategory]= useState(null);
@@ -23,6 +28,14 @@ const CategoryIndex = () => {
     const closeModal= ()=> {
         setOpenModalFlag(0);
     }
+    const openEditModal= (category)=> {
+        setToEditCategroy(category);
+        setEditModalFlag(1);
+    }
+    const closeEditModal= ()=> {
+        setEditModalFlag(0);
+    }
+
     const confirmDelete= (category)=> {
         setToDeleteCategory(category);
         setDeleteModalFlag(1);
@@ -35,6 +48,7 @@ const CategoryIndex = () => {
         <div>
             {openModalFlag ? <CategoryCreateModal openModalFlag={openModalFlag} closeModal={closeModal} /> : ""}
             {deleteModalFlag ? <ConfirmDeleteModal closeDeleteModal={closeDeleteModal} toDeleteCategory={toDeleteCategory} /> : null}
+            {editModalFlag ? <CategoryEditModal closeEditModal={closeEditModal} /> : null}
             <div className="container" dir="rtl">
                 <h2>لیست دسته بندی ها</h2>
                 <button className="btn btn-primary" onClick={openNewCategoryModal}>دسته جدید</button>
@@ -58,11 +72,15 @@ const CategoryIndex = () => {
                                 <td>{category.slug}</td>
                                 <td>
                                     <BsFillEyeFill />
-                                    <BsFillPencilFill />
+                                    <BsFillPencilFill style={{
+                                        'cursor': 'pointer'
+                                    }} onClick={()=>{
+                                        openEditModal(category);
+                                    }}/>
                                     <BsFillTrashFill style={{
                                         'cursor': 'pointer'
                                     }} onClick= {()=> {
-                                        confirmDelete(category)
+                                        confirmDelete(category);
                                     }}/>
                                 </td>
                             </tr>

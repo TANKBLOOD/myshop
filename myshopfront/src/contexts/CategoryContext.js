@@ -4,6 +4,7 @@ const CategoryContext= createContext();
 
 export const CategoryProvider= ({children})=> {
     const [categoryList, setCategoryList]= useState([]);
+
     const [openModalFlag, setOpenModalFlag]= useState(0);
     const getCategories= ()=> {
         axios.get(`http://127.0.0.1:8000/api/category/index`)
@@ -12,6 +13,8 @@ export const CategoryProvider= ({children})=> {
                 console.log(response.data.categories);
             })
     }
+
+    //create section
     const createCategory= (params) => {
         axios.post('http://127.0.0.1:8000/api/category/create', params)
         .then(response => {
@@ -24,6 +27,27 @@ export const CategoryProvider= ({children})=> {
             })
         })
     }
+
+    //edit section
+    const [editModalFlag, setEditModalFlag]= useState(0);
+    const [toEditCategory, setToEditCategroy]= useState(null);
+    const editCategory= (params)=> {
+        axios.post('http://127.0.0.1:8000/api/category/edit', params)
+        .then(response => {
+            console.log(response);
+            setCategoryList((pervList)=> {
+                return pervList.map((category)=> {
+                        if(category.id === params.id) {
+                            return response.data.updatedCat;
+                        }else {
+                            return category;
+                        }
+                    })
+            })
+        })
+    }
+
+    //delete section
     const deleteCategory= (id) => {
         axios.post('http://127.0.0.1:8000/api/category/delete', {
             catId: id,
@@ -43,6 +67,11 @@ export const CategoryProvider= ({children})=> {
         openModalFlag: openModalFlag,
         setOpenModalFlag: setOpenModalFlag,
         deleteCategory: deleteCategory,
+        editModalFlag: editModalFlag,
+        setEditModalFlag: setEditModalFlag,
+        editCategory: editCategory,
+        toEditCategory: toEditCategory,
+        setToEditCategroy: setToEditCategroy,
     }}>
         {children}
     </CategoryContext.Provider>
