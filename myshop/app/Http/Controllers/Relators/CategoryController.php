@@ -32,6 +32,22 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function edit(Request $request) {
+        $updatedCat= Category::findOrFail($request->id);
+        $updatedCat->parent_id= $request->catParent;
+        $updatedCat->title= $request->catTitle;
+        $updatedCat->meta_title= $request->catMetaDescription;
+        $updatedCat->content= $request->catDescription;
+        $updatedCat->slug= Str::slug($request->catTitle);
+        //upload the image here.
+        $updatedCat->save();
+
+        return response()->json([
+            'status'=> ' we are okay',
+            'updatedCat'=> $updatedCat,
+        ]);
+    }
+
     public function delete(Request $request) {
         $cat= Category::findOrFail($request->catId);
 
