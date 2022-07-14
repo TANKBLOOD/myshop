@@ -3,6 +3,7 @@ import CategoryContext from "../../contexts/CategoryContext";
 import "../../styles/shared/confirm-delete.css";
 
 const ConfirmDeleteModal = ({closeDeleteModal, toDeleteCategory}) => {
+    //seprate this component and name it in otherr way
     const {deleteCategory}= useContext(CategoryContext);
 
     const handleSubmitForm= (e) => {
