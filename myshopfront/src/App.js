@@ -5,6 +5,7 @@ import { CategoryProvider } from './contexts/CategoryContext';
 import { useEffect } from 'react';
 import AdminDashboard from './components/routes/AdminDashboard';
 import "./styles/shared/adminsidebar.css";
+import CreateProduct from './components/product/CreateProduct';
 function App() {
 
   // useEffect(() => {
@@ -23,6 +24,8 @@ function App() {
           <Route></Route>
           <Route path='categories' element={ <CategoryIndex /> }></Route>
           <Route path='adminDashboard' element={ <AdminDashboard /> }></Route>
+          <Route path='createProduct' element={ <CreateProduct /> }></Route>
+
         </Routes>
     </CategoryProvider>
     </>
