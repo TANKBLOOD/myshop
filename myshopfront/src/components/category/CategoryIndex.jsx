@@ -6,7 +6,8 @@ import CategoryCreateModal from "./CategoryCreateModal";
 import ConfirmDeleteModal from "../shared/ConfirmDeleteModal";
 import { BsFillTrashFill, BsFillPencilFill, BsFillEyeFill } from 'react-icons/bs'
 import CategoryEditModal from "./CategoryEditModal";
-
+import AdminSideNav from "../shared/AdminSideNav";
+import "../../styles/shared/dist/css/style.min.css";
 const CategoryIndex = () => {
     const {
         categoryList, getCategories, openModalFlag,
@@ -45,7 +46,9 @@ const CategoryIndex = () => {
     }
     return ( 
         <>
-        <div>
+      <AdminSideNav />
+        
+        <div className="main-content">
             {openModalFlag ? <CategoryCreateModal openModalFlag={openModalFlag} closeModal={closeModal} /> : ""}
             {deleteModalFlag ? <ConfirmDeleteModal closeDeleteModal={closeDeleteModal} toDeleteCategory={toDeleteCategory} /> : null}
             {editModalFlag ? <CategoryEditModal closeEditModal={closeEditModal} /> : null}
@@ -71,14 +74,16 @@ const CategoryIndex = () => {
                                 <td>{category.title}</td>
                                 <td>{category.slug}</td>
                                 <td>
-                                    <BsFillEyeFill />
+                                    {/* <BsFillEyeFill /> */}
                                     <BsFillPencilFill style={{
-                                        'cursor': 'pointer'
+                                        'cursor': 'pointer',
+                                        margin: '2px',
                                     }} onClick={()=>{
                                         openEditModal(category);
                                     }}/>
                                     <BsFillTrashFill style={{
-                                        'cursor': 'pointer'
+                                        'cursor': 'pointer',
+                                        margin: '2px',
                                     }} onClick= {()=> {
                                         confirmDelete(category);
                                     }}/>
