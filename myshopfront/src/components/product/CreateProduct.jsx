@@ -1,112 +1,166 @@
 import "../../styles/shared/dist/css/pages/ecommerce.css";
 import AdminSideNav from "../shared/AdminSideNav";
 import chairImage from "../../styles/shared/assets/images/gallery/chair.jpg";
+import { useContext, useState } from "react";
+import CategoryContext from "../../contexts/CategoryContext";
+import { useEffect } from "react";
+
+
 const CreateProduct = () => {
+  const {categoryList, getCategories}= useContext(CategoryContext);
+  const [productInfo, setProductInfo]= useState({
+    title: "",
+    meta_title: "",
+    category_id: 0,
+    price: "",
+    discount: "",
+    summary: "",
+    quantity: "",
+    publish: false,
+  });
+  useEffect(()=> {
+    getCategories();
+  }, [])
+  const handleInputChange= (e)=> {
+    const name= e.target.name;
+    const value= e.target.value;
+
+    setProductInfo((prevInfo)=> {
+      return {
+        ...prevInfo,
+        [name]: value,
+      }
+    })
+  }
+  const handleCheckboxChange= (e)=> {
+    const name= e.target.name;
+    const value= e.target.checked;
+
+    setProductInfo((prevInfo)=> {
+      return {
+        ...prevInfo,
+        [name]: value,
+      }
+    })
+  }
   return (
     <>
     <AdminSideNav />
-      <div class="main-content" dir="rtl" style={{
+      <div className="main-content" dir="rtl" style={{
         margin: ''
       }}>
-        <div class="container-fluid">
-          <div class="row page-titles">
-            <div class="col-md-5 align-self-center">
-              <h4 class="text-themecolor">Products edit</h4>
+        <div className="container-fluid">
+          <div className="row page-titles">
+            <div className="col-md-5 align-self-center">
+              <h4 className="text-themecolor">Products edit</h4>
             </div>
-            <div class="col-md-7 align-self-center text-right">
-              <div class="d-flex justify-content-end align-items-center">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
+            <div className="col-md-7 align-self-center text-right">
+              <div className="d-flex justify-content-end align-items-center">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item">
                     <a href="javascript:void(0)">Home</a>
                   </li>
-                  <li class="breadcrumb-item active">Products edit</li>
+                  <li className="breadcrumb-item active">Products edit</li>
                 </ol>
                 <button
                   type="button"
-                  class="btn btn-info d-none d-lg-block m-l-15"
+                  className="btn btn-info d-none d-lg-block m-l-15"
                 >
-                  <i class="fa fa-plus-circle"></i> Create New
+                  <i className="fa fa-plus-circle"></i> Create New
                 </button>
               </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="card">
-                <div class="card-body">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="card">
+                <div className="card-body">
                   <form action="#">
-                    <div class="form-body">
-                      <h5 class="card-title">About Product</h5>
+                    <div className="form-body">
+                      <h5 className="card-title">About Product</h5>
                       <hr />
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label class="control-label">Product Name</label>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <label className="control-label">نام محصول</label>
                             <input
                               type="text"
-                              id="firstName"
-                              class="form-control"
-                              placeholder="Rounded Chair"
-                            />{" "}
+                              id="title"
+                              name="title"
+                              className="form-control"
+                              placeholder="مثال: مبل تک نفره رویال"
+                              onChange={handleInputChange}
+                              value= {productInfo.title}
+                            />
                           </div>
                         </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label class="control-label">Sub text</label>
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <label className="control-label">عنوان تکمیلی</label>
                             <input
                               type="text"
                               id="lastName"
-                              class="form-control"
-                              placeholder="globe type chair for rest"
-                            />{" "}
+                              name="meta_title"
+                              className="form-control"
+                              placeholder="مثال: مبل 8 نفری راحت با فرم ابر و باد"
+                              onChange={handleInputChange}
+                              value= {productInfo.meta_title}
+                            />
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label class="control-label">Category</label>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <label className="control-label">دسته</label>
                             <select
-                              class="form-control"
+                              className="form-control"
                               data-placeholder="Choose a Category"
-                              tabindex="1"
+                              tabIndex="1"
+                              name="category_id"
+                              onChange={handleInputChange}
+                              value= {productInfo.category_id}
                             >
-                              <option value="Category 1">Category 1</option>
-                              <option value="Category 2">Category 2</option>
-                              <option value="Category 3">Category 5</option>
-                              <option value="Category 4">Category 4</option>
+                              <option value="0"  disabled>انتخاب دسته</option>
+                              {
+                                categoryList.map((category)=> {
+                                  return (
+                                    <option value={category.id} key={category.id}>{category.title}</option>
+                                  )
+                                })
+                              }
                             </select>
                           </div>
                         </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
+                        <div className="col-md-6">
+                          <div className="form-group">
                             <label>Status</label>
                             <br />
-                            <div class="custom-control custom-radio custom-control-inline">
+                            <div className="custom-control custom-radio custom-control-inline">
                               <input
                                 type="radio"
                                 id="customRadioInline1"
                                 name="customRadioInline1"
-                                class="custom-control-input"
+                                className="custom-control-input"
                               />
                               <label
-                                class="custom-control-label"
-                                for="customRadioInline1"
+                                className="custom-control-label"
+                                htmlFor="customRadioInline1"
                               >
                                 Publish
                               </label>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
+                            <div className="custom-control custom-radio custom-control-inline">
                               <input
                                 type="radio"
                                 id="customRadioInline2"
                                 name="customRadioInline1"
-                                class="custom-control-input"
+                                className="custom-control-input"
                               />
                               <label
-                                class="custom-control-label"
-                                for="customRadioInline2"
+                                className="custom-control-label"
+                                htmlFor="customRadioInline2"
                               >
                                 Draft
                               </label>
@@ -114,122 +168,136 @@ const CreateProduct = () => {
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="form-group">
                             <label>Price</label>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span
-                                  class="input-group-text"
-                                  id="basic-addon1"
-                                >
-                                  <i class="ti-money"></i>
-                                </span>
-                              </div>
+                            <div className="input-group mb-3">
                               <input
                                 type="text"
-                                class="form-control"
-                                placeholder="price"
+                                className="form-control"
+                                placeholder="مثال: 10000000"
                                 aria-label="price"
                                 aria-describedby="basic-addon1"
+                                name="price"
+                                onChange={handleInputChange}
+                                value= {productInfo.price}
                               />
+                              <div className="input-group-prepend">
+                                <span
+                                  className="input-group-text"
+                                  id="basic-addon1"
+                                >
+                                  <i className="ti-money"></i>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Discount</label>
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span
-                                  class="input-group-text"
-                                  id="basic-addon2"
-                                >
-                                  <i class="ti-cut"></i>
-                                </span>
-                              </div>
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <label>تخفیف</label>
+                            <div className="input-group mb-3">
                               <input
                                 type="text"
-                                class="form-control"
-                                placeholder="Discount"
+                                className="form-control"
+                                placeholder="حداکثر 99"
                                 aria-label="Discount"
                                 aria-describedby="basic-addon2"
+                                name="discount"
+                                onChange={handleInputChange}
+                                value= {productInfo.discount}
                               />
+                              <div className="input-group-prepend">
+                                <span
+                                  className="input-group-text"
+                                  id="basic-addon2"
+                                >
+                                  <i className="ti-cut"></i>
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <h5 class="card-title m-t-40">Product Description</h5>
-                      <div class="row">
-                        <div class="col-md-12 ">
-                          <div class="form-group">
-                            <textarea class="form-control" rows="4">
-                              Lorem Ipsum available, but the majority have
-                              suffered alteration in some form, by injected
-                              humour, or randomised words which don't look even
-                              slightly believable. but the majority have
-                              suffered alteration in some form, by injected
-                              humour
+                      <h5 className="card-title m-t-40">توضیحات کلی محصول</h5>
+                      <div className="row">
+                        <div className="col-md-12 ">
+                          <div className="form-group">
+                            <textarea className="form-control" rows="4"
+                            name="summary"
+                            onChange={handleInputChange}
+                            value={productInfo.summary}>
+                              
                             </textarea>
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Meta Title</label>
-                            <input type="text" class="form-control" />{" "}
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <label>تعداد موجودی</label>
+                            <input type="text" className="form-control"
+                            name="quantity"
+                            onChange={handleInputChange}
+                            value={productInfo.quantity}
+                            />
                           </div>
                         </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Meta Keyword</label>
-                            <input type="text" class="form-control" />{" "}
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <label>انتشار در سایت</label>
+                            <input type="checkbox" className="form-check-input mr-3" style={{
+                              display: "block"
+                            }}
+                            name="publish"
+                            onChange={handleCheckboxChange}
+                            value={productInfo.publish}
+                            />
                           </div>
                         </div>
-                        <div class="col-md-3">
-                          <h5 class="card-title m-t-20">Upload Image</h5>
-                          <div class="product-img">
+                        <div className="col-md-3">
+                          <h5 className="card-title m-t-20">Upload Image</h5>
+                          <div className="product-img">
                             {" "}
                             <img src={chairImage} />
-                            <div class="pro-img-overlay">
-                              <a href="javascript:void(0)" class="bg-info">
-                                <i class="ti-marker-alt"></i>
+                            <div className="pro-img-overlay">
+                              <a href="javascript:void(0)" className="bg-info">
+                                <i className="ti-marker-alt"></i>
                               </a>{" "}
-                              <a href="javascript:void(0)" class="bg-danger">
-                                <i class="ti-trash"></i>
+                              <a href="javascript:void(0)" className="bg-danger">
+                                <i className="ti-trash"></i>
                               </a>
                             </div>
                             <br />
-                            <div class="fileupload btn btn-info waves-effect waves-light">
+                            <div className="fileupload btn btn-info waves-effect waves-light">
                               <span>
-                                <i class="ion-upload m-r-5"></i>Upload Anonther
+                                <i className="ion-upload m-r-5"></i>Upload Anonther
                                 Image
                               </span>
-                              <input type="file" class="upload" />{" "}
+                              <input type="file" className="upload" />{" "}
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <h5 class="card-title m-t-40">GENERAL INFO</h5>
-                          <div class="table-responsive">
-                            <table class="table table-bordered td-padding">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <h5 className="card-title m-t-40">GENERAL INFO</h5>
+                          <div className="table-responsive">
+                            <table className="table table-bordered td-padding">
                               <tbody>
                                 <tr>
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Brand"
                                     />
                                   </td>
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Stellar"
                                     />
                                   </td>
@@ -238,14 +306,14 @@ const CreateProduct = () => {
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Delivery Condition"
                                     />
                                   </td>
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Knock Down"
                                     />
                                   </td>
@@ -254,14 +322,14 @@ const CreateProduct = () => {
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Seat Lock Included"
                                     />
                                   </td>
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Yes"
                                     />
                                   </td>
@@ -270,14 +338,14 @@ const CreateProduct = () => {
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Type"
                                     />
                                   </td>
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Office Chair"
                                     />
                                   </td>
@@ -286,14 +354,14 @@ const CreateProduct = () => {
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Style"
                                     />
                                   </td>
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Contemporary &amp; Modern"
                                     />
                                   </td>
@@ -302,14 +370,14 @@ const CreateProduct = () => {
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Wheels Included"
                                     />
                                   </td>
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Yes"
                                     />
                                   </td>
@@ -318,14 +386,14 @@ const CreateProduct = () => {
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Upholstery Included"
                                     />
                                   </td>
                                   <td>
                                     <input
                                       type="text"
-                                      class="form-control"
+                                      className="form-control"
                                       placeholder="Yes"
                                     />
                                   </td>
@@ -337,12 +405,12 @@ const CreateProduct = () => {
                       </div>
                       <hr />{" "}
                     </div>
-                    <div class="form-actions m-t-40">
-                      <button type="submit" class="btn btn-success">
+                    <div className="form-actions m-t-40">
+                      <button type="submit" className="btn btn-success">
                         {" "}
-                        <i class="fa fa-check"></i> Save
+                        <i className="fa fa-check"></i> Save
                       </button>
-                      <button type="button" class="btn btn-dark">
+                      <button type="button" className="btn btn-dark">
                         Cancel
                       </button>
                     </div>
@@ -352,17 +420,17 @@ const CreateProduct = () => {
             </div>
           </div>
 
-          <div class="right-sidebar">
-            <div class="slimscrollright">
-              <div class="rpanel-title">
+          <div className="right-sidebar">
+            <div className="slimscrollright">
+              <div className="rpanel-title">
                 {" "}
                 Service Panel{" "}
                 <span>
-                  <i class="ti-close right-side-toggle"></i>
+                  <i className="ti-close right-side-toggle"></i>
                 </span>{" "}
               </div>
-              <div class="r-panel-body">
-                <ul id="themecolors" class="m-t-20">
+              <div className="r-panel-body">
+                <ul id="themecolors" className="m-t-20">
                   <li>
                     <b>With Light sidebar</b>
                   </li>
@@ -370,7 +438,7 @@ const CreateProduct = () => {
                     <a
                       href="javascript:void(0)"
                       data-skin="skin-default"
-                      class="default-theme working"
+                      className="default-theme working"
                     >
                       1
                     </a>
@@ -379,7 +447,7 @@ const CreateProduct = () => {
                     <a
                       href="javascript:void(0)"
                       data-skin="skin-green"
-                      class="green-theme"
+                      className="green-theme"
                     >
                       2
                     </a>
@@ -388,7 +456,7 @@ const CreateProduct = () => {
                     <a
                       href="javascript:void(0)"
                       data-skin="skin-red"
-                      class="red-theme"
+                      className="red-theme"
                     >
                       3
                     </a>
@@ -397,7 +465,7 @@ const CreateProduct = () => {
                     <a
                       href="javascript:void(0)"
                       data-skin="skin-blue"
-                      class="blue-theme"
+                      className="blue-theme"
                     >
                       4
                     </a>
@@ -406,7 +474,7 @@ const CreateProduct = () => {
                     <a
                       href="javascript:void(0)"
                       data-skin="skin-purple"
-                      class="purple-theme"
+                      className="purple-theme"
                     >
                       5
                     </a>
@@ -415,19 +483,19 @@ const CreateProduct = () => {
                     <a
                       href="javascript:void(0)"
                       data-skin="skin-megna"
-                      class="megna-theme"
+                      className="megna-theme"
                     >
                       6
                     </a>
                   </li>
-                  <li class="d-block m-t-30">
+                  <li className="d-block m-t-30">
                     <b>With Dark sidebar</b>
                   </li>
                   <li>
                     <a
                       href="javascript:void(0)"
                       data-skin="skin-default-dark"
-                      class="default-dark-theme "
+                      className="default-dark-theme "
                     >
                       7
                     </a>
@@ -436,7 +504,7 @@ const CreateProduct = () => {
                     <a
                       href="javascript:void(0)"
                       data-skin="skin-green-dark"
-                      class="green-dark-theme"
+                      className="green-dark-theme"
                     >
                       8
                     </a>
@@ -445,7 +513,7 @@ const CreateProduct = () => {
                     <a
                       href="javascript:void(0)"
                       data-skin="skin-red-dark"
-                      class="red-dark-theme"
+                      className="red-dark-theme"
                     >
                       9
                     </a>
@@ -454,7 +522,7 @@ const CreateProduct = () => {
                     <a
                       href="javascript:void(0)"
                       data-skin="skin-blue-dark"
-                      class="blue-dark-theme"
+                      className="blue-dark-theme"
                     >
                       10
                     </a>
@@ -463,7 +531,7 @@ const CreateProduct = () => {
                     <a
                       href="javascript:void(0)"
                       data-skin="skin-purple-dark"
-                      class="purple-dark-theme"
+                      className="purple-dark-theme"
                     >
                       11
                     </a>
@@ -472,13 +540,13 @@ const CreateProduct = () => {
                     <a
                       href="javascript:void(0)"
                       data-skin="skin-megna-dark"
-                      class="megna-dark-theme "
+                      className="megna-dark-theme "
                     >
                       12
                     </a>
                   </li>
                 </ul>
-                <ul class="m-t-20 chatonline">
+                <ul className="m-t-20 chatonline">
                   <li>
                     <b>Chat option</b>
                   </li>
@@ -487,10 +555,10 @@ const CreateProduct = () => {
                       <img
                         src="../assets/images/users/1.jpg"
                         alt="user-img"
-                        class="img-circle"
+                        className="img-circle"
                       />{" "}
                       <span>
-                        Varun Dhavan <small class="text-success">online</small>
+                        Varun Dhavan <small className="text-success">online</small>
                       </span>
                     </a>
                   </li>
@@ -499,11 +567,11 @@ const CreateProduct = () => {
                       <img
                         src="../assets/images/users/2.jpg"
                         alt="user-img"
-                        class="img-circle"
+                        className="img-circle"
                       />{" "}
                       <span>
                         Genelia Deshmukh{" "}
-                        <small class="text-warning">Away</small>
+                        <small className="text-warning">Away</small>
                       </span>
                     </a>
                   </li>
@@ -512,10 +580,10 @@ const CreateProduct = () => {
                       <img
                         src="../assets/images/users/3.jpg"
                         alt="user-img"
-                        class="img-circle"
+                        className="img-circle"
                       />{" "}
                       <span>
-                        Ritesh Deshmukh <small class="text-danger">Busy</small>
+                        Ritesh Deshmukh <small className="text-danger">Busy</small>
                       </span>
                     </a>
                   </li>
@@ -524,10 +592,10 @@ const CreateProduct = () => {
                       <img
                         src="../assets/images/users/4.jpg"
                         alt="user-img"
-                        class="img-circle"
+                        className="img-circle"
                       />{" "}
                       <span>
-                        Arijit Sinh <small class="text-muted">Offline</small>
+                        Arijit Sinh <small className="text-muted">Offline</small>
                       </span>
                     </a>
                   </li>
@@ -536,10 +604,10 @@ const CreateProduct = () => {
                       <img
                         src="../assets/images/users/5.jpg"
                         alt="user-img"
-                        class="img-circle"
+                        className="img-circle"
                       />{" "}
                       <span>
-                        Govinda Star <small class="text-success">online</small>
+                        Govinda Star <small className="text-success">online</small>
                       </span>
                     </a>
                   </li>
@@ -548,10 +616,10 @@ const CreateProduct = () => {
                       <img
                         src="../assets/images/users/6.jpg"
                         alt="user-img"
-                        class="img-circle"
+                        className="img-circle"
                       />{" "}
                       <span>
-                        John Abraham<small class="text-success">online</small>
+                        John Abraham<small className="text-success">online</small>
                       </span>
                     </a>
                   </li>
@@ -560,10 +628,10 @@ const CreateProduct = () => {
                       <img
                         src="../assets/images/users/7.jpg"
                         alt="user-img"
-                        class="img-circle"
+                        className="img-circle"
                       />{" "}
                       <span>
-                        Hritik Roshan<small class="text-success">online</small>
+                        Hritik Roshan<small className="text-success">online</small>
                       </span>
                     </a>
                   </li>
@@ -572,11 +640,11 @@ const CreateProduct = () => {
                       <img
                         src="../assets/images/users/8.jpg"
                         alt="user-img"
-                        class="img-circle"
+                        className="img-circle"
                       />{" "}
                       <span>
                         Pwandeep rajan{" "}
-                        <small class="text-success">online</small>
+                        <small className="text-success">online</small>
                       </span>
                     </a>
                   </li>
