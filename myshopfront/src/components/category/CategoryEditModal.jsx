@@ -3,7 +3,7 @@ import CategoryContext from "../../contexts/CategoryContext";
 import { useContext, useState } from "react";
 
 const CategoryEditModal = ({ closeEditModal }) => {
-  const { editCategory, toEditCategory } = useContext(CategoryContext);
+  const { editCategory, toEditCategory, categoryList } = useContext(CategoryContext);
 
   const [formInfo, setFormInfo] = useState({
     id: toEditCategory.id,
@@ -117,7 +117,13 @@ const CategoryEditModal = ({ closeEditModal }) => {
                 onChange={handleInputChange}
               >
                 <option value="0">بدون سردسته</option>
-                <option value="2">بدون سردسته2</option>
+                {categoryList.map((category)=> {
+                      if(category.id !== toEditCategory.id) {
+                        return (
+                          <option key={category.id} value={category.id}>{category.title}</option>
+                        )
+                      }
+                })}
               </select>
             </div>
             <div className="form-group">

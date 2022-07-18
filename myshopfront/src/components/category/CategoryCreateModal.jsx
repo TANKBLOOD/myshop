@@ -3,7 +3,7 @@ import "../../styles/category/category-modal.css";
 import CategoryContext from "../../contexts/CategoryContext";
 
 const CategoryCreateModal = ({ closeModal }) => {
-  const {createCategory}= useContext(CategoryContext);
+  const {createCategory, categoryList}= useContext(CategoryContext);
 
   const [formInfo, setFormInfo]= useState({
     catTitle: "",
@@ -33,6 +33,8 @@ const CategoryCreateModal = ({ closeModal }) => {
         [name]:value,
       }
     })
+
+    console.log(formInfo)
   }
 
   const handleImageChange= (e)=> {
@@ -87,8 +89,13 @@ const CategoryCreateModal = ({ closeModal }) => {
             <div className="form-group">
                 <label htmlFor="catParent">سردسته</label>
                 <select name="catParent" id="catParent" className="form-control" defaultValue={formInfo.catParent} onChange={handleInputChange}>
+
                     <option value="0">بدون سردسته</option>
-                    <option value="2">بدون سردسته</option>
+                    {categoryList.map((category)=> {
+                      return (
+                        <option key={category.id} value={category.id}>{category.title}</option>
+                      )
+                    })}
                 </select>
             </div>
             <div className="form-group">
