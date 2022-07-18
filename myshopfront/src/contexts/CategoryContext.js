@@ -16,7 +16,11 @@ export const CategoryProvider= ({children})=> {
 
     //create section
     const createCategory= (params) => {
-        axios.post('http://127.0.0.1:8000/api/category/create', params)
+        const formData= new FormData();
+        Object.entries(params).forEach(([key, val]) => {
+            formData.append(key, val);
+        });
+        axios.post('http://127.0.0.1:8000/api/category/create', formData)
         .then(response => {
             console.log(response);
             setCategoryList((pervList)=> {

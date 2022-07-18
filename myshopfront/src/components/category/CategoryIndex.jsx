@@ -70,7 +70,10 @@ const CategoryIndex = () => {
                             return (
                             <tr key={category.id}>
                                 <th scope="row">{++listCounter}</th>
-                                <td>imgae</td>
+                                <td><img width="80px" height="80px" style={{
+                                    borderRadius: "50%",
+                                    border: "1px solid white"
+                                }} src={`http://localhost:8000/myimage/${category.avatar_image}`} alt="this is imgage" /></td>
                                 <td>{category.title}</td>
                                 <td>{category.slug}</td>
                                 <td>
