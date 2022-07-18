@@ -15,10 +15,9 @@ const CreateProduct = () => {
     discount: "",
     summary: "",
     quantity: "",
-    publish: false,
-    productSpecifications: {
-
-    },
+    publish: "draft",
+    productSpecifications: {},
+    forceOutOfStack: false,
   });
   useEffect(() => {
     getCategories();
@@ -33,6 +32,7 @@ const CreateProduct = () => {
         [name]: value,
       };
     });
+    console.log(productInfo)
   };
   const handleCheckboxChange = (e) => {
     const name = e.target.name;
@@ -44,6 +44,9 @@ const CreateProduct = () => {
         [name]: value,
       };
     });
+
+
+    console.log(productInfo)
   };
 
   const handleProductSpecificationInputChange = (e) => {
@@ -64,7 +67,7 @@ const CreateProduct = () => {
       setProductInfo((prevInfo) => {
         const copy = { ...prevInfo };
 
-        delete copy['productSpecifications'][name];
+        delete copy["productSpecifications"][name];
 
         return copy;
       });
@@ -172,34 +175,38 @@ const CreateProduct = () => {
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label>Status</label>
+                            <label>وضعیت انتشار در سایت</label>
                             <br />
                             <div className="custom-control custom-radio custom-control-inline">
                               <input
                                 type="radio"
                                 id="customRadioInline1"
-                                name="customRadioInline1"
+                                name="publish"
                                 className="custom-control-input"
+                                value= "publish"
+                                onChange={handleInputChange}
                               />
                               <label
                                 className="custom-control-label"
                                 htmlFor="customRadioInline1"
                               >
-                                Publish
+                                انتشار
                               </label>
                             </div>
                             <div className="custom-control custom-radio custom-control-inline">
                               <input
                                 type="radio"
                                 id="customRadioInline2"
-                                name="customRadioInline1"
+                                name="publish"
                                 className="custom-control-input"
+                                value="draft"
+                                onChange={handleInputChange}
                               />
                               <label
                                 className="custom-control-label"
                                 htmlFor="customRadioInline2"
                               >
-                                Draft
+                                معلق
                               </label>
                             </div>
                           </div>
@@ -208,7 +215,7 @@ const CreateProduct = () => {
                       <div className="row">
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label>Price</label>
+                            <label>قیمت</label>
                             <div className="input-group mb-3">
                               <input
                                 type="text"
@@ -286,42 +293,71 @@ const CreateProduct = () => {
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label>انتشار در سایت</label>
+                            <label>اعلام عدم موجودی</label>
                             <input
                               type="checkbox"
                               className="form-check-input mr-3"
                               style={{
                                 display: "block",
                               }}
-                              name="publish"
+                              name="forceOutOfStack"
                               onChange={handleCheckboxChange}
-                              value={productInfo.publish}
+                              value={productInfo.forceOutOfStack}
                             />
                           </div>
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-md-3 flex">
                           <h5 className="card-title m-t-20">تصویر شاخص</h5>
-                          <div className="product-img">
-                            {" "}
-                            <img src={chairImage} />
-                            <div className="pro-img-overlay">
-                              <a href="javascript:void(0)" className="bg-info">
-                                <i className="ti-marker-alt"></i>
-                              </a>{" "}
-                              <a
-                                href="javascript:void(0)"
-                                className="bg-danger"
-                              >
-                                <i className="ti-trash"></i>
-                              </a>
+                          <div className="product-img d-flex flex-row">
+                            <div className="m-5">
+                              <img src={chairImage} />
+                              <div className="pro-img-overlay">
+                                <a
+                                  href="javascript:void(0)"
+                                  className="bg-info"
+                                >
+                                  <i className="ti-marker-alt"></i>
+                                </a>{" "}
+                                <a
+                                  href="javascript:void(0)"
+                                  className="bg-danger"
+                                >
+                                  <i className="ti-trash"></i>
+                                </a>
+                              </div>
+                              <br />
+                              <div className="fileupload btn btn-info waves-effect waves-light">
+                                <span>
+                                  <i className="ion-upload m-r-5"></i>Upload
+                                  Anonther Image
+                                </span>
+                                <input type="file" className="upload" />
+                              </div>
                             </div>
-                            <br />
-                            <div className="fileupload btn btn-info waves-effect waves-light">
-                              <span>
-                                <i className="ion-upload m-r-5"></i>Upload
-                                Anonther Image
-                              </span>
-                              <input type="file" className="upload" />{" "}
+                            <div className="m-5">
+                              <img src={chairImage} />
+                              <div className="pro-img-overlay">
+                                <a
+                                  href="javascript:void(0)"
+                                  className="bg-info"
+                                >
+                                  <i className="ti-marker-alt"></i>
+                                </a>{" "}
+                                <a
+                                  href="javascript:void(0)"
+                                  className="bg-danger"
+                                >
+                                  <i className="ti-trash"></i>
+                                </a>
+                              </div>
+                              <br />
+                              <div className="fileupload btn btn-info waves-effect waves-light">
+                                <span>
+                                  <i className="ion-upload m-r-5"></i>Upload
+                                  Anonther Image
+                                </span>
+                                <input type="file" className="upload" />
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -340,143 +376,185 @@ const CreateProduct = () => {
                                       className="form-control"
                                       placeholder="برند"
                                       name="brand"
-                                      onChange={handleProductSpecificationInputChange}
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
                                     />
                                   </td>
                                   <td>
-                                  <label className="mr-2">تعداد</label>
+                                    <label className="mr-2">تعداد</label>
                                     <input
                                       type="text"
                                       className="form-control"
                                       placeholder="تعداد"
                                       name="count"
-                                      onChange={handleProductSpecificationInputChange}
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
                                     />
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>
-                                  <label className="mr-2">جنس بدنه</label>
+                                    <label className="mr-2">جنس بدنه</label>
                                     <input
                                       type="text"
                                       className="form-control"
                                       placeholder="جنس بدنه"
                                       name="bodyMaterial"
-                                      onChange={handleProductSpecificationInputChange}
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
                                     />
                                   </td>
                                   <td>
-                                  <label className="mr-2">جنس بدنه</label>
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="جنس بدنه"
-                                      name="bodyMaterial"
-                                      onChange={handleProductSpecificationInputChange}
-                                    />
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                  <label className="mr-2">جنس نشیمن</label>
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="جنس نشیمن"
-                                      name="seatMaterial"
-                                      onChange={handleProductSpecificationInputChange}
-                                    />
-                                  </td>
-                                  <td>
-                                  <label className="mr-2">جنس پایه</label>
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="جنس پایه"
-                                      name="legMaterial"
-                                      onChange={handleProductSpecificationInputChange}
-                                    />
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                  <label className="mr-2">نوع دوخت</label>
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="نوع دوخت"
-                                      name="sewingType"
-                                      onChange={handleProductSpecificationInputChange}
-                                    />
-                                  </td>
-                                  <td>
-                                  <label className="mr-2">مکانیزم</label>
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="مکانیزم"
-                                      name="mechanism"
-                                      onChange={handleProductSpecificationInputChange}
-                                    />
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                  <label className="mr-2">جنس پارچه</label>
+                                    <label className="mr-2">جنس پارچه</label>
                                     <input
                                       type="text"
                                       className="form-control"
                                       placeholder="جنس پارچه"
                                       name="fabricMaterial"
-                                      onChange={handleProductSpecificationInputChange}
-                                    />
-                                  </td>
-                                  <td>
-                                  <label className="mr-2">تعداد کوسن</label>
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="تعداد کوسن"
-                                      name="cushionCount"
-                                      onChange={handleProductSpecificationInputChange}
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
                                     />
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>
-                                  <label className="mr-2">تراکم اسفنج</label>
+                                    <label className="mr-2">جنس نشیمن</label>
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="جنس نشیمن"
+                                      name="seatMaterial"
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
+                                    />
+                                  </td>
+                                  <td>
+                                    <label className="mr-2">جنس پایه</label>
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="جنس پایه"
+                                      name="legMaterial"
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
+                                    />
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <label className="mr-2">نوع دوخت</label>
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="نوع دوخت"
+                                      name="sewingType"
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
+                                    />
+                                  </td>
+                                  <td>
+                                    <label className="mr-2">مکانیزم</label>
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="مکانیزم"
+                                      name="mechanism"
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
+                                    />
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <label className="mr-2">تراکم اسفنج</label>
                                     <input
                                       type="text"
                                       className="form-control"
                                       placeholder="تراکم اسفنج"
                                       name="spongeDensity"
-                                      onChange={handleProductSpecificationInputChange}
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
                                     />
                                   </td>
                                   <td>
-                                  <label className="mr-2">وزن قابل تحمل</label>
+                                    <label className="mr-2">تعداد کوسن</label>
                                     <input
                                       type="text"
                                       className="form-control"
-                                      placeholder="وزن قابل تحمل"
-                                      name="tolerableWeight"
-                                      onChange={handleProductSpecificationInputChange}
+                                      placeholder="تعداد کوسن"
+                                      name="cushionCount"
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
                                     />
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>
+                                    <label className="mr-2">
+                                      وزن قابل تحمل
+                                    </label>
                                     <input
                                       type="text"
                                       className="form-control"
-                                      placeholder="Upholstery Included"
+                                      placeholder="وزن قابل تحمل"
+                                      name="tolerableWeight"
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
                                     />
                                   </td>
                                   <td>
+                                    <label className="mr-2">
+                                      ضمانت
+                                    </label>
                                     <input
                                       type="text"
                                       className="form-control"
-                                      placeholder="Yes"
+                                      placeholder="ضمانت"
+                                      name="warranty"
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
+                                    />
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                  <label className="mr-2">
+                                      خدمات پس از فروش
+                                    </label>
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="خدمات پس از فروش"
+                                      name="afterSalesService"
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
+                                    />
+                                  </td>
+                                  <td>
+                                  <label className="mr-2">
+                                      شرایط فروش اقساطی
+                                    </label>
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="شرایط فروش اقساطی"
+                                      name="leasing"
+                                      onChange={
+                                        handleProductSpecificationInputChange
+                                      }
                                     />
                                   </td>
                                 </tr>
