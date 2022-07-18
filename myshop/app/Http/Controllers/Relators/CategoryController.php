@@ -57,4 +57,9 @@ class CategoryController extends Controller
             'deleted'=> true,
         ]);
     }
+
+    public function getImage() {
+        $pathToFile= 'app/public/images/index.jpg';
+        return response()->file(storage_path($pathToFile));
+    }
 }

@@ -24,4 +24,5 @@ Route::post('/category/create', [CategoryController::class, 'create']);
 Route::post('/category/delete', [CategoryController::class, 'delete']);
 Route::post('/category/edit', [CategoryController::class, 'edit']);
 
+Route::get('/myimage', [CategoryController::class, 'getImage']);
 
