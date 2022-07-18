@@ -5,10 +5,9 @@ import { useContext, useState } from "react";
 import CategoryContext from "../../contexts/CategoryContext";
 import { useEffect } from "react";
 
-
 const CreateProduct = () => {
-  const {categoryList, getCategories}= useContext(CategoryContext);
-  const [productInfo, setProductInfo]= useState({
+  const { categoryList, getCategories } = useContext(CategoryContext);
+  const [productInfo, setProductInfo] = useState({
     title: "",
     meta_title: "",
     category_id: 0,
@@ -17,42 +16,76 @@ const CreateProduct = () => {
     summary: "",
     quantity: "",
     publish: false,
+    productSpecifications: {
+
+    },
   });
-  useEffect(()=> {
+  useEffect(() => {
     getCategories();
-  }, [])
-  const handleInputChange= (e)=> {
-    const name= e.target.name;
-    const value= e.target.value;
+  }, []);
+  const handleInputChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
-    setProductInfo((prevInfo)=> {
+    setProductInfo((prevInfo) => {
       return {
         ...prevInfo,
         [name]: value,
-      }
-    })
-  }
-  const handleCheckboxChange= (e)=> {
-    const name= e.target.name;
-    const value= e.target.checked;
+      };
+    });
+  };
+  const handleCheckboxChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.checked;
 
-    setProductInfo((prevInfo)=> {
+    setProductInfo((prevInfo) => {
       return {
         ...prevInfo,
         [name]: value,
-      }
-    })
-  }
+      };
+    });
+  };
+
+  const handleProductSpecificationInputChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    if (value !== "") {
+      setProductInfo((prevInfo) => {
+        return {
+          ...prevInfo,
+          productSpecifications: {
+            ...prevInfo.productSpecifications,
+            [name]: value,
+          },
+        };
+      });
+    } else {
+      setProductInfo((prevInfo) => {
+        const copy = { ...prevInfo };
+
+        delete copy['productSpecifications'][name];
+
+        return copy;
+      });
+    }
+
+    console.log(productInfo.productSpecifications);
+  };
   return (
     <>
-    <AdminSideNav />
-      <div className="main-content" dir="rtl" style={{
-        margin: ''
-      }}>
+      <AdminSideNav />
+      <div
+        className="main-content"
+        dir="rtl"
+        style={{
+          margin: "",
+        }}
+      >
         <div className="container-fluid">
           <div className="row page-titles">
             <div className="col-md-5 align-self-center">
-              <h4 className="text-themecolor">Products edit</h4>
+              <h4 className="text-themecolor">ایجاد محصول</h4>
             </div>
             <div className="col-md-7 align-self-center text-right">
               <div className="d-flex justify-content-end align-items-center">
@@ -78,7 +111,7 @@ const CreateProduct = () => {
                 <div className="card-body">
                   <form action="#">
                     <div className="form-body">
-                      <h5 className="card-title">About Product</h5>
+                      <h5 className="card-title">اطلاعات محصول</h5>
                       <hr />
                       <div className="row">
                         <div className="col-md-6">
@@ -91,13 +124,15 @@ const CreateProduct = () => {
                               className="form-control"
                               placeholder="مثال: مبل تک نفره رویال"
                               onChange={handleInputChange}
-                              value= {productInfo.title}
+                              value={productInfo.title}
                             />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
-                            <label className="control-label">عنوان تکمیلی</label>
+                            <label className="control-label">
+                              عنوان تکمیلی
+                            </label>
                             <input
                               type="text"
                               id="lastName"
@@ -105,7 +140,7 @@ const CreateProduct = () => {
                               className="form-control"
                               placeholder="مثال: مبل 8 نفری راحت با فرم ابر و باد"
                               onChange={handleInputChange}
-                              value= {productInfo.meta_title}
+                              value={productInfo.meta_title}
                             />
                           </div>
                         </div>
@@ -120,16 +155,18 @@ const CreateProduct = () => {
                               tabIndex="1"
                               name="category_id"
                               onChange={handleInputChange}
-                              value= {productInfo.category_id}
+                              value={productInfo.category_id}
                             >
-                              <option value="0"  disabled>انتخاب دسته</option>
-                              {
-                                categoryList.map((category)=> {
-                                  return (
-                                    <option value={category.id} key={category.id}>{category.title}</option>
-                                  )
-                                })
-                              }
+                              <option value="0" disabled>
+                                انتخاب دسته
+                              </option>
+                              {categoryList.map((category) => {
+                                return (
+                                  <option value={category.id} key={category.id}>
+                                    {category.title}
+                                  </option>
+                                );
+                              })}
                             </select>
                           </div>
                         </div>
@@ -181,7 +218,7 @@ const CreateProduct = () => {
                                 aria-describedby="basic-addon1"
                                 name="price"
                                 onChange={handleInputChange}
-                                value= {productInfo.price}
+                                value={productInfo.price}
                               />
                               <div className="input-group-prepend">
                                 <span
@@ -206,7 +243,7 @@ const CreateProduct = () => {
                                 aria-describedby="basic-addon2"
                                 name="discount"
                                 onChange={handleInputChange}
-                                value= {productInfo.discount}
+                                value={productInfo.discount}
                               />
                               <div className="input-group-prepend">
                                 <span
@@ -224,12 +261,13 @@ const CreateProduct = () => {
                       <div className="row">
                         <div className="col-md-12 ">
                           <div className="form-group">
-                            <textarea className="form-control" rows="4"
-                            name="summary"
-                            onChange={handleInputChange}
-                            value={productInfo.summary}>
-                              
-                            </textarea>
+                            <textarea
+                              className="form-control"
+                              rows="4"
+                              name="summary"
+                              onChange={handleInputChange}
+                              value={productInfo.summary}
+                            ></textarea>
                           </div>
                         </div>
                       </div>
@@ -237,27 +275,32 @@ const CreateProduct = () => {
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>تعداد موجودی</label>
-                            <input type="text" className="form-control"
-                            name="quantity"
-                            onChange={handleInputChange}
-                            value={productInfo.quantity}
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="quantity"
+                              onChange={handleInputChange}
+                              value={productInfo.quantity}
                             />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group">
                             <label>انتشار در سایت</label>
-                            <input type="checkbox" className="form-check-input mr-3" style={{
-                              display: "block"
-                            }}
-                            name="publish"
-                            onChange={handleCheckboxChange}
-                            value={productInfo.publish}
+                            <input
+                              type="checkbox"
+                              className="form-check-input mr-3"
+                              style={{
+                                display: "block",
+                              }}
+                              name="publish"
+                              onChange={handleCheckboxChange}
+                              value={productInfo.publish}
                             />
                           </div>
                         </div>
                         <div className="col-md-3">
-                          <h5 className="card-title m-t-20">Upload Image</h5>
+                          <h5 className="card-title m-t-20">تصویر شاخص</h5>
                           <div className="product-img">
                             {" "}
                             <img src={chairImage} />
@@ -265,15 +308,18 @@ const CreateProduct = () => {
                               <a href="javascript:void(0)" className="bg-info">
                                 <i className="ti-marker-alt"></i>
                               </a>{" "}
-                              <a href="javascript:void(0)" className="bg-danger">
+                              <a
+                                href="javascript:void(0)"
+                                className="bg-danger"
+                              >
                                 <i className="ti-trash"></i>
                               </a>
                             </div>
                             <br />
                             <div className="fileupload btn btn-info waves-effect waves-light">
                               <span>
-                                <i className="ion-upload m-r-5"></i>Upload Anonther
-                                Image
+                                <i className="ion-upload m-r-5"></i>Upload
+                                Anonther Image
                               </span>
                               <input type="file" className="upload" />{" "}
                             </div>
@@ -282,103 +328,139 @@ const CreateProduct = () => {
                       </div>
                       <div className="row">
                         <div className="col-md-12">
-                          <h5 className="card-title m-t-40">GENERAL INFO</h5>
+                          <h5 className="card-title m-t-40">مشخصات محصول</h5>
                           <div className="table-responsive">
                             <table className="table table-bordered td-padding">
                               <tbody>
                                 <tr>
                                   <td>
+                                    <label className="mr-2">برند</label>
                                     <input
                                       type="text"
                                       className="form-control"
-                                      placeholder="Brand"
+                                      placeholder="برند"
+                                      name="brand"
+                                      onChange={handleProductSpecificationInputChange}
                                     />
                                   </td>
                                   <td>
+                                  <label className="mr-2">تعداد</label>
                                     <input
                                       type="text"
                                       className="form-control"
-                                      placeholder="Stellar"
-                                    />
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Delivery Condition"
-                                    />
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Knock Down"
+                                      placeholder="تعداد"
+                                      name="count"
+                                      onChange={handleProductSpecificationInputChange}
                                     />
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>
+                                  <label className="mr-2">جنس بدنه</label>
                                     <input
                                       type="text"
                                       className="form-control"
-                                      placeholder="Seat Lock Included"
+                                      placeholder="جنس بدنه"
+                                      name="bodyMaterial"
+                                      onChange={handleProductSpecificationInputChange}
                                     />
                                   </td>
                                   <td>
+                                  <label className="mr-2">جنس بدنه</label>
                                     <input
                                       type="text"
                                       className="form-control"
-                                      placeholder="Yes"
-                                    />
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Type"
-                                    />
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="text"
-                                      className="form-control"
-                                      placeholder="Office Chair"
+                                      placeholder="جنس بدنه"
+                                      name="bodyMaterial"
+                                      onChange={handleProductSpecificationInputChange}
                                     />
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>
+                                  <label className="mr-2">جنس نشیمن</label>
                                     <input
                                       type="text"
                                       className="form-control"
-                                      placeholder="Style"
+                                      placeholder="جنس نشیمن"
+                                      name="seatMaterial"
+                                      onChange={handleProductSpecificationInputChange}
                                     />
                                   </td>
                                   <td>
+                                  <label className="mr-2">جنس پایه</label>
                                     <input
                                       type="text"
                                       className="form-control"
-                                      placeholder="Contemporary &amp; Modern"
+                                      placeholder="جنس پایه"
+                                      name="legMaterial"
+                                      onChange={handleProductSpecificationInputChange}
                                     />
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>
+                                  <label className="mr-2">نوع دوخت</label>
                                     <input
                                       type="text"
                                       className="form-control"
-                                      placeholder="Wheels Included"
+                                      placeholder="نوع دوخت"
+                                      name="sewingType"
+                                      onChange={handleProductSpecificationInputChange}
                                     />
                                   </td>
                                   <td>
+                                  <label className="mr-2">مکانیزم</label>
                                     <input
                                       type="text"
                                       className="form-control"
-                                      placeholder="Yes"
+                                      placeholder="مکانیزم"
+                                      name="mechanism"
+                                      onChange={handleProductSpecificationInputChange}
+                                    />
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                  <label className="mr-2">جنس پارچه</label>
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="جنس پارچه"
+                                      name="fabricMaterial"
+                                      onChange={handleProductSpecificationInputChange}
+                                    />
+                                  </td>
+                                  <td>
+                                  <label className="mr-2">تعداد کوسن</label>
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="تعداد کوسن"
+                                      name="cushionCount"
+                                      onChange={handleProductSpecificationInputChange}
+                                    />
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                  <label className="mr-2">تراکم اسفنج</label>
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="تراکم اسفنج"
+                                      name="spongeDensity"
+                                      onChange={handleProductSpecificationInputChange}
+                                    />
+                                  </td>
+                                  <td>
+                                  <label className="mr-2">وزن قابل تحمل</label>
+                                    <input
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="وزن قابل تحمل"
+                                      name="tolerableWeight"
+                                      onChange={handleProductSpecificationInputChange}
                                     />
                                   </td>
                                 </tr>
@@ -558,7 +640,8 @@ const CreateProduct = () => {
                         className="img-circle"
                       />{" "}
                       <span>
-                        Varun Dhavan <small className="text-success">online</small>
+                        Varun Dhavan{" "}
+                        <small className="text-success">online</small>
                       </span>
                     </a>
                   </li>
@@ -583,7 +666,8 @@ const CreateProduct = () => {
                         className="img-circle"
                       />{" "}
                       <span>
-                        Ritesh Deshmukh <small className="text-danger">Busy</small>
+                        Ritesh Deshmukh{" "}
+                        <small className="text-danger">Busy</small>
                       </span>
                     </a>
                   </li>
@@ -595,7 +679,8 @@ const CreateProduct = () => {
                         className="img-circle"
                       />{" "}
                       <span>
-                        Arijit Sinh <small className="text-muted">Offline</small>
+                        Arijit Sinh{" "}
+                        <small className="text-muted">Offline</small>
                       </span>
                     </a>
                   </li>
@@ -607,7 +692,8 @@ const CreateProduct = () => {
                         className="img-circle"
                       />{" "}
                       <span>
-                        Govinda Star <small className="text-success">online</small>
+                        Govinda Star{" "}
+                        <small className="text-success">online</small>
                       </span>
                     </a>
                   </li>
@@ -619,7 +705,8 @@ const CreateProduct = () => {
                         className="img-circle"
                       />{" "}
                       <span>
-                        John Abraham<small className="text-success">online</small>
+                        John Abraham
+                        <small className="text-success">online</small>
                       </span>
                     </a>
                   </li>
@@ -631,7 +718,8 @@ const CreateProduct = () => {
                         className="img-circle"
                       />{" "}
                       <span>
-                        Hritik Roshan<small className="text-success">online</small>
+                        Hritik Roshan
+                        <small className="text-success">online</small>
                       </span>
                     </a>
                   </li>
@@ -659,4 +747,3 @@ const CreateProduct = () => {
 };
 
 export default CreateProduct;
-    
