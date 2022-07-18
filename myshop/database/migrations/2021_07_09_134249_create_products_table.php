@@ -32,6 +32,7 @@ class CreateProductsTable extends Migration
             $table->text('content');
             $table->boolean('publish')->default(0);
             $table->string('avatar_image')->nullable();
+            $table->text('product_specifications')->nullable();
             $table->timestamps();
         });
     }
