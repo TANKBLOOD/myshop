@@ -30,4 +30,4 @@ Route::middleware(['auth:sanctum', 'verified', 'adminauth'])->group(function () 
     });
 });
 
-Route::get('/myimage', [CategoryController::class, 'getImage']);
+Route::get('/myimage/{name}', [CategoryController::class, 'getImage']);
