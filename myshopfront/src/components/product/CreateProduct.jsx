@@ -4,9 +4,14 @@ import chairImage from "../../styles/shared/assets/images/gallery/chair.jpg";
 import { useContext, useState } from "react";
 import CategoryContext from "../../contexts/CategoryContext";
 import { useEffect } from "react";
+import ProductContext from "../../contexts/ProductContext";
 
 const CreateProduct = () => {
   const { categoryList, getCategories } = useContext(CategoryContext);
+  const { createProduct } = useContext(ProductContext);
+  const [imagesPreview, setImagesPreview] = useState([]);
+  const [imagesObjectsList, setImagesObjectsList] = useState([]);
+
   const [productInfo, setProductInfo] = useState({
     title: "",
     meta_title: "",
@@ -18,7 +23,21 @@ const CreateProduct = () => {
     publish: "draft",
     productSpecifications: {},
     forceOutOfStack: false,
+    avatar_image: "",
   });
+  const params = {
+    title: productInfo.title,
+    meta_title: productInfo.meta_title,
+    category_id: productInfo.category_id,
+    price: productInfo.price,
+    discount: productInfo.discount,
+    summary: productInfo.summary,
+    quantity: productInfo.quantity,
+    publish: productInfo.publish,
+    productSpecifications: productInfo.productSpecifications,
+    forceOutOfStack: productInfo.forceOutOfStack,
+    avatar_image: productInfo.avatar_image
+  };
   useEffect(() => {
     getCategories();
   }, []);
@@ -32,7 +51,7 @@ const CreateProduct = () => {
         [name]: value,
       };
     });
-    console.log(productInfo)
+    console.log(productInfo);
   };
   const handleCheckboxChange = (e) => {
     const name = e.target.name;
@@ -45,8 +64,7 @@ const CreateProduct = () => {
       };
     });
 
-
-    console.log(productInfo)
+    console.log(productInfo);
   };
 
   const handleProductSpecificationInputChange = (e) => {
@@ -74,6 +92,36 @@ const CreateProduct = () => {
     }
 
     console.log(productInfo.productSpecifications);
+  };
+
+  const handleGalleryImageUpload = (e) => {
+    const files = e.target.files;
+    setImagesObjectsList((prevInfo) => {
+      return [...prevInfo, ...files];
+    });
+    // console.log(productInfo.images);
+    setImagesPreview((prev) => {
+      return [
+        ...prev,
+        ...[...files].map((imageFile) => {
+          return URL.createObjectURL(imageFile);
+        }),
+      ];
+    });
+  };
+
+  const handleAvatarImageUpload= (e)=> {
+    setProductInfo((prevInfo) => {
+      return {
+        ...prevInfo,
+        avatar_image: e.target.files[0],
+      };
+    });
+  }
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    createProduct(params, imagesObjectsList);
   };
   return (
     <>
@@ -112,7 +160,7 @@ const CreateProduct = () => {
             <div className="col-lg-12">
               <div className="card">
                 <div className="card-body">
-                  <form action="#">
+                  <form onSubmit={handleFormSubmit}>
                     <div className="form-body">
                       <h5 className="card-title">اطلاعات محصول</h5>
                       <hr />
@@ -183,7 +231,7 @@ const CreateProduct = () => {
                                 id="customRadioInline1"
                                 name="publish"
                                 className="custom-control-input"
-                                value= "publish"
+                                value="publish"
                                 onChange={handleInputChange}
                               />
                               <label
@@ -306,59 +354,50 @@ const CreateProduct = () => {
                             />
                           </div>
                         </div>
-                        <div className="col-md-3 flex">
+                        <div className="">
                           <h5 className="card-title m-t-20">تصویر شاخص</h5>
                           <div className="product-img d-flex flex-row">
                             <div className="m-5">
-                              <img src={chairImage} />
-                              <div className="pro-img-overlay">
-                                <a
-                                  href="javascript:void(0)"
-                                  className="bg-info"
-                                >
-                                  <i className="ti-marker-alt"></i>
-                                </a>{" "}
-                                <a
-                                  href="javascript:void(0)"
-                                  className="bg-danger"
-                                >
-                                  <i className="ti-trash"></i>
-                                </a>
-                              </div>
+                              <img src={productInfo.avatar_image != "" ? URL.createObjectURL(productInfo.avatar_image) : null} />
                               <br />
-                              <div className="fileupload btn btn-info waves-effect waves-light">
-                                <span>
-                                  <i className="ion-upload m-r-5"></i>Upload
-                                  Anonther Image
-                                </span>
-                                <input type="file" className="upload" />
-                              </div>
                             </div>
-                            <div className="m-5">
-                              <img src={chairImage} />
-                              <div className="pro-img-overlay">
-                                <a
-                                  href="javascript:void(0)"
-                                  className="bg-info"
-                                >
-                                  <i className="ti-marker-alt"></i>
-                                </a>{" "}
-                                <a
-                                  href="javascript:void(0)"
-                                  className="bg-danger"
-                                >
-                                  <i className="ti-trash"></i>
-                                </a>
-                              </div>
-                              <br />
-                              <div className="fileupload btn btn-info waves-effect waves-light">
-                                <span>
-                                  <i className="ion-upload m-r-5"></i>Upload
-                                  Anonther Image
-                                </span>
-                                <input type="file" className="upload" />
-                              </div>
-                            </div>
+                          </div>
+                          <div className="fileupload btn btn-info waves-effect waves-light">
+                            <span>
+                              <i className="ion-upload m-r-5"></i>Upload
+                              Anonther Image
+                            </span>
+                            <input
+                              type="file"
+                              className="upload"
+                              onChange={handleAvatarImageUpload}
+                              multiple
+                            />
+                          </div>
+                        </div>
+                        <div className="col-md-3 flex">
+                          <h5 className="card-title m-t-20">گالری تصاویر</h5>
+                          <div className="fileupload btn btn-info waves-effect waves-light">
+                            <span>
+                              <i className="ion-upload m-r-5"></i>Upload
+                              Anonther Image
+                            </span>
+                            <input
+                              type="file"
+                              className="upload"
+                              onChange={handleGalleryImageUpload}
+                              multiple
+                            />
+                          </div>
+                          <div className="product-img d-flex flex-row">
+                            {imagesPreview.map((image, index) => {
+                              return (
+                                <div className="m-5" key={index}>
+                                  <img src={image} />
+                                  <br />
+                                </div>
+                              );
+                            })}
                           </div>
                         </div>
                       </div>
@@ -514,9 +553,7 @@ const CreateProduct = () => {
                                     />
                                   </td>
                                   <td>
-                                    <label className="mr-2">
-                                      ضمانت
-                                    </label>
+                                    <label className="mr-2">ضمانت</label>
                                     <input
                                       type="text"
                                       className="form-control"
@@ -530,7 +567,7 @@ const CreateProduct = () => {
                                 </tr>
                                 <tr>
                                   <td>
-                                  <label className="mr-2">
+                                    <label className="mr-2">
                                       خدمات پس از فروش
                                     </label>
                                     <input
@@ -544,7 +581,7 @@ const CreateProduct = () => {
                                     />
                                   </td>
                                   <td>
-                                  <label className="mr-2">
+                                    <label className="mr-2">
                                       شرایط فروش اقساطی
                                     </label>
                                     <input
