@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\presentable\ProductController;
 use App\Http\Controllers\Relators\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,4 @@ Route::post('/category/create', [CategoryController::class, 'create']);
 Route::post('/category/delete', [CategoryController::class, 'delete']);
 Route::post('/category/edit', [CategoryController::class, 'edit']);
 
-
+Route::post('/product/create', [ProductController::class, 'create']);
