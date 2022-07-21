@@ -29,10 +29,12 @@ class CreateProductsTable extends Migration
             $table->dateTime('published_at')->nullable();
             $table->dateTime('starts_at')->nullable();
             $table->dateTime('ends_at')->nullable();
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->boolean('publish')->default(0);
             $table->string('avatar_image')->nullable();
             $table->text('product_specifications')->nullable();
+            $table->boolean('out_of_stack')->default(0);
+            $table->text('images')->nullable();
             $table->timestamps();
         });
     }
