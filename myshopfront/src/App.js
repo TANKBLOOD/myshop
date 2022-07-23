@@ -7,6 +7,7 @@ import AdminDashboard from "./components/routes/AdminDashboard";
 import "./styles/shared/adminsidebar.css";
 import CreateProduct from "./components/product/CreateProduct";
 import { ProductProvider } from "./contexts/ProductContext";
+import ProductIndex from "./components/product/ProductIndex";
 function App() {
   // useEffect(() => {
   //   // 👇 add class to body element
@@ -26,6 +27,7 @@ function App() {
             <Route path="categories" element={<CategoryIndex />}></Route>
             <Route path="adminDashboard" element={<AdminDashboard />}></Route>
             <Route path="createProduct" element={<CreateProduct />}></Route>
+            <Route path="products" element={<ProductIndex />}></Route>
           </Routes>
         </ProductProvider>
       </CategoryProvider>

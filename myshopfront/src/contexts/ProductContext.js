@@ -6,7 +6,12 @@ const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [productList, setProductList] = useState([]);
-
+  const getProducts = () => {
+    axios.get(`http://127.0.0.1:8000/api/product/index`).then((response) => {
+      setProductList(response.data.products);
+      console.log(response.data.products);
+    });
+  };
   const createProduct = (params, imagesList) => {
     const formData = new FormData();
     Object.entries(params).forEach(([key, val]) => {
@@ -18,7 +23,10 @@ export const ProductProvider = ({ children }) => {
       // }
       formData.append(key, val);
     });
-    formData.append('productSpecifications', JSON.stringify(params.productSpecifications));
+    formData.append(
+      "productSpecifications",
+      JSON.stringify(params.productSpecifications)
+    );
     imagesList.forEach((image_file) => {
       formData.append("images[]", image_file);
     });
@@ -35,6 +43,7 @@ export const ProductProvider = ({ children }) => {
   return (
     <ProductContext.Provider
       value={{
+        getProducts: getProducts,
         createProduct: createProduct,
         productList: productList,
       }}
