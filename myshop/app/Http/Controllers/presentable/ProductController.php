@@ -10,6 +10,13 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     //
+    public function index() {
+        $products= Product::all();
+
+        return response()->json([
+            'products'=> $products,
+        ]);
+    }
     public function create(Request $request) {
         // title: "",
         // meta_title: "",
@@ -56,5 +63,10 @@ class ProductController extends Controller
             'newProduct'=> $newProduct,
         ]);
 
+    }
+    public function getImage($name)
+    {
+        $pathToFile = 'app/public/images/products/'.$name;
+        return response()->file(storage_path($pathToFile));
     }
 }

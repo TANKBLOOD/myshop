@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\presentable\ProductController;
 use App\Http\Controllers\Relators\CategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +32,4 @@ Route::middleware(['auth:sanctum', 'verified', 'adminauth'])->group(function () 
 });
 
 Route::get('/myimage/{name}', [CategoryController::class, 'getImage']);
+Route::get('/product/image/{name}', [ProductController::class, 'getImage']);
