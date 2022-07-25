@@ -69,4 +69,11 @@ class ProductController extends Controller
         $pathToFile = 'app/public/images/products/'.$name;
         return response()->file(storage_path($pathToFile));
     }
+
+    public function view(Product $product) {
+
+        return response()->json([
+            'product'=> $product,
+        ]);
+    }
 }

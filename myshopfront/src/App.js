@@ -8,6 +8,8 @@ import "./styles/shared/adminsidebar.css";
 import CreateProduct from "./components/product/CreateProduct";
 import { ProductProvider } from "./contexts/ProductContext";
 import ProductIndex from "./components/product/ProductIndex";
+import AdminViewProduct from "./components/product/AdminViewProduct";
+import EditProduct from "./components/product/EditProduct";
 function App() {
   // useEffect(() => {
   //   // 👇 add class to body element
@@ -28,6 +30,8 @@ function App() {
             <Route path="adminDashboard" element={<AdminDashboard />}></Route>
             <Route path="createProduct" element={<CreateProduct />}></Route>
             <Route path="products" element={<ProductIndex />}></Route>
+            <Route path="adminViewProduct/:productSlug" element={<AdminViewProduct />}></Route>
+            <Route path="editProduct/:productSlug" element={<EditProduct />}></Route>
           </Routes>
         </ProductProvider>
       </CategoryProvider>
