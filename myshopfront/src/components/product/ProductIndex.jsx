@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import ProductContext from "../../contexts/ProductContext";
 import AdminSideNav from "../shared/AdminSideNav";
 import chairImage from "../../styles/shared/assets/images/gallery/chair4.jpg";
+import { NavLink } from "react-router-dom";
 
 const ProductIndex = () => {
   const { getProducts, productList } = useContext(ProductContext);
@@ -17,7 +18,7 @@ const ProductIndex = () => {
         dir="rtl"
         style={{
           margin: "",
-          backgroundColor: '#edf1f5'
+          backgroundColor: "#edf1f5",
         }}
       >
         <div class="container-fluid">
@@ -50,7 +51,7 @@ const ProductIndex = () => {
                     <div class="card-body">
                       <div class="product-img">
                         <img
-                        //   src={`http://localhost:8000/product/image/${product.avatar_image}`}
+                          //   src={`http://localhost:8000/product/image/${product.avatar_image}`}
                           src={`http://localhost:8000/product/image/${product.avatar_image}`}
                         />
                         <div class="pro-img-overlay">
@@ -62,13 +63,15 @@ const ProductIndex = () => {
                           </a>
                         </div>
                       </div>
-                      <div class="product-text">
-                        <span class="pro-price bg-primary">{`${product.price} ریال`}</span>
-                        <h5 class="card-title m-b-0">{product.title}</h5>
-                        <small class="text-muted db">
-                          {product.meta_title}
-                        </small>
-                      </div>
+                      <NavLink to={`/editProduct/${product.slug}`}>
+                        <div class="product-text">
+                          <span class="pro-price bg-primary">{`${product.price} ریال`}</span>
+                          <h5 class="card-title m-b-0">{product.title}</h5>
+                          <small class="text-muted db">
+                            {product.meta_title}
+                          </small>
+                        </div>
+                      </NavLink>
                     </div>
                   </div>
                 </div>
