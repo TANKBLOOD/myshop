@@ -8,7 +8,7 @@ export const ProductProvider = ({ children }) => {
   const [productList, setProductList] = useState([]);
   const [viewingProduct, setViewingProduct]= useState(null);
   const [editingProduct, setEditingProduct]= useState(null);
-
+  const [isProductLoading, setIsProductLoading]= useState(true);
   const getProducts = () => {
     axios.get(`http://127.0.0.1:8000/api/product/index`).then((response) => {
       setProductList(response.data.products);
@@ -44,11 +44,29 @@ export const ProductProvider = ({ children }) => {
   };
   const getProduct = (slug) => {
     const url= `http://127.0.0.1:8000/api/product/view/${slug}`;
+    setIsProductLoading(true);
     axios
       .get(url)
       .then((res)=> {
+        const productInfo= res.data.product;
         setViewingProduct(res.data.product);
-        setEditingProduct(res.data.product);
+        setEditingProduct({
+          title: productInfo.title,
+          meta_title: productInfo.meta_title,
+          slug: productInfo.slug,
+          category_id: productInfo.category_id,
+          price: productInfo.price,
+          discount: productInfo.discount,
+          summary: productInfo.summary,
+          quantity: productInfo.quantity,
+          publish: productInfo.publish,
+          productSpecifications: productInfo.product_specifications,
+          forceOutOfStack: productInfo.out_of_stack,
+          avatar_image: productInfo.avatar_image,
+          images: productInfo.images,
+          publish: productInfo.publish,
+        });
+        setIsProductLoading(false);
       });
   };
   const editProduct= (params, imagesList)=> {
@@ -66,6 +84,7 @@ export const ProductProvider = ({ children }) => {
         editingProduct: editingProduct,
         setEditingProduct: setEditingProduct,
         editProduct: editProduct,
+        isProductLoading: isProductLoading,
       }}
     >
       {children}
