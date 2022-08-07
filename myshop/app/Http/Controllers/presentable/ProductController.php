@@ -10,70 +10,99 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     //
-    public function index() {
-        $products= Product::all();
+    public function index()
+    {
+        $products = Product::all();
 
         return response()->json([
-            'products'=> $products,
+            'products' => $products,
         ]);
     }
-    public function create(Request $request) {
-        // title: "",
-        // meta_title: "",
-        // category_id: 0,
-        // price: "",
-        // discount: "",
-        // summary: "",
-        // quantity: "",
-        // publish: "draft",
-        // productSpecifications: {},
-        // out_of_stack: false,
+    public function create(Request $request)
+    {
+        $newProduct = new Product();
 
-        $newProduct= new Product();
+        $newProduct->user_id = 1; // change this when the authentication system completed.
+        $newProduct->category_id = $request->category_id;
+        $newProduct->title = $request->title;
+        $newProduct->meta_title = $request->meta_title;
+        $newProduct->slug = Str::slug($request->title);
+        $newProduct->summary = $request->summary;
+        $newProduct->price = $request->price;
+        $newProduct->discount = $request->discount;
+        $newProduct->quantity = $request->quantity;
+        $newProduct->publish = $request->publish == 'draft' ? 0 : 1;
+        $newProduct->out_of_stack = $request->out_of_stack ? 1 : 0;
+        $newProduct->product_specifications = $request->productSpecifications;
 
-        $newProduct->user_id= 1;// change this when the authentication system completed.
-        $newProduct->category_id= $request->category_id;
-        $newProduct->title= $request->title;
-        $newProduct->meta_title= $request->meta_title;
-        $newProduct->slug= Str::slug($request->title);
-        $newProduct->summary= $request->summary;
-        $newProduct->price= $request->price;
-        $newProduct->discount= $request->discount;
-        $newProduct->quantity= $request->quantity;
-        $newProduct->publish= $request->publish == 'draft' ? 0 : 1;
-        $newProduct->out_of_stack= $request->out_of_stack ? 1 : 0;
-        $newProduct->product_specifications= $request->productSpecifications;
-
-        $imagesName= array();
+        $imagesName = array();
         // avatar_image
-        $name = $newProduct->slug."-product_image" . uniqid().".".$request->avatar_image->clientExtension();
+        $name = $newProduct->slug . "-product_image" . uniqid() . "." . $request->avatar_image->clientExtension();
         $path = $request->avatar_image->storeAs('public/images/products/', $name);
-        $newProduct->avatar_image= $name;
+        $newProduct->avatar_image = $name;
 
-        foreach($request->images as $imageFile) {
-            $name = $newProduct->slug."-product_image" . uniqid().".".$imageFile->clientExtension();
+        foreach ($request->images as $imageFile) {
+            $name = $newProduct->slug . "-product_image" . uniqid() . "." . $imageFile->clientExtension();
             $path = $imageFile->storeAs('public/images/products/', $name);
             array_push($imagesName, $name);
         }
-        $newProduct->images= $imagesName;
+        $newProduct->images = $imagesName;
 
         $newProduct->save();
 
         return response()->json([
-            'newProduct'=> $newProduct,
+            'newProduct' => $newProduct,
         ]);
+    }
+    public function update(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
 
+        // $newProduct->user_id = 1; // change this when the authentication system completed.
+        $product->category_id = $request->category_id;
+        $product->title = $request->title;
+        $product->meta_title = $request->meta_title;
+        $product->slug = Str::slug($request->title);
+        $product->summary = $request->summary;
+        $product->price = $request->price;
+        $product->discount = $request->discount;
+        $product->quantity = $request->quantity;
+        $product->publish = $request->publish == 'draft' ? 0 : 1;
+        $product->out_of_stack = $request->out_of_stack ? 1 : 0;
+        $product->product_specifications = $request->productSpecifications;
+
+        $imagesName = array();
+        // avatar_image
+        //todo:
+        //delete the previous image if exists.
+        $name = $product->slug . "-product_image" . uniqid() . "." . $request->avatar_image->clientExtension();
+        $path = $request->avatar_image->storeAs('public/images/products/', $name);
+        $product->avatar_image = $name;
+
+        foreach ($request->images as $imageFile) {
+            $name = $product->slug . "-product_image" . uniqid() . "." . $imageFile->clientExtension();
+            $path = $imageFile->storeAs('public/images/products/', $name);
+            array_push($imagesName, $name);
+        }
+        $product->images = $imagesName;
+
+        $product->save();
+
+        return response()->json([
+            'product' => $product,
+        ]);
     }
     public function getImage($name)
     {
-        $pathToFile = 'app/public/images/products/'.$name;
+        $pathToFile = 'app/public/images/products/' . $name;
         return response()->file(storage_path($pathToFile));
     }
 
-    public function view(Product $product) {
+    public function view(Product $product)
+    {
 
         return response()->json([
-            'product'=> $product,
+            'product' => $product,
         ]);
     }
 }
