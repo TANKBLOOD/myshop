@@ -52,6 +52,10 @@ const ProductIndex = () => {
                       <div class="product-img">
                         <img
                           //   src={`http://localhost:8000/product/image/${product.avatar_image}`}
+                          style={{
+                            maxHeight: '300px',
+                            height: '200px'
+                          }}
                           src={`http://localhost:8000/product/image/${product.avatar_image}`}
                         />
                         <div class="pro-img-overlay">
