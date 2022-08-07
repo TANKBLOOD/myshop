@@ -9,13 +9,14 @@ import { useParams } from "react-router-dom";
 
 const EditProduct = () => {
   const { categoryList, getCategories } = useContext(CategoryContext);
-  const { createProduct, getProduct, editingProduct, setEditingProduct, isProductLoading} =
+  const { createProduct, getProduct, editingProduct, setEditingProduct, isProductLoading, editProduct} =
     useContext(ProductContext);
   const [imagesPreview, setImagesPreview] = useState([]);
   const [imagesObjectsList, setImagesObjectsList] = useState([]);
   const { productSlug } = useParams();
 
   const params = {
+    id: editingProduct?.id,
     title: editingProduct?.title,
     meta_title: editingProduct?.meta_title,
     category_id: editingProduct?.category_id,
@@ -115,7 +116,7 @@ const EditProduct = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    createProduct(params, imagesObjectsList);
+    editProduct(params, imagesObjectsList);
   };
   return (
     <>
