@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import ProductContext from "../../contexts/ProductContext";
 import AdminSideNav from "../shared/AdminSideNav";
 import chairImage from "../../styles/shared/assets/images/gallery/chair4.jpg";
+import "../../styles/shared/dist/css/style.min.css";
+import "../../styles/shared/dist/css/pages/ecommerce.css";
 import { NavLink } from "react-router-dom";
 
 const ProductIndex = () => {
