@@ -23,35 +23,35 @@ const ProductIndex = () => {
           backgroundColor: "#edf1f5",
         }}
       >
-        <div class="container-fluid">
-          <div class="row page-titles">
-            <div class="col-md-5 align-self-center">
-              <h4 class="text-themecolor">Products</h4>
+        <div className="container-fluid">
+          <div className="row page-titles">
+            <div className="col-md-5 align-self-center">
+              <h4 className="text-themecolor">Products</h4>
             </div>
-            <div class="col-md-7 align-self-center text-right">
-              <div class="d-flex justify-content-end align-items-center">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item">
+            <div className="col-md-7 align-self-center text-right">
+              <div className="d-flex justify-content-end align-items-center">
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item">
                     <a href="javascript:void(0)">Home</a>
                   </li>
-                  <li class="breadcrumb-item active">Products</li>
+                  <li className="breadcrumb-item active">Products</li>
                 </ol>
                 <button
                   type="button"
-                  class="btn btn-info d-none d-lg-block m-l-15"
+                  className="btn btn-info d-none d-lg-block m-l-15"
                 >
-                  <i class="fa fa-plus-circle"></i> Create New
+                  <i className="fa fa-plus-circle"></i> Create New
                 </button>
               </div>
             </div>
           </div>
-          <div class="row">
+          <div className="row">
             {productList.map((product) => {
               return (
-                <div class="col-lg-3 col-md-6" key={product.id}>
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="product-img">
+                <div className="col-lg-3 col-md-6" key={product.id}>
+                  <div className="card">
+                    <div className="card-body">
+                      <div className="product-img">
                         <img
                           //   src={`http://localhost:8000/product/image/${product.avatar_image}`}
                           style={{
@@ -60,20 +60,20 @@ const ProductIndex = () => {
                           }}
                           src={`http://localhost:8000/product/image/${product.avatar_image}`}
                         />
-                        <div class="pro-img-overlay">
-                          <a href="javascript:void(0)" class="bg-info">
-                            <i class="ti-marker-alt"></i>
+                        <div className="pro-img-overlay">
+                          <a href="javascript:void(0)" className="bg-info">
+                            <i className="ti-marker-alt"></i>
                           </a>
-                          <a href="javascript:void(0)" class="bg-danger">
-                            <i class="ti-trash"></i>
+                          <a href="javascript:void(0)" className="bg-danger">
+                            <i className="ti-trash"></i>
                           </a>
                         </div>
                       </div>
                       <NavLink to={`/editProduct/${product.slug}`}>
-                        <div class="product-text">
-                          <span class="pro-price bg-primary">{`${product.price} ریال`}</span>
-                          <h5 class="card-title m-b-0">{product.title}</h5>
-                          <small class="text-muted db">
+                        <div className="product-text">
+                          <span className="pro-price bg-primary">{`${product.price} ریال`}</span>
+                          <h5 className="card-title m-b-0">{product.title}</h5>
+                          <small className="text-muted db">
                             {product.meta_title}
                           </small>
                         </div>

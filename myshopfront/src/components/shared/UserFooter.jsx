@@ -3,11 +3,11 @@ import "../../styles/shared/toImportFonts.css";
 const UserFooter = () => {
   return (
     <footer>
-      <div class="container-fluid">
-        <div class="footer-wrap">
-          <div class="container">
-            <div class="footer-showroom">
-              <div class="text-center">
+      <div className="container-fluid">
+        <div className="footer-wrap">
+          <div className="container">
+            <div className="footer-showroom">
+              <div className="text-center">
                 <a href="/">
                   <img
                     src="assets/images/divano-logo.png"
@@ -19,9 +19,9 @@ const UserFooter = () => {
               </div>
             </div>
 
-            <div class="footer-links">
-              <div class="row">
-                <div class="col-md-2">
+            <div className="footer-links">
+              <div className="row">
+                <div className="col-md-2">
                   <h5>مرور کردن توسط</h5>
                   <ul>
                     <li>
@@ -41,7 +41,7 @@ const UserFooter = () => {
                     </li>
                   </ul>
                 </div>
-                <div class="col-md-2">
+                <div className="col-md-2">
                   <h5>لینک های سریع</h5>
                   <ul>
                     <li>
@@ -61,7 +61,7 @@ const UserFooter = () => {
                     </li>
                   </ul>
                 </div>
-                <div class="col-md-2">
+                <div className="col-md-2">
                   <h5>اطلاعات سفارش</h5>
                   <ul>
                     <li>
@@ -81,7 +81,7 @@ const UserFooter = () => {
                     </li>
                   </ul>
                 </div>
-                <div class=" offset-md-3 col-md-3">
+                <div className=" offset-md-3 col-md-3">
                   <h5>برای دریافت خبرنامه ما ثبت نام کنید</h5>
                   <p>
                     <i>
@@ -89,9 +89,9 @@ const UserFooter = () => {
                       تبلیغاتی ، آدرس ایمیل خود را اضافه کنید.
                     </i>
                   </p>
-                  <div class="form-group form-newsletter">
+                  <div className="form-group form-newsletter">
                     <input
-                      class="form-control"
+                      className="form-control"
                       type="text"
                       name="email"
                       value=""
@@ -99,7 +99,7 @@ const UserFooter = () => {
                     />
                     <input
                       type="submit"
-                      class="btn btn-secondary btn-sm"
+                      className="btn btn-secondary btn-sm"
                       value="اشتراک در"
                     />
                   </div>
@@ -107,40 +107,40 @@ const UserFooter = () => {
               </div>
             </div>
 
-            <div class="footer-social">
-              <div class="row">
-                <div class="col-sm-6">
+            <div className="footer-social">
+              <div className="row">
+                <div className="col-sm-6">
                   <a href="#" target="_blank">
-                    <i class="fa fa-download"></i> دانلود قالب دایوانا
+                    <i className="fa fa-download"></i> دانلود قالب دایوانا
                   </a>{" "}
                   &nbsp; | &nbsp; <a href="#">نقشه سایت</a> &nbsp; | &nbsp;{" "}
                   <a href="#">سیاست حفظ حریم خصوصی</a>
                 </div>
-                <div class="col-sm-6 links">
+                <div className="col-sm-6 links">
                   <ul>
                     <li>
                       <a href="#">
-                        <i class="fa fa-facebook"></i>
+                        <i className="fa fa-facebook"></i>
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <i class="fa fa-twitter"></i>
+                        <i className="fa fa-twitter"></i>
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <i class="fa fa-google-plus"></i>
+                        <i className="fa fa-google-plus"></i>
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <i class="fa fa-youtube"></i>
+                        <i className="fa fa-youtube"></i>
                       </a>
                     </li>
                     <li>
                       <a href="#">
-                        <i class="fa fa-instagram"></i>
+                        <i className="fa fa-instagram"></i>
                       </a>
                     </li>
                   </ul>
