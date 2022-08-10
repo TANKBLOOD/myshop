@@ -4,6 +4,7 @@ namespace App\Http\Controllers\presentable;
 
 use App\Http\Controllers\Controller;
 use App\Models\Presentable\Product;
+use App\Models\Relators\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -90,6 +91,14 @@ class ProductController extends Controller
 
         return response()->json([
             'product' => $product,
+        ]);
+    }
+
+    public function categoryProducts(Category $category) {
+        $categoryProducts= $category->products;
+
+        return response()->json([
+            'categoryProducts'=> $categoryProducts,
         ]);
     }
     public function getImage($name)

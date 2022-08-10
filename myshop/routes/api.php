@@ -30,3 +30,5 @@ Route::post('/product/create', [ProductController::class, 'create']);
 
 Route::get('/product/view/{product}', [ProductController::class, 'view']);
 Route::post('/product/update', [ProductController::class, 'update']);
+
+Route::get('/category/{category}/products', [ProductController::class, 'categoryProducts']);
