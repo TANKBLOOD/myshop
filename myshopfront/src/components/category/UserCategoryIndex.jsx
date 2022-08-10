@@ -6,6 +6,8 @@ import "../../styles/shared/user-css/magnific-popup.css";
 import "../../styles/shared/user-css/owl.carousel.css";
 import "../../styles/shared/user-css/theme.css";
 import "../../styles/shared/toImportFonts.css";
+// import "../../styles/shared/user-css/bootstrap.css";
+
 //images import
 import product1 from "../../styles/shared/user-css/assets/images/product-1.jpg";
 import product2 from "../../styles/shared/user-css/assets/images/product-2.jpg";
@@ -22,9 +24,6 @@ const UserCategoryIndex = () => {
   return (
     <div
       className="wrapper"
-      style={{
-        direction: "rtl",
-      }}
     >
       <UserNavigation />
       <section className="products pt-0">

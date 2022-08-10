@@ -12,6 +12,8 @@ import AdminViewProduct from "./components/product/AdminViewProduct";
 import EditProduct from "./components/product/EditProduct";
 import UserCategoryIndex from "./components/category/UserCategoryIndex";
 import CategoryProductsGrid from "./components/product/CategoryProductsGrid";
+import UserProductView from "./components/product/UserProductView";
+import "./styles/shared/user-css/bootstrap.css";
 function App() {
   // useEffect(() => {
   //   // 👇 add class to body element
@@ -36,7 +38,7 @@ function App() {
             <Route path="editProduct/:productSlug" element={<EditProduct />}></Route>
             <Route path="categories" element={<UserCategoryIndex />}></Route>
             <Route path="category/:categorySlug/products" element={<CategoryProductsGrid />}></Route>
-
+            <Route path="product/view/:slug" element={<UserProductView />}></Route>
           </Routes>
         </ProductProvider>
       </CategoryProvider>

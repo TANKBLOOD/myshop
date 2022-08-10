@@ -100,6 +100,8 @@ body .wrapper {
     width: 100%;
     margin: 0 auto;
     overflow: hidden;
+    direction: rtl;
+    text-align: right;
 }
 
 @media (min-width: 1336px) {
