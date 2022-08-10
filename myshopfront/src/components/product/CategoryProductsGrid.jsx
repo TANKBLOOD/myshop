@@ -12,7 +12,18 @@ import item1 from "../../styles/shared/user-css/assets/images/item-1.jpg";
 import item2 from "../../styles/shared/user-css/assets/images/item-2.jpg";
 import item3 from "../../styles/shared/user-css/assets/images/item-3.jpg";
 import UserFooter from "../shared/UserFooter";
+import { useEffect } from "react";
+import { useContext } from "react";
+import ProductContext from "../../contexts/ProductContext";
+import { useParams } from "react-router-dom";
+
 const CategoryProductsGrid = () => {
+  const { getCategoryProducts, categoryProductsList } =
+    useContext(ProductContext);
+  const { categorySlug } = useParams();
+  useEffect(() => {
+    getCategoryProducts(categorySlug);
+  }, []);
   return (
     <div
       className="wrapper"
@@ -642,151 +653,62 @@ const CategoryProductsGrid = () => {
               </div>
 
               <div class="row">
-                <div class="col-6 col-lg-4">
-                  <article>
-                    <div class="info">
-                      <span class="add-favorite">
-                        <a
-                          href="javascript:void(0);"
-                          data-title="افزودن به علاقه مندی ها"
-                          data-title-added="افزودن به  لیست علاقه مندی "
-                        >
-                          <i class="icon icon-heart"></i>
-                        </a>
-                      </span>
-                      <span>
-                        <a
-                          href="#productid1"
-                          class="mfp-open"
-                          data-title="نمایش سریع "
-                        >
-                          <i class="icon icon-eye"></i>
-                        </a>
-                      </span>
+                {/* place the products map here */}
+                {categoryProductsList.map((product) => {
+                  return (
+                    <div class="col-6 col-lg-4">
+                      <article>
+                        <div class="info">
+                          <span class="add-favorite">
+                            <a
+                              href="javascript:void(0);"
+                              data-title="افزودن به علاقه مندی ها"
+                              data-title-added="افزودن به  لیست علاقه مندی "
+                            >
+                              <i class="icon icon-heart"></i>
+                            </a>
+                          </span>
+                          <span>
+                            <a
+                              href="#productid1"
+                              class="mfp-open"
+                              data-title="نمایش سریع "
+                            >
+                              <i class="icon icon-eye"></i>
+                            </a>
+                          </span>
+                        </div>
+                        <div class="btn btn-add">
+                          <i class="icon icon-cart"></i>
+                        </div>
+                        <div class="figure-grid">
+                          <span class="badge badge-warning">-20%</span>
+                          <div class="image">
+                            <a href="product.html">
+                              <img
+                                src={`http://localhost:8000/product/image/${product.avatar_image}`}
+                                alt=""
+                              />
+                            </a>
+                          </div>
+                          <div class="text">
+                            <h2 class="title h4">
+                              <a href="product.html">آنا</a>
+                            </h2>
+                            <sub>219 تومان</sub>
+                            <sup>219 تومان</sup>
+                            <span class="description clearfix">
+                              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
+                              صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها
+                              و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+                              لازم است و برای شرایط فعلی تکنولوژی مورد نیاز
+                            </span>
+                          </div>
+                        </div>
+                      </article>
                     </div>
-                    <div class="btn btn-add">
-                      <i class="icon icon-cart"></i>
-                    </div>
-                    <div class="figure-grid">
-                      <span class="badge badge-warning">-20%</span>
-                      <div class="image">
-                        <a href="product.html">
-                          <img src={item1} alt="" />
-                        </a>
-                      </div>
-                      <div class="text">
-                        <h2 class="title h4">
-                          <a href="product.html">آنا</a>
-                        </h2>
-                        <sub>219 تومان</sub>
-                        <sup>219 تومان</sup>
-                        <span class="description clearfix">
-                          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                          چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون
-                          بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                          برای شرایط فعلی تکنولوژی مورد نیاز
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-
-                <div class="col-6 col-lg-4">
-                  <article>
-                    <div class="info">
-                      <span class="add-favorite">
-                        <a
-                          href="javascript:void(0);"
-                          data-title="افزودن به علاقه مندی ها"
-                          data-title-added="افزودن به  لیست علاقه مندی "
-                        >
-                          <i class="icon icon-heart"></i>
-                        </a>
-                      </span>
-                      <span>
-                        <a
-                          href="#productid1"
-                          class="mfp-open"
-                          data-title="نمایش سریع "
-                        >
-                          <i class="icon icon-eye"></i>
-                        </a>
-                      </span>
-                    </div>
-                    <div class="btn btn-add">
-                      <i class="icon icon-cart"></i>
-                    </div>
-                    <div class="figure-grid">
-                      <span class="badge badge-info">ورود جدید</span>
-                      <div class="image">
-                        <a href="product.html">
-                          <img src={item2} alt="" />
-                        </a>
-                      </div>
-                      <div class="text">
-                        <h2 class="title h4">
-                          <a href="product.html">لوسی</a>
-                        </h2>
-                        <sub>219 تومان</sub>
-                        <sup>219 تومان</sup>
-                        <span class="description clearfix">
-                          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                          چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون
-                          بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                          برای شرایط فعلی تکنولوژی مورد نیاز
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-
-                <div class="col-6 col-lg-4">
-                  <article>
-                    <div class="info">
-                      <span class="add-favorite added">
-                        <a
-                          href="javascript:void(0);"
-                          data-title="افزودن به علاقه مندی ها"
-                          data-title-added="افزودن به  لیست علاقه مندی "
-                        >
-                          <i class="icon icon-heart"></i>
-                        </a>
-                      </span>
-                      <span>
-                        <a
-                          href="#productid1"
-                          class="mfp-open"
-                          data-title="نمایش سریع "
-                        >
-                          <i class="icon icon-eye"></i>
-                        </a>
-                      </span>
-                    </div>
-                    <div class="btn btn-add">
-                      <i class="icon icon-cart"></i>
-                    </div>
-                    <div class="figure-grid">
-                      <div class="image">
-                        <a href="product.html">
-                          <img src={item3} alt="" />
-                        </a>
-                      </div>
-                      <div class="text">
-                        <h2 class="title h4">
-                          <a href="product.html">الا</a>
-                        </h2>
-                        <sub>219 تومان</sub>
-                        <sup>219 تومان</sup>
-                        <span class="description clearfix">
-                          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                          چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون
-                          بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                          برای شرایط فعلی تکنولوژی مورد نیاز
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-                </div>
+                  );
+                })}
               </div>
 
               <div class="pagination-wrapper">

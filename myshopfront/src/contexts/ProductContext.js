@@ -9,6 +9,9 @@ export const ProductProvider = ({ children }) => {
   const [viewingProduct, setViewingProduct] = useState(null);
   const [editingProduct, setEditingProduct] = useState(null);
   const [isProductLoading, setIsProductLoading] = useState(true);
+
+  const [categoryProductsList, setCategoryProductsList]= useState([]);
+
   const getProducts = () => {
     axios.get(`http://127.0.0.1:8000/api/product/index`).then((response) => {
       setProductList(response.data.products);
@@ -95,6 +98,14 @@ export const ProductProvider = ({ children }) => {
       });
   };
 
+  const getCategoryProducts = (slug) => {
+    const url = `http://127.0.0.1:8000/api/category/${slug}/products`;
+    // setIsProductLoading(true);
+    axios.get(url).then((res) => {
+      const categoryProducts = res.data.categoryProducts;
+      setCategoryProductsList(categoryProducts);
+    });
+  };
   return (
     <ProductContext.Provider
       value={{
@@ -107,6 +118,8 @@ export const ProductProvider = ({ children }) => {
         setEditingProduct: setEditingProduct,
         editProduct: editProduct,
         isProductLoading: isProductLoading,
+        getCategoryProducts: getCategoryProducts,
+        categoryProductsList: categoryProductsList,
       }}
     >
       {children}
