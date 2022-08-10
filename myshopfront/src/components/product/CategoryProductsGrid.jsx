@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import ProductContext from "../../contexts/ProductContext";
 import { useParams } from "react-router-dom";
+import InPageContactUs from "../shared/InPageContactUs";
 
 const CategoryProductsGrid = () => {
   const { getCategoryProducts, categoryProductsList } =
@@ -983,7 +984,7 @@ const CategoryProductsGrid = () => {
           </div>
         </div>
       </section>
-
+      <InPageContactUs />
       <UserFooter />
     </div>
   );

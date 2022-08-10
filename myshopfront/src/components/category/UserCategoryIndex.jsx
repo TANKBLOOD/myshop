@@ -13,11 +13,11 @@ import product3 from "../../styles/shared/user-css/assets/images/product-3.jpg";
 import product4 from "../../styles/shared/user-css/assets/images/product-4.jpg";
 import product5 from "../../styles/shared/user-css/assets/images/product-5.jpg";
 import product6 from "../../styles/shared/user-css/assets/images/product-6.jpg";
-import gallery from "../../styles/shared/user-css/assets/images/gallery-1.jpg";
 //end images import
 import UserNavigation from "../shared/UserNavigation";
 import AllCategoriesList from "./AllCategoriesList";
 import UserFooter from "../shared/UserFooter";
+import InPageContactUs from "../shared/InPageContactUs";
 const UserCategoryIndex = () => {
   return (
     <div
@@ -158,48 +158,7 @@ const UserCategoryIndex = () => {
           <AllCategoriesList />
         </div>
       </section>
-      <section className="banner">
-        <div className="container-fluid">
-          <div
-            className="banner-image"
-            style={{
-              backgroundImage:
-                `url(${gallery})`,
-            }}
-          >
-            <header>
-              <div className="container">
-                <h2 className="h2 title">در تماس باش!</h2>
-                <div className="text">
-                  <p>
-                    اولین کسی باشید که در مورد تمام ویژگی های داخلی جدید مطلع
-                    شوید
-                  </p>
-                </div>
-              </div>
-            </header>
-
-            <div className="container">
-              <div className="row align-items-center">
-                <div className="col-md-4">
-                  <input
-                    type="email"
-                    className="form-control"
-                    name="name"
-                    value=""
-                    placeholder="ایمیل خود را وارد کنید"
-                  />
-                </div>
-                <div className="col-md-4">
-                  <a href="#" className="btn btn-clean">
-                    اکنون مشترک شوید
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <InPageContactUs />
       <UserFooter />
     </div>
   );
