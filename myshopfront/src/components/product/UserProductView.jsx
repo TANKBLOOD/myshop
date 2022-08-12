@@ -11,6 +11,7 @@
 import UserNavigation from "../shared/UserNavigation";
 import product10 from "../../styles/shared/user-css/assets/images/product-10.jpg";
 import product9 from "../../styles/shared/user-css/assets/images/product-9.jpg";
+import UserFooter from "../shared/UserFooter";
 
 const UserProductView = () => {
   return (
@@ -374,6 +375,7 @@ const UserProductView = () => {
             </div> 
 
         </section>
+        <UserFooter />
     </div>
   );
 };
