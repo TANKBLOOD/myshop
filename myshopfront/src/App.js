@@ -38,7 +38,7 @@ function App() {
             <Route path="editProduct/:productSlug" element={<EditProduct />}></Route>
             <Route path="categories" element={<UserCategoryIndex />}></Route>
             <Route path="category/:categorySlug/products" element={<CategoryProductsGrid />}></Route>
-            <Route path="product/view/:slug" element={<UserProductView />}></Route>
+            <Route path="product/view/:productSlug" element={<UserProductView />}></Route>
           </Routes>
         </ProductProvider>
       </CategoryProvider>
