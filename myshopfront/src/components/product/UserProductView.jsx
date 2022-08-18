@@ -1,11 +1,11 @@
-// import "../../styles/shared/user-css/animate.css";
-// import "../../styles/shared/user-css/font-awesome.css";
-// import "../../styles/shared/user-css/ion-range-slider.css";
-// import "../../styles/shared/user-css/linear-icons.css";
-// import "../../styles/shared/user-css/magnific-popup.css";
-// import "../../styles/shared/user-css/owl.carousel.css";
-// import "../../styles/shared/user-css/theme.css";
-// import "../../styles/shared/toImportFonts.css";
+import "../../styles/shared/user-css/animate.css";
+import "../../styles/shared/user-css/font-awesome.css";
+import "../../styles/shared/user-css/ion-range-slider.css";
+import "../../styles/shared/user-css/linear-icons.css";
+import "../../styles/shared/user-css/magnific-popup.css";
+import "../../styles/shared/user-css/owl.carousel.css";
+import "../../styles/shared/user-css/theme.css";
+import "../../styles/shared/toImportFonts.css";
 // import "../../styles/shared/user-css/bootstrap.css";
 import { useParams } from "react-router-dom";
 
@@ -18,14 +18,22 @@ import ProductContext from "../../contexts/ProductContext";
 import { useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { useState } from "react";
 
 const UserProductView = () => {
   const { productSlug } = useParams();
   const { isProductLoading, viewingProduct, getProduct } =
     useContext(ProductContext);
+
+  const [showingImageGallery, setShowingImageGallery] = useState(null);
   useEffect(() => {
     getProduct(productSlug);
   }, []);
+  const handleImageGallery = (imageName) => {
+    const url = `http://localhost:8000/product/image/${imageName}`;
+    setShowingImageGallery(url);
+  };
+  // console.log(viewingProduct.product_specifications)
   return (
     <div
       className="wrapper"
@@ -131,12 +139,10 @@ const UserProductView = () => {
                       </div>
                       <hr />
 
-                      <div className="info-box">
+                      <div>
                         <span>
                           <small>
-                            تمام سفارش های شما پس از بررسی توسط کارشناسان قیمت و
-                            زمان دهی خواهند شد و پس از آماده شدن محصول توسط تیم
-                            تحویل به شما ارائه خواهد شود.
+                              {viewingProduct.summary}
                           </small>
                         </span>
                       </div>
@@ -183,13 +189,71 @@ const UserProductView = () => {
                 </div>
 
                 <div className="col-md-8 product-flex-gallery">
-                  <div className="">
-                    <a href="assets/images/product-10.jpg">
-                      <img src={product10} alt="" />
+                  <div className="owl-product-gallery owl-carousel owl-theme open-popup-gallery">
+                    <a>
+                      <img
+                        src={
+                          showingImageGallery === null
+                            ? `http://localhost:8000/product/image/${viewingProduct.avatar_image}`
+                            : showingImageGallery
+                        }
+                        alt=""
+                        style={{
+                          objectFit: "contain",
+                          maxWidth: "100%",
+                          height: "auto",
+                        }}
+                      />
                     </a>
                     {/* <a href="assets/images/product-9.jpg">
                     <img src={product9} alt="" />
                   </a> */}
+                  </div>
+                  <div className="d-flex flex-lg-row flex-wrap justify-content-between">
+                    <div
+                      className="p-2"
+                      style={{
+                        maxWidth: "150px",
+                        border: "1px solid grey",
+                      }}
+                      onClick={()=> {
+                        handleImageGallery(viewingProduct.avatar_image);
+                      }}
+                    >
+                      <img
+                        src={`http://localhost:8000/product/image/${viewingProduct.avatar_image}`}
+                        alt=""
+                        style={{
+                          objectFit: "contain",
+                          maxWidth: "100%",
+                          height: "100px",
+                        }}
+                      />
+                    </div>
+                    {viewingProduct.images.map((image) => {
+                      return (
+                        <div
+                          className="p-2"
+                          style={{
+                            maxWidth: "150px",
+                            border: "1px solid grey",
+                          }}
+                          onClick={()=> {
+                            handleImageGallery(image);
+                          }}
+                        >
+                          <img
+                            src={`http://localhost:8000/product/image/${image}`}
+                            alt=""
+                            style={{
+                              objectFit: "contain",
+                              maxWidth: "100%",
+                              height: "100px",
+                            }}
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -202,17 +266,156 @@ const UserProductView = () => {
           <TabList>
             <Tab>مشخصات کالا</Tab>
             <Tab>توضیحات کالا</Tab>
-            <Tab>نظرات</Tab>
+            {/* <Tab>نظرات</Tab> */}
           </TabList>
           <TabPanel>
-            <h2>Any content 1</h2>
+            {!isProductLoading ? (
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <h3 class="box-title m-t-40">General Info</h3>
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td width="390">برند</td>
+                        <td>
+                          {"brand" in viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications.brand
+                            : ""}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>تعداد</td>
+                        <td>
+                          {"count" in viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications.count
+                            : ""}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>جنس بدنه</td>
+                        <td>
+                          {"bodyMaterial" in
+                          viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications.bodyMaterial
+                            : ""}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>جنس پارچه</td>
+                        <td>
+                          {"fabricMaterial" in
+                          viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications
+                                .fabricMaterial
+                            : ""}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>جنس نشیمن</td>
+                        <td>
+                          {"seatMaterial" in
+                          viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications.seatMaterial
+                            : ""}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>جنس پایه</td>
+                        <td>
+                          {"legMaterial" in
+                          viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications.legMaterial
+                            : ""}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>نوع دوخت</td>
+                        <td>
+                          {"sewingType" in viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications.sewingType
+                            : ""}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>مکانیزم</td>
+                        <td>
+                          {" "}
+                          {"mechanism" in viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications.mechanism
+                            : ""}{" "}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>تراکم اسفنج</td>
+                        <td>
+                          {"spongeDensity" in
+                          viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications
+                                .spongeDensity
+                            : ""}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>تعداد کوسن</td>
+                        <td>
+                          {"cushionCount" in
+                          viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications.cushionCount
+                            : ""}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>وزن قابل تحمل</td>
+                        <td>
+                          {"tolerableWeight" in
+                          viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications
+                                .tolerableWeight
+                            : ""}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>ضمانت</td>
+                        <td>
+                          {"warranty" in viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications.warranty
+                            : ""}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>خدمات پس از فروش</td>
+                        <td>
+                          {"afterSalesService" in
+                          viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications
+                                .afterSalesService
+                            : ""}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>شرایط فروش اقساطی</td>
+                        <td>
+                          {"leasing" in viewingProduct?.productSpecifications
+                            ? viewingProduct?.productSpecifications.leasing
+                            : ""}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : null}
           </TabPanel>
           <TabPanel>
-            <h2>Any content 2</h2>
+            {!isProductLoading ? (
+              <div>
+                <p>{viewingProduct.summary}</p>
+              </div>
+            ) : null}
           </TabPanel>
-          <TabPanel>
+          {/* <TabPanel>
             <h2>Any content 3</h2>
-          </TabPanel>
+          </TabPanel> */}
         </Tabs>
       </section>
       <section class="products">

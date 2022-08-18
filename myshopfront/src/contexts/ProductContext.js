@@ -50,7 +50,22 @@ export const ProductProvider = ({ children }) => {
     setIsProductLoading(true);
     axios.get(url).then((res) => {
       const productInfo = res.data.product;
-      setViewingProduct(res.data.product);
+      setViewingProduct({
+        title: productInfo.title,
+        meta_title: productInfo.meta_title,
+        slug: productInfo.slug,
+        category_id: productInfo.category_id,
+        price: productInfo.price,
+        discount: productInfo.discount,
+        summary: productInfo.summary,
+        quantity: productInfo.quantity,
+        publish: productInfo.publish,
+        productSpecifications: JSON.parse(productInfo.product_specifications),
+        forceOutOfStack: productInfo.out_of_stack,
+        avatar_image: productInfo.avatar_image,
+        images: productInfo.images,
+        id: productInfo.id,
+      });
       setEditingProduct({
         title: productInfo.title,
         meta_title: productInfo.meta_title,
