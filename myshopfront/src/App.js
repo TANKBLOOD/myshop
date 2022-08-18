@@ -14,6 +14,7 @@ import UserCategoryIndex from "./components/category/UserCategoryIndex";
 import CategoryProductsGrid from "./components/product/CategoryProductsGrid";
 import UserProductView from "./components/product/UserProductView";
 import "./styles/shared/user-css/bootstrap.css";
+import UserMainPage from "./components/UserMainPage";
 function App() {
   // useEffect(() => {
   //   // 👇 add class to body element
@@ -29,7 +30,6 @@ function App() {
       <CategoryProvider>
         <ProductProvider>
           <Routes>
-            <Route></Route>
             <Route path="admin/categories" element={<CategoryIndex />}></Route>
             <Route path="adminDashboard" element={<AdminDashboard />}></Route>
             <Route path="createProduct" element={<CreateProduct />}></Route>
@@ -39,6 +39,7 @@ function App() {
             <Route path="categories" element={<UserCategoryIndex />}></Route>
             <Route path="category/:categorySlug/products" element={<CategoryProductsGrid />}></Route>
             <Route path="product/view/:productSlug" element={<UserProductView />}></Route>
+            <Route path="/" element={<UserMainPage />}></Route>
           </Routes>
         </ProductProvider>
       </CategoryProvider>
