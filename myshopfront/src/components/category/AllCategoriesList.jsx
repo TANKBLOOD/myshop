@@ -18,6 +18,7 @@ import carpet from "../../styles/shared/user-css/assets/icons/icon-carpet.svg";
 import accessories from "../../styles/shared/user-css/assets/icons/icon-accessories.svg";
 import { useContext, useEffect } from "react";
 import CategoryContext from "../../contexts/CategoryContext";
+import { NavLink } from "react-router-dom";
 
 const AllCategoriesList = () => {
   const { categoryList, getCategories } = useContext(CategoryContext);
@@ -234,13 +235,18 @@ const AllCategoriesList = () => {
           {categoryList.map((category) => {
             return (
               <div className="col-6 col-md-2" key={category.id}>
-                <a href="#">
-                  <figure>
-                    <div className="image">
-                      <img src={`http://localhost:8000/myimage/${category.avatar_image}`} alt="Alternate Text" />
-                    </div>
-                    <figcaption>{category.title}</figcaption>
-                  </figure>
+                <a>
+                  <NavLink to={`/category/${category.slug}/products`}>
+                    <figure>
+                      <div className="image">
+                        <img
+                          src={`http://localhost:8000/myimage/${category.avatar_image}`}
+                          alt="Alternate Text"
+                        />
+                      </div>
+                      <figcaption>{category.title}</figcaption>
+                    </figure>
+                  </NavLink>
                 </a>
               </div>
             );
