@@ -261,7 +261,7 @@ const UserProductView = () => {
           </div>
         </section>
       ) : null}
-      <section className="product-details">
+      <section className="product-details container">
         <Tabs>
           <TabList>
             <Tab>مشخصات کالا</Tab>
