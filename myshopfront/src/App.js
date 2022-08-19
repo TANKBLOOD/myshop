@@ -15,7 +15,6 @@ import CategoryProductsGrid from "./components/product/CategoryProductsGrid";
 import UserProductView from "./components/product/UserProductView";
 import "./styles/shared/user-css/bootstrap.css";
 import UserMainPage from "./components/UserMainPage";
-import ScrollToTop from "./components/shared/ScrollToTop";
 
 import { useLocation } from "react-router-dom";
 
