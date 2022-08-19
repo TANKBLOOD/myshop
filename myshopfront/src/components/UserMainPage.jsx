@@ -27,6 +27,7 @@ import product10 from "../styles/shared/user-css/assets/images/product-10.jpg";
 import UserNavigation from "./shared/UserNavigation";
 import InPageContactUs from "./shared/InPageContactUs";
 import UserFooter from "./shared/UserFooter";
+import { NavLink } from "react-router-dom";
 
 const UserMainPage = () => {
   return (
@@ -103,8 +104,10 @@ const UserMainPage = () => {
             <div class="text">
               <p>
                 ما فقط چیزها را به حداقل می رسانیم.{" "}
-                <a href="category.html" class="btn btn-main">
-                  مشاهده بیشتر
+                <a  class="btn btn-main">
+                  <NavLink to="/categories">
+                    مشاهده بیشتر
+                  </NavLink>
                 </a>
               </p>
             </div>
