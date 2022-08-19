@@ -15,6 +15,10 @@ import CategoryProductsGrid from "./components/product/CategoryProductsGrid";
 import UserProductView from "./components/product/UserProductView";
 import "./styles/shared/user-css/bootstrap.css";
 import UserMainPage from "./components/UserMainPage";
+import ScrollToTop from "./components/shared/ScrollToTop";
+
+import { useLocation } from "react-router-dom";
+
 function App() {
   // useEffect(() => {
   //   // 👇 add class to body element
@@ -25,20 +29,38 @@ function App() {
   //   };
   // }, []);
 
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <>
       <CategoryProvider>
         <ProductProvider>
           <Routes>
+            <Route
+              path="category/:categorySlug/products"
+              element={<CategoryProductsGrid />}
+            ></Route>
             <Route path="admin/categories" element={<CategoryIndex />}></Route>
             <Route path="adminDashboard" element={<AdminDashboard />}></Route>
             <Route path="createProduct" element={<CreateProduct />}></Route>
             <Route path="products" element={<ProductIndex />}></Route>
-            <Route path="adminViewProduct/:productSlug" element={<AdminViewProduct />}></Route>
-            <Route path="editProduct/:productSlug" element={<EditProduct />}></Route>
+            <Route
+              path="adminViewProduct/:productSlug"
+              element={<AdminViewProduct />}
+            ></Route>
+            <Route
+              path="editProduct/:productSlug"
+              element={<EditProduct />}
+            ></Route>
             <Route path="categories" element={<UserCategoryIndex />}></Route>
-            <Route path="category/:categorySlug/products" element={<CategoryProductsGrid />}></Route>
-            <Route path="product/view/:productSlug" element={<UserProductView />}></Route>
+            <Route
+              path="product/view/:productSlug"
+              element={<UserProductView />}
+            ></Route>
             <Route path="/" element={<UserMainPage />}></Route>
           </Routes>
         </ProductProvider>
