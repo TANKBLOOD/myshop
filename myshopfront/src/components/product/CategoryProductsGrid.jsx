@@ -15,7 +15,7 @@ import UserFooter from "../shared/UserFooter";
 import { useEffect } from "react";
 import { useContext } from "react";
 import ProductContext from "../../contexts/ProductContext";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import InPageContactUs from "../shared/InPageContactUs";
 
 const CategoryProductsGrid = () => {
@@ -641,7 +641,10 @@ const CategoryProductsGrid = () => {
                     <a href="products-list.html">
                       <i className="fa fa-align-justify"></i>
                     </a>
-                    <a href="javascript:void(0);" className="toggle-filters-mobile">
+                    <a
+                      href="javascript:void(0);"
+                      className="toggle-filters-mobile"
+                    >
                       <i className="fa fa-sliders"></i>
                       <span
                         className="spinner-grow spinner-grow-sm text-warning"
@@ -683,28 +686,45 @@ const CategoryProductsGrid = () => {
                           <i className="icon icon-cart"></i>
                         </div>
                         <div className="figure-grid">
-                          <span className="badge badge-warning">-20%</span>
-                          <div className="image">
-                            <a href="product.html">
-                              <img
-                                src={`http://localhost:8000/product/image/${product.avatar_image}`}
-                                alt=""
-                              />
-                            </a>
-                          </div>
-                          <div className="text">
-                            <h2 className="title h4">
-                              <a href="product.html">آنا</a>
-                            </h2>
-                            <sub>219 تومان</sub>
-                            <sup>219 تومان</sup>
-                            <span className="description clearfix">
-                              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                              صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها
-                              و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-                              لازم است و برای شرایط فعلی تکنولوژی مورد نیاز
-                            </span>
-                          </div>
+                          <NavLink to={`/product/view/${product.slug}`}>
+                            <span className="badge badge-warning">-20%</span>
+                            <div className="image">
+                              <a>
+                                <img
+                                  src={`http://localhost:8000/product/image/${product.avatar_image}`}
+                                  alt=""
+                                />
+                              </a>
+                            </div>
+                            <div className="text">
+                              <h2 className="title h4">
+                                <a>{product.title}</a>
+                              </h2>
+                              {product.discount === null ? (
+                                <>
+                                  <sup>{product.price} تومان</sup>
+                                </>
+                              ) : (
+                                <>
+                                  <sub>{product.price} تومان</sub>
+                                  <sup>
+                                    {product.price -
+                                      (product.price * product.discount) /
+                                        100}{" "}
+                                    تومان
+                                  </sup>
+                                </>
+                              )}
+
+                              <span className="description clearfix">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
+                                صنعت چاپ و با استفاده از طراحان گرافیک است
+                                چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی
+                                مورد نیاز
+                              </span>
+                            </div>
+                          </NavLink>
                         </div>
                       </article>
                     </div>
