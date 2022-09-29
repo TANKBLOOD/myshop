@@ -83,4 +83,13 @@ class CategoryController extends Controller
             'updated'=> true,
         ]);
     }
+    public function makeNormal(Request $request) {
+        $category= Category::findOrFail($request->id);
+        $category->isSpecial= 0;
+        $category->save();
+
+        return response()->json([
+            'updated'=> true,
+        ]);
+    }
 }
