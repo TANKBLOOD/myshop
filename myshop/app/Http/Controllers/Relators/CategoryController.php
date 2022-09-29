@@ -92,4 +92,12 @@ class CategoryController extends Controller
             'updated'=> true,
         ]);
     }
+
+    public function getSpecialCategories() {
+        $categories= Category::where('isSpecial', 1)->get();
+
+        return response()->json([
+            'categories'=> $categories,
+        ]);
+    }
 }
