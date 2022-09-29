@@ -28,7 +28,13 @@ export const CategoryProvider = ({ children }) => {
         });
       });
   };
-
+  //view section
+  const [toViewCategory, setToViewCategory]= useState(null);
+  const getCategory=  (slug)=> {
+    axios.get(`http://127.0.0.1:8000/api/category/view/${slug}`).then((res)=> {
+        setToViewCategory(res.data.category);
+    })
+  }
   //edit section
   const [editModalFlag, setEditModalFlag] = useState(0);
   const [toEditCategory, setToEditCategroy] = useState(null);
@@ -137,6 +143,8 @@ export const CategoryProvider = ({ children }) => {
         makeNormal: makeNormal,
         specialCategories: specialCategories,
         getSpecialCategories: getSpecialCategories,
+        toViewCategory: toViewCategory,
+        getCategory: getCategory,
       }}
     >
       {children}

@@ -15,15 +15,24 @@ import UserFooter from "../shared/UserFooter";
 import { useEffect } from "react";
 import { useContext } from "react";
 import ProductContext from "../../contexts/ProductContext";
-import { NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import InPageContactUs from "../shared/InPageContactUs";
+import CategoryContext from "../../contexts/CategoryContext";
 
 const CategoryProductsGrid = () => {
   const { getCategoryProducts, categoryProductsList } =
     useContext(ProductContext);
   const { categorySlug } = useParams();
+  const {
+    toViewCategory,
+    getCategory,
+    specialCategories,
+    getSpecialCategories,
+  } = useContext(CategoryContext);
   useEffect(() => {
     getCategoryProducts(categorySlug);
+    getCategory(categorySlug);
+    getSpecialCategories();
   }, []);
   return (
     <div
@@ -47,7 +56,10 @@ const CategoryProductsGrid = () => {
                 داده ها
               </li>
             </ol>
-            <h2 className="title"> دسته بندی محصولات شبکه</h2>
+            <h2 className="title">
+              {" "}
+              دسته بندی محصولات {toViewCategory?.title}
+            </h2>
             <div className="text">
               <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
             </div>
@@ -936,71 +948,34 @@ const CategoryProductsGrid = () => {
 
         <div className="container">
           <div className="row text-center">
-            <div className="col-md-4">
-              <article data-3d>
-                <a href="products-grid.html">
-                  <div className="image">
-                    <img src={item1} alt="" />
-                  </div>
-                  <div className="entry entry-block">
-                    <div className="label">مجموعه 2020</div>
-                    <div className="title">
-                      <h2 className="h4">اتاق خواب</h2>
-                    </div>
-                    <div className="description d-none d-sm-block">
-                      <p>برترین ها چهار خواسته شماست</p>
-                    </div>
-                  </div>
-                  <div className="show-more">
-                    <span className="btn btn-clean">هم اکنون خرید کنید</span>
-                  </div>
-                </a>
-              </article>
-            </div>
-
-            <div className="col-6 col-md-4">
-              <article data-3d>
-                <a href="products-grid.html">
-                  <div className="image">
-                    <img src={item2} alt="" />
-                  </div>
-                  <div className="entry entry-block">
-                    <div className="label">طرح نوین</div>
-                    <div className="title">
-                      <h2 className="h4">آشپزخانه</h2>
-                    </div>
-                    <div className="description d-none d-sm-block">
-                      <p>دستگاه های محبوب را کاوش کنید</p>
-                    </div>
-                  </div>
-                  <div className="show-more">
-                    <span className="btn btn-clean">هم اکنون خرید کنید</span>
-                  </div>
-                </a>
-              </article>
-            </div>
-
-            <div className="col-6 col-md-4">
-              <article data-3d>
-                <a href="products-grid.html">
-                  <div className="image">
-                    <img src={item3} alt="" />
-                  </div>
-                  <div className="entry entry-block">
-                    <div className="label">تخفیف جدید</div>
-                    <div className="title">
-                      <h2 className="h4">هال</h2>
-                    </div>
-                    <div className="description d-none d-sm-block">
-                      <p>برای حمل سریع دریایی موجود است</p>
-                    </div>
-                  </div>
-                  <div className="show-more">
-                    <span className="btn btn-clean">هم اکنون خرید کنید</span>
-                  </div>
-                </a>
-              </article>
-            </div>
+            {specialCategories.map((item) => {
+              return (
+                <div class="col-md-4">
+                  <article data-3d>
+                    <Link to={`/category/${item.slug}/products`}>
+                      <div class="image">
+                        <img
+                          src={`http://localhost:8000/myimage/${item.avatar_image}`}
+                          alt=""
+                        />
+                      </div>
+                      <div class="entry entry-block">
+                        <div class="label">{item.title}</div>
+                        <div class="title">
+                          <h2 class="h4">{item.meta_title}</h2>
+                        </div>
+                        <div class="description d-none d-sm-block">
+                          <p>{item.content}</p>
+                        </div>
+                      </div>
+                      <div class="show-more">
+                        <span class="btn btn-clean">هم اکنون خرید کنید</span>
+                      </div>
+                    </Link>
+                  </article>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
