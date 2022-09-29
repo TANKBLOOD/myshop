@@ -88,6 +88,28 @@ export const CategoryProvider= ({children})=> {
             setMakeSpecialModalFlag(0);
         })
     }
+    const makeNormal= (id)=> {
+        axios.post('http://127.0.0.1:8000/api/category/makeNormal', {
+            id: id,
+        })
+        .then((res)=> {
+            if(res.data.updated) {
+                setCategoryList((prev)=> {
+                    return prev.map((item)=> {
+                        if(item.id === id) {
+                            return {
+                                ...item,
+                                isSpecial: false,
+                            };
+                        }else {
+                            return item;
+                        }
+                    })
+                })
+            }
+            setMakeSpecialModalFlag(0);
+        })
+    }
     return <CategoryContext.Provider value={{
         categoryList: categoryList,
         getCategories: getCategories,
@@ -103,6 +125,7 @@ export const CategoryProvider= ({children})=> {
         makeSpecialModalFlag: makeSpecialModalFlag,
         setMakeSpecialModalFlag: setMakeSpecialModalFlag,
         makeSpecial: makeSpecial,
+        makeNormal: makeNormal,
     }}>
         {children}
     </CategoryContext.Provider>

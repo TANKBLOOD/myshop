@@ -23,6 +23,7 @@ const CategoryIndex = () => {
     setEditModalFlag,
     setToEditCategroy,
     makeSpecial,
+    makeNormal,
   } = useContext(CategoryContext);
   let listCounter = 0;
 
@@ -140,6 +141,9 @@ const CategoryIndex = () => {
                           }}
                         size="20px"
                         title="تبدیل به دسته ساده"
+                        onClick={()=> {
+                            makeNormal(category.id)
+                        }}
                         />
                       ) : (
                         <MdOutlineFolderSpecial
