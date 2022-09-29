@@ -21,6 +21,7 @@ class CreateCategoriesTable extends Migration
             $table->string('slug', 128);
             $table->text('content')->nullable()->default(null);
             $table->string('avatar_image')->nullable();
+            $table->boolean('isSpecial')->default(0);
             $table->timestamps();
         });
     }

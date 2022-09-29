@@ -73,4 +73,14 @@ class CategoryController extends Controller
         $pathToFile = 'app/public/images/category/'.$name;
         return response()->file(storage_path($pathToFile));
     }
+
+    public function makeSpecial(Request $request) {
+        $category= Category::findOrFail($request->id);
+        $category->isSpecial= 1;
+        $category->save();
+
+        return response()->json([
+            'updated'=> true,
+        ]);
+    }
 }
