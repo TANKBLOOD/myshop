@@ -27,6 +27,7 @@ Route::post('/category/edit', [CategoryController::class, 'edit']);
 Route::post('/category/makeSpecial', [CategoryController::class, 'makeSpecial']);
 Route::post('/category/makeNormal', [CategoryController::class, 'makeNormal']);
 Route::get('/category/specials',  [CategoryController::class, 'getSpecialCategories']);
+Route::get('/category/view/{category}', [CategoryController::class, 'view']);
 
 Route::get('/product/index', [ProductController::class, 'index']);
 Route::post('/product/create', [ProductController::class, 'create']);

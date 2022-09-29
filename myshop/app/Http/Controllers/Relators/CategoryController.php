@@ -40,6 +40,11 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function view(Category $category) {
+        return response()->json([
+            'category'=> $category,
+        ]);
+    }
     public function edit(Request $request)
     {
         $updatedCat = Category::findOrFail($request->id);
