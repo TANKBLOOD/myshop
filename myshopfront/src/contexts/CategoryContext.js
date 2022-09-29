@@ -64,6 +64,30 @@ export const CategoryProvider= ({children})=> {
             })
         })
     }
+
+    const [makeSpecialModalFlag, setMakeSpecialModalFlag]= useState(false);
+    const makeSpecial= (id)=> {
+        axios.post('http://127.0.0.1:8000/api/category/makeSpecial', {
+            id: id,
+        })
+        .then((res)=> {
+            if(res.data.updated) {
+                setCategoryList((prev)=> {
+                    return prev.map((item)=> {
+                        if(item.id === id) {
+                            return {
+                                ...item,
+                                isSpecial: true,
+                            };
+                        }else {
+                            return item;
+                        }
+                    })
+                })
+            }
+            setMakeSpecialModalFlag(0);
+        })
+    }
     return <CategoryContext.Provider value={{
         categoryList: categoryList,
         getCategories: getCategories,
@@ -76,6 +100,9 @@ export const CategoryProvider= ({children})=> {
         editCategory: editCategory,
         toEditCategory: toEditCategory,
         setToEditCategroy: setToEditCategroy,
+        makeSpecialModalFlag: makeSpecialModalFlag,
+        setMakeSpecialModalFlag: setMakeSpecialModalFlag,
+        makeSpecial: makeSpecial,
     }}>
         {children}
     </CategoryContext.Provider>
