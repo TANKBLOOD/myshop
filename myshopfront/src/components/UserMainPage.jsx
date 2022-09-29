@@ -27,7 +27,7 @@ import product10 from "../styles/shared/user-css/assets/images/product-10.jpg";
 import UserNavigation from "./shared/UserNavigation";
 import InPageContactUs from "./shared/InPageContactUs";
 import UserFooter from "./shared/UserFooter";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import CategoryContext from "../contexts/CategoryContext";
 import { useEffect } from "react";
@@ -128,7 +128,7 @@ const UserMainPage = () => {
                 return (
                   <div class="col-md-4">
                     <article data-3d>
-                      <a href="products-grid.html">
+                      <Link to={`/category/${item.slug}/products`}>
                         <div class="image">
                           <img src={`http://localhost:8000/myimage/${item.avatar_image}`} alt="" />
                         </div>
@@ -144,7 +144,7 @@ const UserMainPage = () => {
                         <div class="show-more">
                           <span class="btn btn-clean">هم اکنون خرید کنید</span>
                         </div>
-                      </a>
+                      </Link>
                     </article>
                   </div>
                 );
