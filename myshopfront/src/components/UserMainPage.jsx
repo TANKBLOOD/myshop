@@ -28,8 +28,17 @@ import UserNavigation from "./shared/UserNavigation";
 import InPageContactUs from "./shared/InPageContactUs";
 import UserFooter from "./shared/UserFooter";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import CategoryContext from "../contexts/CategoryContext";
+import { useEffect } from "react";
 
 const UserMainPage = () => {
+  const { specialCategories, getSpecialCategories } =
+    useContext(CategoryContext);
+
+  useEffect(() => {
+    getSpecialCategories();
+  }, []);
   return (
     <div className="wrapper">
       <UserNavigation />
@@ -104,10 +113,8 @@ const UserMainPage = () => {
             <div class="text">
               <p>
                 ما فقط چیزها را به حداقل می رسانیم.{" "}
-                <a  class="btn btn-main">
-                  <NavLink to="/categories">
-                    مشاهده بیشتر
-                  </NavLink>
+                <a class="btn btn-main">
+                  <NavLink to="/categories">مشاهده بیشتر</NavLink>
                 </a>
               </p>
             </div>
@@ -117,71 +124,31 @@ const UserMainPage = () => {
         <div class="container">
           <div class="scroll-wrapper">
             <div class="row scroll text-center">
-              <div class="col-md-4">
-                <article data-3d>
-                  <a href="products-grid.html">
-                    <div class="image">
-                      <img src={product7} alt="" />
-                    </div>
-                    <div class="entry entry-block">
-                      <div class="label">مجموعه 2020</div>
-                      <div class="title">
-                        <h2 class="h4">اتاق خواب</h2>
-                      </div>
-                      <div class="description d-none d-sm-block">
-                        <p>برترین ها چهار خواسته شماست</p>
-                      </div>
-                    </div>
-                    <div class="show-more">
-                      <span class="btn btn-clean">هم اکنون خرید کنید</span>
-                    </div>
-                  </a>
-                </article>
-              </div>
-
-              <div class="col-md-4">
-                <article data-3d>
-                  <a href="products-grid.html">
-                    <div class="image">
-                      <img src={product8} alt="" />
-                    </div>
-                    <div class="entry entry-block">
-                      <div class="label">طراحی مدرن</div>
-                      <div class="title">
-                        <h2 class="h4">آشپزخانه ها</h2>
-                      </div>
-                      <div class="description d-none d-sm-block">
-                        <p>دستگاه های محبوب را کاوش کنید</p>
-                      </div>
-                    </div>
-                    <div class="show-more">
-                      <span class="btn btn-clean">هم اکنون خرید کنید</span>
-                    </div>
-                  </a>
-                </article>
-              </div>
-
-              <div class="col-md-4">
-                <article data-3d>
-                  <a href="products-grid.html">
-                    <div class="image">
-                      <img src={product9} alt="" />
-                    </div>
-                    <div class="entry entry-block">
-                      <div class="label">تخفیف های جدید</div>
-                      <div class="title">
-                        <h2 class="h4">هال</h2>
-                      </div>
-                      <div class="description d-none d-sm-block">
-                        <p>برای حمل سریع دریایی موجود است</p>
-                      </div>
-                    </div>
-                    <div class="show-more">
-                      <span class="btn btn-clean">هم اکنون خرید کنید</span>
-                    </div>
-                  </a>
-                </article>
-              </div>
+              {specialCategories.map((item) => {
+                return (
+                  <div class="col-md-4">
+                    <article data-3d>
+                      <a href="products-grid.html">
+                        <div class="image">
+                          <img src={`http://localhost:8000/myimage/${item.avatar_image}`} alt="" />
+                        </div>
+                        <div class="entry entry-block">
+                          <div class="label">{item.title}</div>
+                          <div class="title">
+                            <h2 class="h4">{item.meta_title}</h2>
+                          </div>
+                          <div class="description d-none d-sm-block">
+                            <p>{item.content}</p>
+                          </div>
+                        </div>
+                        <div class="show-more">
+                          <span class="btn btn-clean">هم اکنون خرید کنید</span>
+                        </div>
+                      </a>
+                    </article>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
