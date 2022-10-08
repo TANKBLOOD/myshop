@@ -36,4 +36,8 @@ Route::get('/product/view/{product}', [ProductController::class, 'view']);
 Route::post('/product/update', [ProductController::class, 'update']);
 Route::get('/products/popular', [ProductController::class, 'popularList']);
 
+Route::post('/products/makePopular', [ProductController::class, 'makePopular']);
+Route::post('/products/removePopular', [ProductController::class, 'removePopular']);
+
+
 Route::get('/category/{category}/products', [ProductController::class, 'categoryProducts']);

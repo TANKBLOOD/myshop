@@ -95,11 +95,12 @@ class ProductController extends Controller
         ]);
     }
 
-    public function categoryProducts(Category $category) {
-        $categoryProducts= $category->products;
+    public function categoryProducts(Category $category)
+    {
+        $categoryProducts = $category->products;
 
         return response()->json([
-            'categoryProducts'=> $categoryProducts,
+            'categoryProducts' => $categoryProducts,
         ]);
     }
     public function getImage($name)
@@ -116,11 +117,48 @@ class ProductController extends Controller
         ]);
     }
 
-    public function popularList() {
-        $products= DB::table('popular_products')->join('products', 'products.id', '=', 'popular_products.product_id')->get();
+    public function popularList()
+    {
+        $products = DB::table('popular_products')->join('products', 'products.id', '=', 'popular_products.product_id')->get();
 
         return response()->json([
-            'products'=> $products,
+            'products' => $products,
         ]);
+    }
+
+    public function makePopular(Request $request)
+    {
+        $productId = $request->data['id'];
+        if (DB::table('popular_products')->where('product_id', $productId)->exists()) {
+            return response()->json([
+                'status' => 'exists',
+            ]);
+        } else {
+            DB::table('popular_products')->insert([
+                'product_id' => $productId,
+            ]);
+
+            return response()->json([
+                'status' => 'one row inserted.',
+            ]);
+        }
+    }
+    public function removePopular(Request $request)
+    {
+        $productId = $request->id;
+        if (DB::table('popular_products')->where('product_id', $productId)->exists()) {
+
+            DB::table('popular_products')->where('product_id', $productId)->delete();
+            return response()->json([
+                'status' => 'one row deleted.',
+            ]);
+
+        } else {
+
+            return response()->json([
+                'status' => 'not exists',
+            ]);
+
+        }
     }
 }
