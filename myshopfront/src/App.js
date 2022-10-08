@@ -17,6 +17,7 @@ import "./styles/shared/user-css/bootstrap.css";
 import UserMainPage from "./components/UserMainPage";
 
 import { useLocation } from "react-router-dom";
+import ProductSearch from "./components/product/ProductSearch";
 
 function App() {
   // useEffect(() => {
@@ -59,6 +60,10 @@ function App() {
             <Route
               path="product/view/:productSlug"
               element={<UserProductView />}
+            ></Route>
+            <Route
+              path="product/search"
+              element={<ProductSearch />}
             ></Route>
             <Route path="/" element={<UserMainPage />}></Route>
           </Routes>
