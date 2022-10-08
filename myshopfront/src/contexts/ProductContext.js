@@ -206,6 +206,17 @@ export const ProductProvider = ({ children }) => {
         console.log(err);
       });
   };
+  const search= (term)=> {
+    if(term === '') {
+      return;
+    }
+    const url = `http://127.0.0.1:8000/api/product/search/${term}`;
+    axios.get(url).then((res)=> {
+      if(res.data.products) {
+        setProductList(res.data.products);
+      }
+    })
+  }
   return (
     <ProductContext.Provider
       value={{
@@ -225,6 +236,7 @@ export const ProductProvider = ({ children }) => {
         applyPopularProducts: applyPopularProducts,
         makePopular: makePopular,
         removePopular: removePopular,
+        search: search,
       }}
     >
       {children}

@@ -6,6 +6,7 @@ import chairImage from "../../styles/shared/assets/images/gallery/chair4.jpg";
 import "../../styles/shared/dist/css/style.min.css";
 import "../../styles/shared/dist/css/pages/ecommerce.css";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 const ProductIndex = () => {
   const {
@@ -14,10 +15,23 @@ const ProductIndex = () => {
     applyPopularProducts,
     makePopular,
     removePopular,
+    search
   } = useContext(ProductContext);
+  const [searchTerm, setSearchTerm]= useState('');
+
   useEffect(() => {
     getProducts();
   }, []);
+  useEffect(()=> {
+    search(searchTerm);
+  }, [searchTerm]);
+  
+  const handleSearchChange= (e)=> {
+    const name= e.target.name;
+    const value= e.target.value;
+
+    setSearchTerm(value);
+  }
   return (
     <>
       <AdminSideNav />
@@ -31,8 +45,12 @@ const ProductIndex = () => {
       >
         <div className="container-fluid">
           <div className="row page-titles">
-            <div className="col-md-5 align-self-center">
+            <div className="col-md-5 align-self-center d-flex">
               <h4 className="text-themecolor">Products</h4>
+              <input type="text" value={searchTerm} onChange={handleSearchChange} style={{
+                borderRadius: '10%',
+                border: '1px solid gray',
+              }} className="mr-2" placeholder="جستجو"/>
             </div>
             <div className="col-md-7 align-self-center text-right">
               <div className="d-flex justify-content-end align-items-center">
