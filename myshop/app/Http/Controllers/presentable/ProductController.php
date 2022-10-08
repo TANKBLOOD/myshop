@@ -161,4 +161,20 @@ class ProductController extends Controller
 
         }
     }
+
+    public function search($term= '') {
+        if($term === '') {
+            return response()->json([
+                'status'=> 'no term specified.',
+            ]);
+        }
+        $products= Product::where('title', 'LIKE', '%'.$term.'%')
+        ->orWhere('meta_title', 'LIKE', '%'.$term.'%')
+        ->orWhere('product_specifications', 'LIKE', '%'.$term.'%')
+        ->get();
+
+        return response()->json([
+            'products'=> $products,
+        ]);
+    }
 }
