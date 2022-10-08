@@ -8,7 +8,13 @@ import "../../styles/shared/dist/css/pages/ecommerce.css";
 import { NavLink } from "react-router-dom";
 
 const ProductIndex = () => {
-  const { getProducts, productList } = useContext(ProductContext);
+  const {
+    getProducts,
+    productList,
+    applyPopularProducts,
+    makePopular,
+    removePopular,
+  } = useContext(ProductContext);
   useEffect(() => {
     getProducts();
   }, []);
@@ -55,8 +61,8 @@ const ProductIndex = () => {
                         <img
                           //   src={`http://localhost:8000/product/image/${product.avatar_image}`}
                           style={{
-                            maxHeight: '300px',
-                            height: '200px'
+                            maxHeight: "300px",
+                            height: "200px",
                           }}
                           src={`http://localhost:8000/product/image/${product.avatar_image}`}
                         />
@@ -78,6 +84,28 @@ const ProductIndex = () => {
                           </small>
                         </div>
                       </NavLink>
+                      {product.hasOwnProperty("isPopular") &&
+                      product.isPopular === false ? (
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => {
+                            makePopular(product.id);
+                          }}
+                        >
+                          تبدیل به محصول محبوب
+                        </button>
+                      ) : null}
+                      {product.hasOwnProperty("isPopular") &&
+                      product.isPopular === true ? (
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => {
+                            removePopular(product.id);
+                          }}
+                        >
+                          تبدیل به محصول ساده
+                        </button>
+                      ) : null}
                     </div>
                   </div>
                 </div>

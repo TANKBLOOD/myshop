@@ -15,6 +15,7 @@ export const ProductProvider = ({ children }) => {
   const getProducts = () => {
     axios.get(`http://127.0.0.1:8000/api/product/index`).then((response) => {
       setProductList(response.data.products);
+      applyPopularProducts();
       console.log(response.data.products);
     });
   };
@@ -136,6 +137,75 @@ export const ProductProvider = ({ children }) => {
         console.log(err);
       });
   };
+  const makePopular = (productId) => {
+    const url = `http://127.0.0.1:8000/api/products/makePopular`;
+    axios
+      .post(url, {
+        data: {
+          id: productId,
+        },
+      })
+      .then((res) => {
+        setProductList((prev) => {
+          return prev.map((item) => {
+            if (item.id == productId) {
+              return {
+                ...item,
+                isPopular: true,
+              };
+            } else {
+              return item;
+            }
+          });
+        });
+      });
+  };
+  const removePopular = (productId) => {
+    const url = `http://127.0.0.1:8000/api/products/removePopular`;
+    axios
+      .post(url, {
+        data: {
+          id: productId,
+        },
+      })
+      .then((res) => {
+        setProductList((prev) => {
+          return prev.map((item) => {
+            if (item.id === productId) {
+              return {
+                ...item,
+                isPopular: false,
+              };
+            } else {
+              return item;
+            }
+          });
+        });
+      });
+  };
+  const applyPopularProducts = () => {
+    const url = `http://127.0.0.1:8000/api/products/popular`;
+    axios
+      .get(url)
+      .then((res) => {
+        const products = res.data.products;
+        const productIds = products.map((item) => {
+          return item.product_id;
+        });
+        console.log(productIds);
+        setProductList((prev) => {
+          return prev.map((item) => {
+            return {
+              ...item,
+              isPopular: productIds.includes(item.id) ? true : false,
+            };
+          });
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <ProductContext.Provider
       value={{
@@ -152,6 +222,9 @@ export const ProductProvider = ({ children }) => {
         categoryProductsList: categoryProductsList,
         popularProducts: popularProducts,
         getPopularProducts: getPopularProducts,
+        applyPopularProducts: applyPopularProducts,
+        makePopular: makePopular,
+        removePopular: removePopular,
       }}
     >
       {children}
