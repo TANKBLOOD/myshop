@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Presentable\Product;
 use App\Models\Relators\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -112,6 +113,14 @@ class ProductController extends Controller
 
         return response()->json([
             'product' => $product,
+        ]);
+    }
+
+    public function popularList() {
+        $products= DB::table('popular_products')->join('products', 'products.id', '=', 'popular_products.product_id')->get();
+
+        return response()->json([
+            'products'=> $products,
         ]);
     }
 }
