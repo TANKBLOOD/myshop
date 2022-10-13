@@ -18,6 +18,7 @@ import UserMainPage from "./components/UserMainPage";
 
 import { useLocation } from "react-router-dom";
 import ProductSearch from "./components/product/ProductSearch";
+import MainSliderManagement from "./components/admin/shared/mainSlider/MainSliderManagement";
 
 function App() {
   // useEffect(() => {
@@ -47,6 +48,7 @@ function App() {
             <Route path="admin/categories" element={<CategoryIndex />}></Route>
             <Route path="adminDashboard" element={<AdminDashboard />}></Route>
             <Route path="createProduct" element={<CreateProduct />}></Route>
+            <Route path="admin/mainSlider" element={<MainSliderManagement />}></Route>
             <Route path="products" element={<ProductIndex />}></Route>
             <Route
               path="adminViewProduct/:productSlug"
