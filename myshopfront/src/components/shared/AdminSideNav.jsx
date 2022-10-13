@@ -7,6 +7,7 @@ const AdminSideNav = () => {
         <NavLink to="/admin/categories">دسته بندی محصولات</NavLink>
         <NavLink to="/createProduct">ایجاد محصول</NavLink>
         <NavLink to="/products">لیست محصولات</NavLink>
+        <NavLink to="/admin/mainSlider">تنظیمات اسلایدر اصلی</NavLink>
         <a href="#contact">Contact</a>
       </div>
     </>
