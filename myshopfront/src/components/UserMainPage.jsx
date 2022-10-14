@@ -33,6 +33,7 @@ import CategoryContext from "../contexts/CategoryContext";
 import { useEffect } from "react";
 import ProductContext from "../contexts/ProductContext";
 import PopularProducts from "./shared/PopularProducts";
+import MainSlider from "./shared/MainSlider";
 
 const UserMainPage = () => {
   const { specialCategories, getSpecialCategories } =
@@ -45,70 +46,7 @@ const UserMainPage = () => {
   return (
     <div className="wrapper">
       <UserNavigation />
-      <section className="header-content">
-        <h2 className="d-none">عنصر کشویی</h2>
-
-        <div className="container-fluid">
-          <div
-            className="owl-slider owl-carousel owl-theme"
-            data-autoplay="true"
-          >
-            {/* style="background-image:url(assets/images/slide-1.jpg) */}
-            <div
-              className="item d-flex align-items-center"
-              style={{
-                backgroundImage: `url(${mainSlider})`,
-              }}
-            >
-              <div className="container">
-                <div className="caption">
-                  <div className="animated" data-start="fadeInUp">
-                    <div className="promo pt-3">
-                      <div className="title title-sm p-0">مبل راحتی</div>
-                    </div>
-                  </div>
-                  <div className="animated" data-start="fadeInUp">
-                    ورود جدید را از جدیدترین موارد کسب کنید
-                    <br />
-                    الگوی تجارت الکترونیکی چند منظوره آماده است
-                  </div>
-                  <div className="animated" data-start="fadeInUp">
-                    <div className="pt-3">
-                      <a
-                        href="#"
-                        target="_blank"
-                        className="btn btn-outline-warning"
-                      >
-                        هم اکنون خریداری کنید
-                      </a>
-                      <a
-                        href="#"
-                        target="_blank"
-                        className="btn btn-outline-light"
-                      >
-                        {" "}
-                        اولین تخفیف را دریافت کنید
-                      </a>
-                    </div>
-                  </div>
-                  <div className="animated" data-start="fadeInUp">
-                    <div className="promo pt-5">
-                      <div className="h6 p-0 m-0">قیمت ویژه دریافت کنید</div>
-                      <div className="price">
-                        <span>199000 تومان</span>
-                        <span>3499,99</span>
-                      </div>
-                      <small className="d-none d-sm-block">
-                        ** قیمت محصولات با تخفیف تا پایان سهام موجود است{" "}
-                      </small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <MainSlider />
       <section class="blog blog-block">
         <header>
           <div class="container">
