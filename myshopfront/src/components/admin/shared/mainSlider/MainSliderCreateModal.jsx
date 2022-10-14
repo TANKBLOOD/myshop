@@ -34,7 +34,11 @@ const MainSliderCreateModal = ({ closeModal }) => {
       sliderData.append(key, val);
     });
     const url = "http://127.0.0.1:8000/api/mainSlider/create";
-    axios.post(url, sliderData);
+    axios.post(url, sliderData).then((res)=> {
+      if(res.data.created) {
+        closeModal();
+      }
+    });
   };
   return (
     <div
