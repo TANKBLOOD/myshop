@@ -8,6 +8,7 @@ import {
   BsFillPencilFill,
   BsFillEyeFill,
 } from "react-icons/bs";
+import MainSliderEditModal from "./MainSliderEditModal";
 
 const MainSliderManagement = () => {
   const [slidersList, setSlidersList] = useState([]);
@@ -15,6 +16,7 @@ const MainSliderManagement = () => {
     createSliderModal: false,
     editSliderModal: false,
   });
+  const [toEditSlider, setToEditSlider]= useState({});
   const getMainSlider = () => {
     const url = "http://127.0.0.1:8000/api/mainSlider/index";
     axios
@@ -45,12 +47,24 @@ const MainSliderManagement = () => {
       };
     });
   };
-  const openEditModal= ()=> {
-
-  }
-  const confirmDelete= ()=> {
-
-  }
+  const openEditModal = (item) => {
+    setFlags((prev) => {
+      return {
+        ...prev,
+        editSliderModal: true,
+      };
+    });
+    setToEditSlider(item);
+  };
+  const closeEditModal = () => {
+    setFlags((prev) => {
+      return {
+        ...prev,
+        editSliderModal: false,
+      };
+    });
+  };
+  const confirmDelete = () => {};
   return (
     <>
       <AdminSideNav />
@@ -120,6 +134,9 @@ const MainSliderManagement = () => {
       </div>
       {flags.createSliderModal ? (
         <MainSliderCreateModal closeModal={closeSliderModal} />
+      ) : null}
+      {flags.editSliderModal ? (
+        <MainSliderEditModal closeModal={closeEditModal} item={toEditSlider} />
       ) : null}
     </>
   );
