@@ -1,7 +1,13 @@
 import axios from "axios";
+import { useEffect } from "react";
 import { useState } from "react";
 import AdminSideNav from "../../../shared/AdminSideNav";
 import MainSliderCreateModal from "./MainSliderCreateModal";
+import {
+  BsFillTrashFill,
+  BsFillPencilFill,
+  BsFillEyeFill,
+} from "react-icons/bs";
 
 const MainSliderManagement = () => {
   const [slidersList, setSlidersList] = useState([]);
@@ -10,16 +16,19 @@ const MainSliderManagement = () => {
     editSliderModal: false,
   });
   const getMainSlider = () => {
-    const url = "http://127.0.0.1:8000/api/mainSlider";
+    const url = "http://127.0.0.1:8000/api/mainSlider/index";
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data);
+        setSlidersList(res.data.sliders);
       })
       .catch((err) => {
         console.log("err");
       });
   };
+  useEffect(() => {
+    getMainSlider();
+  }, []);
   const showCreateSliderModal = () => {
     setFlags((prev) => {
       return {
@@ -28,13 +37,19 @@ const MainSliderManagement = () => {
       };
     });
   };
-  const closeSliderModal= ()=> {
+  const closeSliderModal = () => {
     setFlags((prev) => {
       return {
         ...prev,
         createSliderModal: false,
       };
     });
+  };
+  const openEditModal= ()=> {
+
+  }
+  const confirmDelete= ()=> {
+
   }
   return (
     <>
@@ -42,7 +57,9 @@ const MainSliderManagement = () => {
       <div className="main-content">
         <div className="container" dir="rtl">
           <h2>لیست اسلایدر ها</h2>
-          <button className="btn btn-primary" onClick={showCreateSliderModal}>دسته جدید</button>
+          <button className="btn btn-primary" onClick={showCreateSliderModal}>
+            دسته جدید
+          </button>
           <table className="table table-striped table-hover">
             <thead>
               <tr>
@@ -53,7 +70,51 @@ const MainSliderManagement = () => {
                 <th scope="col">عملیات</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              {slidersList.map((item, index) => {
+                return (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>
+                      <img
+                        width="80px"
+                        height="80px"
+                        style={{
+                          borderRadius: "50%",
+                          border: "1px solid white",
+                        }}
+                        src={`http://localhost:8000/mainSlider/image/${item.image}`}
+                        alt="this is imgage"
+                      />
+                    </td>
+                    <td>{item.title}</td>
+                    <td>{item.redirect_url}</td>
+                    <td>
+                      <BsFillPencilFill
+                        style={{
+                          cursor: "pointer",
+                          margin: "2px",
+                        }}
+                        onClick={() => {
+                          openEditModal(item);
+                        }}
+                        size="20px"
+                      />
+                      <BsFillTrashFill
+                        style={{
+                          cursor: "pointer",
+                          margin: "2px",
+                        }}
+                        onClick={() => {
+                          confirmDelete(item);
+                        }}
+                        size="20px"
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </div>
