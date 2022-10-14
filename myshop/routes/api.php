@@ -25,7 +25,7 @@ Route::get('/mainSlider/index', [MainSliderController::class, 'index']);
 Route::get('/mainSlider/mainList', [MainSliderController::class, 'mainList']);
 Route::post('/mainSlider/create', [MainSliderController::class, 'create']);
 Route::post('/mainSlider/update', [MainSliderController::class, 'update']);
-
+Route::post('/mainSlider/delete', [MainSliderController::class, 'delete']);
 //category section
 Route::get('/category/index', [CategoryController::class, 'index']);
 Route::post('/category/create', [CategoryController::class, 'create']);

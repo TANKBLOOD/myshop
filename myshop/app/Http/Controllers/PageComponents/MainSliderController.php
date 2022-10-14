@@ -70,6 +70,19 @@ class MainSliderController extends Controller
         ]);
     }
 
+    public  function delete(Request $request) {
+        $slider= MainSlider::findOrFail($request->id);
+
+        if (Storage::exists('/public/images/slider/' . $slider->image)) {
+            Storage::delete('/public/images/slider/' . $slider->image);
+        }
+
+        $slider->delete();
+
+        return response()->json([
+            'deleted'=> true,
+        ]);
+    }
     public function getImage($name)
     {
         $pathToFile = 'app/public/images/slider/' . $name;
