@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/mainSlider/index', [MainSliderController::class, 'index']);
 Route::get('/mainSlider/mainList', [MainSliderController::class, 'mainList']);
 Route::post('/mainSlider/create', [MainSliderController::class, 'create']);
+Route::post('/mainSlider/update', [MainSliderController::class, 'update']);
 
 //category section
 Route::get('/category/index', [CategoryController::class, 'index']);
