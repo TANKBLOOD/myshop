@@ -9,14 +9,17 @@ import {
   BsFillEyeFill,
 } from "react-icons/bs";
 import MainSliderEditModal from "./MainSliderEditModal";
+import MainSliderDeleteModal from "./MainSliderDeleteModal";
 
 const MainSliderManagement = () => {
   const [slidersList, setSlidersList] = useState([]);
   const [flags, setFlags] = useState({
     createSliderModal: false,
     editSliderModal: false,
+    deleteSlideModal: false,
   });
   const [toEditSlider, setToEditSlider]= useState({});
+  const [toDeleteSlider, setToDeleteSlider]= useState({});
   const getMainSlider = () => {
     const url = "http://127.0.0.1:8000/api/mainSlider/index";
     axios
@@ -64,7 +67,23 @@ const MainSliderManagement = () => {
       };
     });
   };
-  const confirmDelete = () => {};
+  const  showDeleteSliderModal= (item)=> {
+    setFlags((prev) => {
+      return {
+        ...prev,
+        deleteSlideModal: true,
+      };
+    });
+    setToDeleteSlider(item);
+  }
+  const closeDeleteSliderModal= ()=> {
+    setFlags((prev) => {
+      return {
+        ...prev,
+        deleteSlideModal: false,
+      };
+    });
+  }
   return (
     <>
       <AdminSideNav />
@@ -120,7 +139,7 @@ const MainSliderManagement = () => {
                           margin: "2px",
                         }}
                         onClick={() => {
-                          confirmDelete(item);
+                          showDeleteSliderModal(item);
                         }}
                         size="20px"
                       />
@@ -137,6 +156,9 @@ const MainSliderManagement = () => {
       ) : null}
       {flags.editSliderModal ? (
         <MainSliderEditModal closeModal={closeEditModal} item={toEditSlider} />
+      ) : null}
+      {flags.deleteSlideModal ? (
+        <MainSliderDeleteModal  closeDeleteModal={closeDeleteSliderModal} slider={toDeleteSlider} />
       ) : null}
     </>
   );
