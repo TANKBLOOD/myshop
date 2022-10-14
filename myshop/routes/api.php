@@ -21,7 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 //page components
+Route::get('/mainSlider/index', [MainSliderController::class, 'index']);
+Route::get('/mainSlider/mainList', [MainSliderController::class, 'mainList']);
 Route::post('/mainSlider/create', [MainSliderController::class, 'create']);
+
 //category section
 Route::get('/category/index', [CategoryController::class, 'index']);
 Route::post('/category/create', [CategoryController::class, 'create']);

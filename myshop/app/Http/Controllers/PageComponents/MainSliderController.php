@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class MainSliderController extends Controller
 {
+    public function index() {
+        $sliders= MainSlider::all();
+
+        return response()->json([
+            'sliders'=> $sliders,
+        ]);
+    }
     public function create(Request $request) {
         $order= DB::table('main_slider')->max('order');
         if($order == null) {
@@ -37,5 +44,14 @@ class MainSliderController extends Controller
     public function getImage($name) {
         $pathToFile = 'app/public/images/slider/'.$name;
         return response()->file(storage_path($pathToFile));
+    }
+
+    public function mainList() {
+        //set some conditions for showing and change the table
+        $sliders= MainSlider::all();
+
+        return response()->json([
+            'sliders'=> $sliders,
+        ]);
     }
 }
