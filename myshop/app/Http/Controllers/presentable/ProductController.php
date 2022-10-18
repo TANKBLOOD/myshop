@@ -7,6 +7,7 @@ use App\Models\Presentable\Product;
 use App\Models\Relators\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -77,9 +78,14 @@ class ProductController extends Controller
         // avatar_image
         //todo:
         //delete the previous image if exists.
-        $name = $product->slug . "-product_image" . uniqid() . "." . $request->avatar_image->clientExtension();
-        $path = $request->avatar_image->storeAs('public/images/products/', $name);
-        $product->avatar_image = $name;
+        if (isset($request->avatar_image) && Storage::exists('/public/images/category/' . $product->avatar_image)) {
+            Storage::delete('/public/images/category/' . $product->avatar_image);
+        }
+        if (isset($request->avatar_image)) {
+            $name = $product->slug . "-product_image" . uniqid() . "." . $request->avatar_image->clientExtension();
+            $path = $request->avatar_image->storeAs('public/images/products/', $name);
+            $product->avatar_image = $name;
+        }
 
         foreach ($request->images as $imageFile) {
             $name = $product->slug . "-product_image" . uniqid() . "." . $imageFile->clientExtension();
@@ -152,29 +158,28 @@ class ProductController extends Controller
             return response()->json([
                 'status' => 'one row deleted.',
             ]);
-
         } else {
 
             return response()->json([
                 'status' => 'not exists',
             ]);
-
         }
     }
 
-    public function search($term= '') {
-        if($term === '') {
+    public function search($term = '')
+    {
+        if ($term === '') {
             return response()->json([
-                'status'=> 'no term specified.',
+                'status' => 'no term specified.',
             ]);
         }
-        $products= Product::where('title', 'LIKE', '%'.$term.'%')
-        ->orWhere('meta_title', 'LIKE', '%'.$term.'%')
-        ->orWhere('product_specifications', 'LIKE', '%'.$term.'%')
-        ->get();
+        $products = Product::where('title', 'LIKE', '%' . $term . '%')
+            ->orWhere('meta_title', 'LIKE', '%' . $term . '%')
+            ->orWhere('product_specifications', 'LIKE', '%' . $term . '%')
+            ->get();
 
         return response()->json([
-            'products'=> $products,
+            'products' => $products,
         ]);
     }
 }
