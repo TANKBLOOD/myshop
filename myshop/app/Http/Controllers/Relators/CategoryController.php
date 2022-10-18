@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Relators\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -27,7 +28,7 @@ class CategoryController extends Controller
         $newCat->slug = Str::slug($request->catTitle);
         //upload the image here.
 
-        $name = $newCat->slug. "-category_image" . uniqid().".".$request->catAvatarImage->clientExtension();
+        $name = $newCat->slug . "-category_image" . uniqid() . "." . $request->catAvatarImage->clientExtension();
         $path = $request->catAvatarImage->storeAs('public/images/category/', $name);
         $newCat->avatar_image = $name;
 
@@ -40,9 +41,10 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function view(Category $category) {
+    public function view(Category $category)
+    {
         return response()->json([
-            'category'=> $category,
+            'category' => $category,
         ]);
     }
     public function edit(Request $request)
@@ -54,6 +56,15 @@ class CategoryController extends Controller
         $updatedCat->content = $request->catDescription;
         $updatedCat->slug = Str::slug($request->catTitle);
         //upload the image here.
+        if (isset($request->catAvatarImage) && Storage::exists('/public/images/category/' . $updatedCat->avatar_image)) {
+            Storage::delete('/public/images/category/' . $updatedCat->avatar_image);
+        }
+        if (isset($request->catAvatarImage)) {
+            $name = $updatedCat->slug . "-category_image" . uniqid() . "." . $request->catAvatarImage->clientExtension();
+            $path = $request->catAvatarImage->storeAs('public/images/category/', $name);
+            $updatedCat->avatar_image = $name;
+        }
+
         $updatedCat->save();
 
         return response()->json([
@@ -75,34 +86,37 @@ class CategoryController extends Controller
 
     public function getImage($name)
     {
-        $pathToFile = 'app/public/images/category/'.$name;
+        $pathToFile = 'app/public/images/category/' . $name;
         return response()->file(storage_path($pathToFile));
     }
 
-    public function makeSpecial(Request $request) {
-        $category= Category::findOrFail($request->id);
-        $category->isSpecial= 1;
+    public function makeSpecial(Request $request)
+    {
+        $category = Category::findOrFail($request->id);
+        $category->isSpecial = 1;
         $category->save();
 
         return response()->json([
-            'updated'=> true,
+            'updated' => true,
         ]);
     }
-    public function makeNormal(Request $request) {
-        $category= Category::findOrFail($request->id);
-        $category->isSpecial= 0;
+    public function makeNormal(Request $request)
+    {
+        $category = Category::findOrFail($request->id);
+        $category->isSpecial = 0;
         $category->save();
 
         return response()->json([
-            'updated'=> true,
+            'updated' => true,
         ]);
     }
 
-    public function getSpecialCategories() {
-        $categories= Category::where('isSpecial', 1)->get();
+    public function getSpecialCategories()
+    {
+        $categories = Category::where('isSpecial', 1)->get();
 
         return response()->json([
-            'categories'=> $categories,
+            'categories' => $categories,
         ]);
     }
 }
