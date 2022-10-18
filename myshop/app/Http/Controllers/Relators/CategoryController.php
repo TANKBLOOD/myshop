@@ -77,6 +77,10 @@ class CategoryController extends Controller
     {
         $cat = Category::findOrFail($request->catId);
 
+        if (Storage::exists('/public/images/category/' . $cat->avatar_image)) {
+            Storage::delete('/public/images/category/' . $cat->avatar_image);
+        }
+
         $cat->delete();
 
         return response()->json([
