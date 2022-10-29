@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageComponents\MainSliderController;
 use App\Http\Controllers\presentable\ProductController;
 use App\Http\Controllers\Relators\CategoryController;
 use Illuminate\Http\Request;
@@ -19,7 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+//page components
+Route::get('/mainSlider/index', [MainSliderController::class, 'index']);
+Route::get('/mainSlider/mainList', [MainSliderController::class, 'mainList']);
+Route::post('/mainSlider/create', [MainSliderController::class, 'create']);
+Route::post('/mainSlider/update', [MainSliderController::class, 'update']);
+Route::post('/mainSlider/delete', [MainSliderController::class, 'delete']);
 //category section
 Route::get('/category/index', [CategoryController::class, 'index']);
 Route::post('/category/create', [CategoryController::class, 'create']);
