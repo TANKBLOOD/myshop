@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\PageComponents\MainSliderController;
 use App\Http\Controllers\presentable\ProductController;
 use App\Http\Controllers\Relators\CategoryController;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/registerAdmin', [ApiAuthController::class, 'registerAdmin']);
 //page components
 Route::get('/mainSlider/index', [MainSliderController::class, 'index']);
 Route::get('/mainSlider/mainList', [MainSliderController::class, 'mainList']);
