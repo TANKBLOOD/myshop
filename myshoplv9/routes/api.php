@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\presentable\ProductController;
 use App\Http\Controllers\Relators\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,4 +29,15 @@ Route::post('/category/makeSpecial', [CategoryController::class, 'makeSpecial'])
 Route::post('/category/makeNormal', [CategoryController::class, 'makeNormal']);
 Route::get('/category/specials',  [CategoryController::class, 'getSpecialCategories']);
 Route::get('/category/view/{category}', [CategoryController::class, 'view']);
-// Route::get('/category/{category}/products', [ProductController::class, 'categoryProducts']);
+Route::get('/category/{category}/products', [ProductController::class, 'categoryProducts']);
+
+
+//product Section
+Route::get('/product/index', [ProductController::class, 'index']);
+Route::post('/product/create', [ProductController::class, 'create']);
+Route::get('/product/view/{product}', [ProductController::class, 'view']);
+Route::post('/product/update', [ProductController::class, 'update']);
+Route::get('/product/search/{term?}', [ProductController::class , 'search']);
+Route::get('/products/popular', [ProductController::class, 'popularList']);
+Route::post('/products/makePopular', [ProductController::class, 'makePopular']);
+Route::post('/products/removePopular', [ProductController::class, 'removePopular']);
