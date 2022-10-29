@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('parent_id')->nullable()->default(null);
+            $table->string('title', 128);
+            $table->string('meta_title', 128)->nullable()->default(null);
+            $table->string('slug', 128);
+            $table->text('content')->nullable()->default(null);
+            $table->string('avatar_image')->nullable();
+            $table->boolean('isSpecial')->default(0);
             $table->timestamps();
         });
     }
