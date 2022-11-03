@@ -19,6 +19,8 @@ import UserMainPage from "./components/UserMainPage";
 import { useLocation } from "react-router-dom";
 import ProductSearch from "./components/product/ProductSearch";
 import MainSliderManagement from "./components/admin/shared/mainSlider/MainSliderManagement";
+import AdminRegister from "./components/admin/AdminRegister";
+import AdminLogin from "./components/admin/AdminLogin";
 
 function App() {
   // useEffect(() => {
@@ -42,13 +44,24 @@ function App() {
         <ProductProvider>
           <Routes>
             <Route
+              path="admin/register"
+              element={<AdminRegister />}
+            ></Route>
+            <Route
+              path="admin/login"
+              element={<AdminLogin />}
+            ></Route>
+            <Route
               path="category/:categorySlug/products"
               element={<CategoryProductsGrid />}
             ></Route>
             <Route path="admin/categories" element={<CategoryIndex />}></Route>
             <Route path="adminDashboard" element={<AdminDashboard />}></Route>
             <Route path="createProduct" element={<CreateProduct />}></Route>
-            <Route path="admin/mainSlider" element={<MainSliderManagement />}></Route>
+            <Route
+              path="admin/mainSlider"
+              element={<MainSliderManagement />}
+            ></Route>
             <Route path="products" element={<ProductIndex />}></Route>
             <Route
               path="adminViewProduct/:productSlug"
@@ -63,10 +76,7 @@ function App() {
               path="product/view/:productSlug"
               element={<UserProductView />}
             ></Route>
-            <Route
-              path="product/search"
-              element={<ProductSearch />}
-            ></Route>
+            <Route path="product/search" element={<ProductSearch />}></Route>
             <Route path="/" element={<UserMainPage />}></Route>
           </Routes>
         </ProductProvider>
