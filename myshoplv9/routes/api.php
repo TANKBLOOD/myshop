@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\PageComponents\MainSliderController;
 use App\Http\Controllers\presentable\ProductController;
 use App\Http\Controllers\Relators\CategoryController;
@@ -19,6 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::post('/user/registerAdmin', [ApiAuthController::class, 'registerAdmin']);
+Route::post('/user/adminLogin', [ApiAuthController::class, 'loginAdmin']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user/adminUser', [ApiAuthController::class, 'adminUser']);
+    Route::post('/user/adminLogout', [ApiAuthController::class, 'adminLogout']);
 });
 //page components
 Route::get('/mainSlider/index', [MainSliderController::class, 'index']);
@@ -43,7 +50,7 @@ Route::get('/product/index', [ProductController::class, 'index']);
 Route::post('/product/create', [ProductController::class, 'create']);
 Route::get('/product/view/{product}', [ProductController::class, 'view']);
 Route::post('/product/update', [ProductController::class, 'update']);
-Route::get('/product/search/{term?}', [ProductController::class , 'search']);
+Route::get('/product/search/{term?}', [ProductController::class, 'search']);
 Route::get('/products/popular', [ProductController::class, 'popularList']);
 Route::post('/products/makePopular', [ProductController::class, 'makePopular']);
 Route::post('/products/removePopular', [ProductController::class, 'removePopular']);
