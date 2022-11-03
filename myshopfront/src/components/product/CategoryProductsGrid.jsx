@@ -7,6 +7,7 @@ import "../../styles/shared/user-css/owl.carousel.css";
 import "../../styles/shared/user-css/theme.css";
 import "../../styles/shared/toImportFonts.css";
 import UserNavigation from "../shared/UserNavigation";
+import '../../styles/shared/addon.css';
 
 import item1 from "../../styles/shared/user-css/assets/images/item-1.jpg";
 import item2 from "../../styles/shared/user-css/assets/images/item-2.jpg";
@@ -700,7 +701,7 @@ const CategoryProductsGrid = () => {
                         <div className="figure-grid">
                           <NavLink to={`/product/view/${product.slug}`}>
                             <span className="badge badge-warning">-20%</span>
-                            <div className="image">
+                            <div className="image article-img">
                               <a>
                                 <img
                                   src={`http://localhost:8000/product/image/${product.avatar_image}`}
@@ -722,7 +723,7 @@ const CategoryProductsGrid = () => {
                                   <sup>
                                     {product.price -
                                       (product.price * product.discount) /
-                                        100}{" "}
+                                      100}{" "}
                                     تومان
                                   </sup>
                                 </>

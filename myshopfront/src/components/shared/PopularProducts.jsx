@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import ProductContext from "../../contexts/ProductContext";
-
+import '../../styles/shared/addon.css';
 const PopularProducts = () => {
   const { getPopularProducts, popularProducts, applyPopularProducts } = useContext(ProductContext);
   useEffect(() => {
@@ -55,7 +55,7 @@ const PopularProducts = () => {
                   </div>
                   <NavLink to={`/product/view/${item.slug}`}>
                   <div className="figure-grid">
-                    <div className="image">
+                    <div className="image article-img">
                       <img
                         src={`http://localhost:8000/product/image/${item.avatar_image}`}
                         alt=""

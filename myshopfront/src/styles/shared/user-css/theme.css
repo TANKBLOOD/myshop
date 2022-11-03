@@ -2956,6 +2956,7 @@ nav .cart-wrapper.open {
     }
     .products article .figure-list .image {
         width: 30%;
+        height: 415px;
     }
     .products article .figure-list .text {
         width: 70%;
