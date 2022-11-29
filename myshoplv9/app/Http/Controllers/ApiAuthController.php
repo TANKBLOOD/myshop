@@ -25,7 +25,7 @@ class ApiAuthController extends Controller
     public function loginAdmin(Request $request)
     {
         $loginFlag = false;
-
+        //first find out the username type and then redirect to the data base.
         if (Auth::attempt([
             'phone' => $request->username,
             'password' => $request->password,
