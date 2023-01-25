@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('phone', 11)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('user_type', 3)->default('USR')->comment('USR for simple users and ADM for admins');
+            $table->string('user_type', 3)->default('USR')->comment('USR for simple users and ADM for admins and CST for customers');
             $table->rememberToken();
             $table->timestamps();
         });
