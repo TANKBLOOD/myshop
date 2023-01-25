@@ -4,6 +4,7 @@ use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\PageComponents\MainSliderController;
 use App\Http\Controllers\presentable\ProductController;
 use App\Http\Controllers\Relators\CategoryController;
+use App\Http\Controllers\Customer\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -54,3 +55,7 @@ Route::get('/product/search/{term?}', [ProductController::class, 'search']);
 Route::get('/products/popular', [ProductController::class, 'popularList']);
 Route::post('/products/makePopular', [ProductController::class, 'makePopular']);
 Route::post('/products/removePopular', [ProductController::class, 'removePopular']);
+
+//profile section
+Route::get('/user/profile/{userId}', [ProfileController::class, 'userProfileInfo']);
+Route::post('/user/profile', [ProfileController::class, 'update']);
