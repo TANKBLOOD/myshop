@@ -5,6 +5,7 @@ use App\Http\Controllers\PageComponents\MainSliderController;
 use App\Http\Controllers\presentable\ProductController;
 use App\Http\Controllers\Relators\CategoryController;
 use App\Http\Controllers\Customer\ProfileController;
+use App\Http\Controllers\Shopping\CartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/adminUser', [ApiAuthController::class, 'adminUser']);
     Route::post('/user/adminLogout', [ApiAuthController::class, 'adminLogout']);
 });
+Route::post('/user/registerCustomer', [ApiAuthController::class, 'registerCustomer']);
+Route::post('/user/CustomerLogin', [ApiAuthController::class, 'loginCustomer']);
+
 //page components
 Route::get('/mainSlider/index', [MainSliderController::class, 'index']);
 Route::get('/mainSlider/mainList', [MainSliderController::class, 'mainList']);
@@ -59,3 +63,10 @@ Route::post('/products/removePopular', [ProductController::class, 'removePopular
 //profile section
 Route::get('/user/profile/{userId}', [ProfileController::class, 'userProfileInfo']);
 Route::post('/user/profile', [ProfileController::class, 'update']);
+
+//cart section
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/user/cart/add', [CartController::class, 'addToCart']);
+    Route::post('/user/cart/remove', [CartController::class, 'removeFromCart']);
+    Route::post('/user/cart', [CartController::class, 'cartInfo']);
+});

@@ -22,8 +22,6 @@ class ApiAuthController extends Controller
             'user_type' => 'ADM',
         ]);
 
-        $userImage= '';
-
         $newProfile= Profile::create([
             'user_id'=> $newUser->id,
             'name'=> $request->name,
@@ -31,9 +29,8 @@ class ApiAuthController extends Controller
             'age'=> $request->age,
             'gender'=> $request->gender,
             'phone_number'=> $request->phoneNumber,
-            'image'=> $userImage,
         ]);
-        
+
         return $newUser;
     }
 
@@ -81,6 +78,69 @@ class ApiAuthController extends Controller
     public function adminLogout()
     {
         $cookie = Cookie::forget('jwt')->withSecure(true)->withHttpOnly(true)->withSameSite("none");
+
+        return response([
+            'message' => 'Success',
+        ])->withCookie($cookie);
+    }
+
+    public function registerCustomer(Request $request) {
+        $newUser= User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => Hash::make($request->password),
+            'user_type' => 'CST',
+        ]);
+
+        $newProfile= Profile::create([
+            'user_id'=> $newUser->id,
+            'name'=> $request->name,
+            'last_name'=> $request->lastName,
+            'age'=> $request->age,
+            'gender'=> $request->gender,
+            'phone_number'=> $request->phoneNumber,
+        ]);
+
+        $newCart= new Cart;
+        $newCart->user_id= $newUser->id;
+        $newCart->save();
+
+        return $newUser;
+    }
+
+    public function loginCustomer(Request $request)
+    {
+        $loginFlag = false;
+        //first find out the username type and then redirect to the data base.
+        if (Auth::attempt([
+            'phone' => $request->username,
+            'password' => $request->password,
+            'user_type'=> 'CST',
+        ])) {
+            $loginFlag = true;
+        }
+
+        if (!$loginFlag && Auth::attempt([
+            'email' => $request->username,
+            'password' => $request->password,
+            'user_type'=> 'CST',
+        ])) {
+            $loginFlag = true;
+        }
+
+        if (!$loginFlag) {
+            return response([
+                'message' => 'Invalide credential!'
+            ]);
+        }
+
+        $user = Auth::user();
+
+        $token = $user->createToken('token')->plainTextToken;
+
+        $cookie = cookie('jwt', $token, 60 * 12)->withSecure(true)->withHttpOnly(true)->withSameSite("none"); //0.5 day
+        // $name, $value, $minutes = 0, $path = null, $domain = null, $secure = false, $httpOnly = false
 
         return response([
             'message' => 'Success',
