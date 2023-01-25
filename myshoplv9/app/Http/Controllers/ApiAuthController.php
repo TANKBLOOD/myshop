@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Customer\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -13,13 +14,27 @@ class ApiAuthController extends Controller
     //
     public function registerAdmin(Request $request)
     {
-        return User::create([
+        $newUser= User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
             'user_type' => 'ADM',
         ]);
+
+        $userImage= '';
+
+        $newProfile= Profile::create([
+            'user_id'=> $newUser->id,
+            'name'=> $request->name,
+            'last_name'=> $request->lastName,
+            'age'=> $request->age,
+            'gender'=> $request->gender,
+            'phone_number'=> $request->phoneNumber,
+            'image'=> $userImage,
+        ]);
+        
+        return $newUser;
     }
 
     public function loginAdmin(Request $request)
