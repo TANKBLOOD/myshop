@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->set('status', ['unpaid', 'pending', 'preparing', 'readyToSend', 'sent', 'received'])->default('unpaid');
             $table->unsignedBigInteger('send_type_id');
+            $table->string('send_price')->nullable();
             $table->unsignedBigInteger('address_id');
             $table->timestamps();
         });
