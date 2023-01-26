@@ -6,6 +6,7 @@ use App\Http\Controllers\presentable\ProductController;
 use App\Http\Controllers\Relators\CategoryController;
 use App\Http\Controllers\Customer\ProfileController;
 use App\Http\Controllers\Shopping\CartController;
+use App\Http\Controllers\Statistic\SiteViewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -70,3 +71,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/user/cart/remove', [CartController::class, 'removeFromCart']);
     Route::post('/user/cart', [CartController::class, 'cartInfo']);
 });
+
+Route::post('/statistic/plusProductView', [SiteViewsController::class, 'plusProductView']);
+Route::post('/statistic/getProductViewSummary', [SiteViewsController::class, 'getProductViewSummary']);
