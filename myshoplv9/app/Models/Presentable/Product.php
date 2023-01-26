@@ -3,6 +3,7 @@
 namespace App\Models\Presentable;
 
 use App\Models\Relators\Category;
+use App\Models\Statistic\ProductView;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,5 +24,9 @@ class Product extends Model
 
     public function category() {
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function viewStatics() {
+        return $this->hasMany(ProductView::class);
     }
 }
