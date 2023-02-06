@@ -27,6 +27,7 @@ class ProductController extends Controller
 
         $newProduct->user_id = 1; // change this when the authentication system completed.
         $newProduct->category_id = $request->category_id;
+        $newProduct->category()->sync($request->category_id);
         $newProduct->title = $request->title;
         $newProduct->meta_title = $request->meta_title;
         $newProduct->slug = Str::slug($request->title);
@@ -53,6 +54,7 @@ class ProductController extends Controller
 
         $newProduct->save();
 
+        $newProduct->tags()->sync($request->tags);
         return response()->json([
             'newProduct' => $newProduct,
         ]);
