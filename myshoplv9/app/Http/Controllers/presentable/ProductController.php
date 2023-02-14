@@ -15,7 +15,7 @@ class ProductController extends Controller
     //
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('category')->get();
 
         return response()->json([
             'products' => $products,
@@ -26,8 +26,12 @@ class ProductController extends Controller
         $newProduct = new Product();
 
         $newProduct->user_id = 1; // change this when the authentication system completed.
-        $newProduct->category_id = $request->category_id;
-        $newProduct->category()->sync($request->category_id);
+        // $newProduct->category_id = $request->category_id;
+        $cats= array();
+        foreach($request->category_id as $value) {
+            array_push(cats, intval($value));
+        }
+        // return $request->category_id;
         $newProduct->title = $request->title;
         $newProduct->meta_title = $request->meta_title;
         $newProduct->slug = Str::slug($request->title);
@@ -54,7 +58,10 @@ class ProductController extends Controller
 
         $newProduct->save();
 
-        $newProduct->tags()->sync($request->tags);
+        $newProduct->category()->sync($request->category_id);
+
+        // $newProduct->tags()->sync($request->tags);
+
         return response()->json([
             'newProduct' => $newProduct,
         ]);
@@ -80,8 +87,8 @@ class ProductController extends Controller
         // avatar_image
         //todo:
         //delete the previous image if exists.
-        if (isset($request->avatar_image) && Storage::exists('/public/images/category/' . $product->avatar_image)) {
-            Storage::delete('/public/images/category/' . $product->avatar_image);
+        if (isset($request->avatar_image) && Storage::exists('/public/images/products/' . $product->avatar_image)) {
+            Storage::delete('/public/images/products/' . $product->avatar_image);
         }
         if (isset($request->avatar_image)) {
             $name = $product->slug . "-product_image" . uniqid() . "." . $request->avatar_image->clientExtension();
@@ -89,14 +96,24 @@ class ProductController extends Controller
             $product->avatar_image = $name;
         }
 
-        foreach ($request->images as $imageFile) {
-            $name = $product->slug . "-product_image" . uniqid() . "." . $imageFile->clientExtension();
-            $path = $imageFile->storeAs('public/images/products/', $name);
-            array_push($imagesName, $name);
+        if (isset($request->images)) {
+            foreach($product->images as $imageFile) {
+                if (Storage::exists('/public/images/products/' . $product->imageFile)) {
+                    Storage::delete('/public/images/products/' . $product->imageFile);
+                }
+            }
+            foreach ($request->images as $imageFile) {
+                $name = $product->slug . "-product_image" . uniqid() . "." . $imageFile->clientExtension();
+                $path = $imageFile->storeAs('public/images/products/', $name);
+                array_push($imagesName, $name);
+            }
+            $product->images = $imagesName;
         }
-        $product->images = $imagesName;
+
 
         $product->save();
+
+        $product->category()->sync($request->category_id);
 
         return response()->json([
             'product' => $product,
@@ -122,6 +139,7 @@ class ProductController extends Controller
 
         return response()->json([
             'product' => $product,
+            'categories'=> $product->category,
         ]);
     }
 
@@ -183,5 +201,14 @@ class ProductController extends Controller
         return response()->json([
             'products' => $products,
         ]);
+    }
+
+    public function delete(Request $request) {
+        $product = Product::findOrFail($request->id);
+        $product->delete();
+
+        return response()->json([
+            'deleted'=> true,
+        ], 200);
     }
 }
