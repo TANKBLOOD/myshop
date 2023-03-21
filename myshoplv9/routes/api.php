@@ -56,6 +56,7 @@ Route::get('/product/index', [ProductController::class, 'index']);
 Route::post('/product/create', [ProductController::class, 'create']);
 Route::get('/product/view/{product}', [ProductController::class, 'view']);
 Route::post('/product/update', [ProductController::class, 'update']);
+Route::post('/product/delete', [ProductController::class, 'delete']);
 Route::get('/product/search/{term?}', [ProductController::class, 'search']);
 Route::get('/products/popular', [ProductController::class, 'popularList']);
 Route::post('/products/makePopular', [ProductController::class, 'makePopular']);
