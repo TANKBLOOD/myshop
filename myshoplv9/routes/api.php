@@ -39,6 +39,7 @@ Route::get('/mainSlider/mainList', [MainSliderController::class, 'mainList']);
 Route::post('/mainSlider/create', [MainSliderController::class, 'create']);
 Route::post('/mainSlider/update', [MainSliderController::class, 'update']);
 Route::post('/mainSlider/delete', [MainSliderController::class, 'delete']);
+
 //category section
 Route::get('/category/index', [CategoryController::class, 'index']);
 Route::post('/category/create', [CategoryController::class, 'create']);
@@ -49,7 +50,6 @@ Route::post('/category/makeNormal', [CategoryController::class, 'makeNormal']);
 Route::get('/category/specials',  [CategoryController::class, 'getSpecialCategories']);
 Route::get('/category/view/{category}', [CategoryController::class, 'view']);
 Route::get('/category/{category}/products', [ProductController::class, 'categoryProducts']);
-
 
 //product Section
 Route::get('/product/index', [ProductController::class, 'index']);
@@ -75,3 +75,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/statistic/plusProductView', [SiteViewsController::class, 'plusProductView']);
 Route::post('/statistic/getProductViewSummary', [SiteViewsController::class, 'getProductViewSummary']);
+
+Route::get('/megaMenuCats', [CategoryController::class, 'megaMenu']);

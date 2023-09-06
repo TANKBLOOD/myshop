@@ -15,12 +15,12 @@ class CartController extends Controller
        return response()->json([
             'userCart'=> $userCart,
             'userCartItems'=> $userCartItems,
-       ], 200, $headers);
+       ], 200);
     }
 
     public function addToCart(Request $request) {
         $userCart= $request->user()->cart;
-        $itemId= $userCart->addItem($productId);
+        $itemId= $userCart->addItem($request->productId);
 
         return response()->json([
             'itemId'=> $itemId,
@@ -29,7 +29,7 @@ class CartController extends Controller
 
     public function removeFromCart(Request $request) {
         $userCart= $request->user()->cart;
-        $itemId= $userCart->removeItem($productId);
+        $itemId= $userCart->removeItem($request->productId);
 
         return response()->json([
             'itemId'=> $itemId,
