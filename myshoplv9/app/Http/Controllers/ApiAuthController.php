@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Customer\Profile;
+use App\Models\Shopping\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -67,6 +68,7 @@ class ApiAuthController extends Controller
 
         return response([
             'message' => 'Success',
+            'token'=> $token,
         ])->withCookie($cookie);
     }
 
@@ -102,7 +104,7 @@ class ApiAuthController extends Controller
             'phone_number'=> $request->phoneNumber,
         ]);
 
-        $newCart= new Cart;
+        $newCart= new Cart();
         $newCart->user_id= $newUser->id;
         $newCart->save();
 
