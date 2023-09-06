@@ -11,15 +11,47 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    public function index()
+
+    public function indexPage()
     {
         $categories = Category::all();
+
+        return view('admin.panel.category.category-index', [
+            'categories' => $categories,
+        ]);
+    }
+    public function index()
+    {
+        $categories = Category::paginate(2);
         return response()->json([
             'categories' => $categories,
         ]);
     }
 
     public function create(Request $request)
+    {
+        $newCat = new Category();
+        $newCat->parent_id = $request->catParent;
+        $newCat->title = $request->catTitle;
+        $newCat->meta_title = $request->catMetaDescription;
+        $newCat->content = $request->catDescription;
+        $newCat->slug = Str::slug($request->catTitle);
+        //upload the image here.
+
+        $name = $newCat->slug . "-category_image" . uniqid() . "." . $request->catAvatarImage->clientExtension();
+        $path = $request->catAvatarImage->storeAs('public/images/category/', $name);
+        $newCat->avatar_image = $name;
+
+        $newCat->save();
+
+
+        return response()->json([
+            'status' => ' we are okay',
+            'newCat' => $newCat,
+        ]);
+    }
+
+    public function store(Request $request)
     {
         $newCat = new Category();
         $newCat->parent_id = $request->catParent;
@@ -89,6 +121,22 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function search(Request $request) {
+        $query = $request->input('query');
+
+        if (!$query) {
+            // Handle empty search query, e.g., show all results
+            $results = Category::all();
+        } else {
+            // Perform the search on your model, replace 'column_name' with the actual column name to search
+            $results = Category::where('title', 'LIKE', '%' . $query . '%')->orWhere('title', 'LIKE', '%' . $query . '%')->get();
+        }
+
+        return response()->json([
+            'categories'=> $results,
+        ]);
+    }
+
     public function getImage($name)
     {
         $pathToFile = 'app/public/images/category/' . $name;
@@ -123,5 +171,12 @@ class CategoryController extends Controller
         return response()->json([
             'categories' => $categories,
         ]);
+    }
+
+    public function megaMenu()
+    {
+        $categories = Category::with('children.children')->where('parent_id', 0)->get();
+
+        return response()->json($categories);
     }
 }
