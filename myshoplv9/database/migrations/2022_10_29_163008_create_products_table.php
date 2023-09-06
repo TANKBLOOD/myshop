@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('title', 100);
             $table->string('meta_title', 128);
             $table->string('slug', 128);
-            $table->tinyText('summary');
+            $table->text('summary');
             // $table->smallInteger('type');
             $table->float('price');
             $table->float('discount')->nullable();

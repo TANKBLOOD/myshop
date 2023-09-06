@@ -21,15 +21,24 @@ class ProductController extends Controller
             'products' => $products,
         ]);
     }
+
+    public function createForm()
+    {
+        $categories = Category::all();
+        return view('admin.panel.product.product-create', [
+            'categories' => $categories,
+        ]);
+    }
+
     public function create(Request $request)
     {
         $newProduct = new Product();
 
         $newProduct->user_id = 1; // change this when the authentication system completed.
         // $newProduct->category_id = $request->category_id;
-        $cats= array();
-        foreach($request->category_id as $value) {
-            array_push(cats, intval($value));
+        $cats = array();
+        foreach ($request->category_id as $value) {
+            array_push($cats, intval($value));
         }
         // return $request->category_id;
         $newProduct->title = $request->title;
@@ -42,6 +51,7 @@ class ProductController extends Controller
         $newProduct->publish = $request->publish == 'draft' ? 0 : 1;
         $newProduct->out_of_stack = $request->out_of_stack ? 1 : 0;
         $newProduct->product_specifications = $request->productSpecifications;
+        $newProduct->content = $request->content;
 
         $imagesName = array();
         // avatar_image
@@ -82,6 +92,7 @@ class ProductController extends Controller
         $product->publish = $request->publish == 'draft' ? 0 : 1;
         $product->out_of_stack = $request->out_of_stack ? 1 : 0;
         $product->product_specifications = $request->productSpecifications;
+        $product->content = $request->content;
 
         $imagesName = array();
         // avatar_image
@@ -97,7 +108,7 @@ class ProductController extends Controller
         }
 
         if (isset($request->images)) {
-            foreach($product->images as $imageFile) {
+            foreach ($product->images as $imageFile) {
                 if (Storage::exists('/public/images/products/' . $product->imageFile)) {
                     Storage::delete('/public/images/products/' . $product->imageFile);
                 }
@@ -139,7 +150,7 @@ class ProductController extends Controller
 
         return response()->json([
             'product' => $product,
-            'categories'=> $product->category,
+            'categories' => $product->category,
         ]);
     }
 
@@ -203,12 +214,13 @@ class ProductController extends Controller
         ]);
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request)
+    {
         $product = Product::findOrFail($request->id);
         $product->delete();
 
         return response()->json([
-            'deleted'=> true,
+            'deleted' => true,
         ], 200);
     }
 }
