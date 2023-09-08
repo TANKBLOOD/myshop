@@ -15,11 +15,16 @@ class ProductController extends Controller
     //
     public function index()
     {
-        $products = Product::with('category')->get();
+        $products = Product::with('category')->paginate(3);
 
         return response()->json([
             'products' => $products,
         ]);
+    }
+
+    public function indexPage()
+    {
+        return view('admin.panel.product.product-index');
     }
 
     public function createForm()
@@ -32,6 +37,8 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
+
+        // dd($request);
         $newProduct = new Product();
 
         $newProduct->user_id = 1; // change this when the authentication system completed.
@@ -76,12 +83,23 @@ class ProductController extends Controller
             'newProduct' => $newProduct,
         ]);
     }
+
+    public function editForm($id)
+    {
+        $product= Product::findOrFail($id);
+        $categories = Category::all();
+
+        return view('admin.panel.product.product-edit', [
+            'categories' => $categories,
+            'product'=> $product,
+        ]);
+    }
     public function update(Request $request)
     {
         $product = Product::findOrFail($request->id);
 
         // $newProduct->user_id = 1; // change this when the authentication system completed.
-        $product->category_id = $request->category_id;
+        // $product->category_id = $request->category_id;
         $product->title = $request->title;
         $product->meta_title = $request->meta_title;
         $product->slug = Str::slug($request->title);
@@ -207,7 +225,7 @@ class ProductController extends Controller
         $products = Product::where('title', 'LIKE', '%' . $term . '%')
             ->orWhere('meta_title', 'LIKE', '%' . $term . '%')
             ->orWhere('product_specifications', 'LIKE', '%' . $term . '%')
-            ->get();
+            ->with('category')->get();
 
         return response()->json([
             'products' => $products,
@@ -222,5 +240,46 @@ class ProductController extends Controller
         return response()->json([
             'deleted' => true,
         ], 200);
+    }
+
+    public function uploadProductImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            // Store the image in the storage/app/public directory (you may need to link the public/storage directory)
+            $image->storeAs('public/productFiles', $imageName);
+
+            // Return the image URL to TinyMCE
+            return response()->json([
+                'location' => '/product/getImage/' . $imageName,
+            ]);
+        }
+
+        return response()->json(['error' => 'Invalid image'], 400);
+    }
+
+    public function getFile($filename)
+    {
+        //auth
+        $filePath = storage_path('app/public/productFiles/' . $filename);
+        // dd($filePath);
+        if (!file_exists($filePath)) {
+            abort(403, 'File not found');
+        }
+
+        // Determine the MIME type of the file
+        $mimeType = mime_content_type($filePath);
+
+        // Get the file contents
+        $fileContents = file_get_contents($filePath);
+
+        // Return the file contents with the appropriate MIME type
+        return response($fileContents)->header('Content-Type', $mimeType);
     }
 }
