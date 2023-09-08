@@ -36,6 +36,9 @@ Route::post('/admin/category/store', [CategoryController::class, 'store'])->name
 Route::post('/admin/category/update', [CategoryController::class, 'edit'])->name('admin.category.update');
 Route::delete('/admin/category/delete', [CategoryController::class, 'delete'])->name('admin.category.delete');
 Route::get('/admin/category/search', [CategoryController::class, 'search'])->name('admin.category.search');
+Route::post('/category/makeSpecial', [CategoryController::class, 'makeSpecial']);
+Route::post('/category/makeNormal', [CategoryController::class, 'makeNormal']);
+
 
 //product section routes
 Route::get('/admin/post/create', [ProductController::class, 'createForm'])->name('admin.product.create');

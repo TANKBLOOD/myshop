@@ -245,11 +245,19 @@
                             editCategory(category);
                         });
 
+                        const changeSpecialityBtn = $('<button>')
+                            .addClass('btn btn-warning m-1')
+                            .text(category.isSpecial ? 'عادی کردن دسته' : 'ویژه کردن دسته')
+                            .attr('title', 'ویرایش ویژه بودن');
+
+                        changeSpecialityBtn.on('click', function() {
+                            changeSpeciality(category);
+                        });
                         // deleteButton.on('click', function() {
                         //     deleteCategory(category.id);
                         // });
 
-                        row.append($('<td>').append(editButton, deleteButton));
+                        row.append($('<td>').append(editButton, deleteButton, changeSpecialityBtn));
                         // Add more columns if needed
                         $('#categoryTableBody').append(row);
                     });
@@ -536,11 +544,20 @@
                             editCategory(category);
                         });
 
+                        const changeSpecialityBtn = $('<button>')
+                            .addClass('btn btn-warning m-1')
+                            .text(category.isSpecial ? 'عادی کردن دسته' : 'ویژه کردن دسته')
+                            .attr('title', 'ویرایش ویژه بودن');
+
+                        changeSpecialityBtn.on('click', function() {
+                            changeSpeciality(category);
+                        });
+
                         // deleteButton.on('click', function() {
                         //     deleteCategory(category.id);
                         // });
 
-                        row.append($('<td>').append(editButton, deleteButton));
+                        row.append($('<td>').append(editButton, deleteButton, changeSpecialityBtn));
                         // Add more columns if needed
                         $('#categoryTableBody').append(row);
                     });
@@ -552,6 +569,30 @@
                     });
                 },
                 error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        const changeSpeciality = (category) => {
+
+            const url = category.isSpecial ? '/category/makeNormal' : '/category/makeSpecial';
+            $.ajax({
+                url: url, // Replace with your delete endpoint
+                method: 'POST', // Use the appropriate HTTP method for deleting
+                data: {
+                    'id': category.id,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                },
+                success: function(response) {
+                    // Handle the success response (e.g., remove the row from the table)
+                    fetchCategories();
+                    // Optionally, you can update the UI, remove the row, or show a success message
+                },
+                error: function(xhr, status, error) {
+                    // Handle any errors (e.g., show an error message)
                     console.error('Error:', error);
                 }
             });
