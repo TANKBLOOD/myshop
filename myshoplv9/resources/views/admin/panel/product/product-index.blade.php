@@ -85,17 +85,40 @@
 
                         //create a select
                         $.each(response.products.data, function(index, post) {
-                            var row = '<tr>' +
-                                '<td>' + post.title + '</td>' +
-                                '<td>' + (injectCats(post.category) || '') + '</td>' +
-                                '<td>' +
-                                '<a class="btn btn-sm btn-primary editCategoryBtn" href="/admin/product/edit/' +
-                                post.id + '">Edit</a>' +
-                                '<button class="btn btn-sm btn-danger deleteCategoryBtn delete-row" data-item-id="' +
-                                post.id + '">Delete</button>' +
-                                '</td>' +
-                                '</tr>';
+                            var row = $('<tr>');
 
+                            // Create and append the title cell
+                            row.append($('<td>').text(post.title));
+
+                            // Create and append the category cell
+                            var categoryCell = $('<td>');
+                            categoryCell.text(injectCats(post.category) || '');
+                            row.append(categoryCell);
+
+                            // Create and append the action cell
+                            var actionCell = $('<td>');
+                            var editLink = $('<a>')
+                                .addClass('btn btn-sm btn-primary editCategoryBtn')
+                                .attr('href', '/admin/product/edit/' + post.id)
+                                .text('Edit');
+                            var deleteButton = $('<button>')
+                                .addClass('btn btn-sm btn-danger deleteCategoryBtn delete-row')
+                                .attr('data-item-id', post.id)
+                                .text('Delete');
+
+                            const changePopularityBtn = $('<button>')
+                                .addClass('btn btn-warning m-1')
+                                .text(post.is_popular ? 'عادی کردن محصول' : 'محبوب کردن محصول')
+                                .attr('title', 'ویرایش ویژه بودن');
+
+                            changePopularityBtn.on('click', function() {
+                                changePopularity(post);
+                            });
+
+                            actionCell.append(editLink, deleteButton, changePopularityBtn);
+                            row.append(actionCell);
+
+                            // Append the row to the table body
                             $('#PostsTableBody').append(row);
                         });
                         // parentSelect += '</select>';
@@ -209,6 +232,31 @@
                     });
                 }
             });
+
+            const changePopularity = (product) => {
+                const url = product.is_popular ? '/admin/products/removePopular' :
+                '/admin/products/makePopular';
+                $.ajax({
+                    url: url,
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                    },
+                    data: {
+                        id: product.id,
+                    },
+                    success: function(response) {
+                        // Handle the success response (e.g., remove the row from the table)
+                        fetchPosts();
+                        // Optionally, you can update the UI, remove the row, or show a success message
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle any errors (e.g., show an error message)
+                        console.error('Error:', error);
+                    }
+
+                });
+            }
         });
     </script>
 </body>

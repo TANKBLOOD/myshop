@@ -15,7 +15,9 @@ class ProductController extends Controller
     //
     public function index()
     {
-        $products = Product::with('category')->paginate(3);
+        // $products = Product::with('category')->paginate(3);
+        $products = Product::getAllWithPopularityStatus();
+
 
         return response()->json([
             'products' => $products,
@@ -183,7 +185,7 @@ class ProductController extends Controller
 
     public function makePopular(Request $request)
     {
-        $productId = $request->data['id'];
+        $productId = $request->id;
         if (DB::table('popular_products')->where('product_id', $productId)->exists()) {
             return response()->json([
                 'status' => 'exists',

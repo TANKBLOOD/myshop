@@ -48,6 +48,8 @@ Route::get('/admin/product/search/{term}', [ProductController::class, 'search'])
 Route::get('/admin/product/edit/{id}', [ProductController::class, 'editForm'])->name('admin.product.editForm');
 Route::post('/admin/product/update', [ProductController::class, 'update'])->name('admin.product.update');
 Route::delete('/admin/product/delete', [ProductController::class, 'delete'])->name('admin.product.delete');
+Route::post('/admin/products/makePopular', [ProductController::class, 'makePopular']);
+Route::post('/admin/products/removePopular', [ProductController::class, 'removePopular']);
 
 Route::post('/upload/product/image',[ProductController::class, 'uploadProductImage'])->name('product.upload.image');
 Route::get('/product/getImage/{filename}', [ProductController::class, 'getFile'])->name('product.getfile');
