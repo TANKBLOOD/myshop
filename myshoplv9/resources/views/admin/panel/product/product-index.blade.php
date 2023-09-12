@@ -22,6 +22,10 @@
         @endif
 
         <div class="mb-3 mt-3">
+            <a href="/admin/product/create" class="btn btn-primary">Create Post</a>
+        </div>
+
+        <div class="mb-3 mt-3">
             <input type="text" class="form-control" id="searchPost" placeholder="Search Post">
         </div>
 

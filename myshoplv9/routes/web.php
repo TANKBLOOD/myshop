@@ -41,7 +41,7 @@ Route::post('/category/makeNormal', [CategoryController::class, 'makeNormal']);
 
 
 //product section routes
-Route::get('/admin/post/create', [ProductController::class, 'createForm'])->name('admin.product.create');
+Route::get('/admin/product/create', [ProductController::class, 'createForm'])->name('admin.product.create');
 Route::get('/admin/product/index', [ProductController::class, 'indexPage'])->name('admin.product.index');
 Route::get('/admin/product/indexData', [ProductController::class, 'index'])->name('admin.product.indexData');
 Route::get('/admin/product/search/{term}', [ProductController::class, 'search'])->name('admin.product.search');
