@@ -13,6 +13,9 @@
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse px-0 w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 me-4 pe-2 text-uppercase text-xs font-weight-bolder opacity-6">صفحات محصول</h6>
+            </li>
             <li class="nav-item">
                 <a class="nav-link {{$active == 'adminDashboard' ? 'active' : ''}}" href="/admin/dashboard">
                     <div
@@ -46,46 +49,7 @@
                         class="icon icon-shape icon-sm border-radius-md text-center ms-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-app text-info text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text me-1">الواقع الافتراضي</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../pages/rtl.html">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center ms-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text me-1">RTL</span>
-                </a>
-            </li>
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 me-4 pe-2 text-uppercase text-xs font-weight-bolder opacity-6">صفحات المرافق</h6>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="../pages/profile.html">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center ms-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text me-1">حساب تعريفي</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="../pages/sign-in.html">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center ms-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text me-1">تسجيل الدخول</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="../pages/sign-up.html">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center ms-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-collection text-info text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text me-1">اشتراك</span>
+                    <span class="nav-link-text me-1">ایجاد محصول جدید</span>
                 </a>
             </li>
         </ul>
