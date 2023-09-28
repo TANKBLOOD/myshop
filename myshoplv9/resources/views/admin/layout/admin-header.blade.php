@@ -1,310 +1,127 @@
-<header class="topbar">
-    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-        <!-- ============================================================== -->
-        <!-- Logo -->
-        <!-- ============================================================== -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">
-                <!-- Logo icon --><b>
-                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                    <!-- Dark Logo icon -->
-                    <img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                    <!-- Light Logo icon -->
-                    <img src="/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
-                </b>
-                <!--End Logo icon -->
-                <!-- Logo text --><span>
-                    <!-- dark Logo text -->
-                    <img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                    <!-- Light Logo text -->
-                    <img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Logo -->
-        <!-- ============================================================== -->
-        <div class="navbar-collapse">
-            <!-- ============================================================== -->
-            <!-- toggle and nav items -->
-            <!-- ============================================================== -->
-            <ul class="navbar-nav mr-auto" style="margin-right: 0 !important;">
-                <!-- This is  -->
-                <li class="nav-item"> <a class="nav-link nav-toggler d-block d-sm-none waves-effect waves-dark"
-                        href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-                <li class="nav-item"> <a
-                        class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark"
-                        href="javascript:void(0)"><i class="icon-menu"></i></a> </li>
-                <!-- ============================================================== -->
-                <!-- Search -->
-                <!-- ============================================================== -->
-                <li class="nav-item">
-                    <form class="app-search d-none d-md-block d-lg-block">
-                        <input type="text" class="form-control" placeholder="Search & enter">
-                    </form>
+<!-- Navbar -->
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+    data-scroll="false">
+    <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 ">
+                <li class="breadcrumb-item text-sm ps-2"><a class="opacity-5 text-white" href="javascript:;">لوحات
+                        القيادة</a></li>
+                <li class="breadcrumb-item text-sm text-white active" aria-current="page">RTL</li>
+            </ol>
+            <h6 class="font-weight-bolder text-white mb-0">RTL</h6>
+        </nav>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 px-0" id="navbar">
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                <div class="input-group">
+                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" placeholder="أكتب هنا...">
+                </div>
+            </div>
+            <ul class="navbar-nav me-auto ms-0 justify-content-end">
+                <li class="nav-item d-flex align-items-center">
+                    <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+                        <i class="fa fa-user me-sm-1"></i>
+                        <span class="d-sm-inline d-none">يسجل دخول</span>
+                    </a>
+                </li>
+                <li class="nav-item d-xl-none pe-3 d-flex align-items-center">
+                    <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                        <div class="sidenav-toggler-inner">
+                            <i class="sidenav-toggler-line bg-white"></i>
+                            <i class="sidenav-toggler-line bg-white"></i>
+                            <i class="sidenav-toggler-line bg-white"></i>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item px-3 d-flex align-items-center">
+                    <a href="javascript:;" class="nav-link text-white p-0">
+                        <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                    </a>
+                </li>
+                <li class="nav-item dropdown ps-2 d-flex align-items-center">
+                    <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-bell cursor-pointer"></i>
+                    </a>
+                    <ul class="dropdown-menu  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                        <li class="mb-2">
+                            <a class="dropdown-item border-radius-md" href="javascript:;">
+                                <div class="d-flex py-1">
+                                    <div class="my-auto">
+                                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  ms-3 ">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="text-sm font-weight-normal mb-1">
+                                            <span class="font-weight-bold">New message</span> from Laur
+                                        </h6>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <i class="fa fa-clock me-1"></i>
+                                            13 minutes ago
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="dropdown-item border-radius-md" href="javascript:;">
+                                <div class="d-flex py-1">
+                                    <div class="my-auto">
+                                        <img src="../assets/img/small-logos/logo-spotify.svg"
+                                            class="avatar avatar-sm bg-gradient-dark  ms-3 ">
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="text-sm font-weight-normal mb-1">
+                                            <span class="font-weight-bold">New album</span> by Travis Scott
+                                        </h6>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <i class="fa fa-clock me-1"></i>
+                                            1 day
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item border-radius-md" href="javascript:;">
+                                <div class="d-flex py-1">
+                                    <div class="avatar avatar-sm bg-gradient-secondary  ms-3  my-auto">
+                                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <title>credit-card</title>
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF"
+                                                    fill-rule="nonzero">
+                                                    <g transform="translate(1716.000000, 291.000000)">
+                                                        <g transform="translate(453.000000, 454.000000)">
+                                                            <path class="color-background"
+                                                                d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z"
+                                                                opacity="0.593633743"></path>
+                                                            <path class="color-background"
+                                                                d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z">
+                                                            </path>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="text-sm font-weight-normal mb-1">
+                                            Payment successfully completed
+                                        </h6>
+                                        <p class="text-xs text-secondary mb-0">
+                                            <i class="fa fa-clock me-1"></i>
+                                            2 days
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
-            <!-- ============================================================== -->
-            <!-- User profile and search -->
-            <!-- ============================================================== -->
-            <ul class="navbar-nav my-lg-0">
-                <!-- ============================================================== -->
-                <!-- Comment -->
-                <!-- ============================================================== -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"> <i class="ti-email"></i>
-                        <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
-                        <ul>
-                            <li>
-                                <div class="drop-title">Notifications</div>
-                            </li>
-                            <li>
-                                <div class="message-center">
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)">
-                                        <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
-                                        <div class="mail-contnet">
-                                            <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new
-                                                admin!</span> <span class="time">9:30 AM</span>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)">
-                                        <div class="btn btn-success btn-circle"><i class="ti-calendar"></i></div>
-                                        <div class="mail-contnet">
-                                            <h5>Event today</h5> <span class="mail-desc">Just a reminder that you have
-                                                event</span> <span class="time">9:10 AM</span>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)">
-                                        <div class="btn btn-info btn-circle"><i class="ti-settings"></i></div>
-                                        <div class="mail-contnet">
-                                            <h5>Settings</h5> <span class="mail-desc">You can customize this template as
-                                                you want</span> <span class="time">9:08 AM</span>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)">
-                                        <div class="btn btn-primary btn-circle"><i class="ti-user"></i></div>
-                                        <div class="mail-contnet">
-                                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span>
-                                            <span class="time">9:02 AM</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <a class="nav-link text-center link" href="javascript:void(0);"> <strong>Check all
-                                        notifications</strong> <i class="fa fa-angle-right"></i> </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <!-- ============================================================== -->
-                <!-- End Comment -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Messages -->
-                <!-- ============================================================== -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="icon-note"></i>
-                        <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                    </a>
-                    <div class="dropdown-menu mailbox dropdown-menu-right animated bounceInDown" aria-labelledby="2">
-                        <ul>
-                            <li>
-                                <div class="drop-title">You have 4 new messages</div>
-                            </li>
-                            <li>
-                                <div class="message-center">
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)">
-                                        <div class="user-img"> <img src="/assets/images/users/1.jpg" alt="user"
-                                                class="img-circle"> <span
-                                                class="profile-status online pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span>
-                                            <span class="time">9:30 AM</span>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)">
-                                        <div class="user-img"> <img src="/assets/images/users/2.jpg" alt="user"
-                                                class="img-circle"> <span
-                                                class="profile-status busy pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you
-                                                at</span> <span class="time">9:10 AM</span>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)">
-                                        <div class="user-img"> <img src="/assets/images/users/3.jpg" alt="user"
-                                                class="img-circle"> <span
-                                                class="profile-status away pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span
-                                                class="time">9:08 AM</span>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)">
-                                        <div class="user-img"> <img src="/assets/images/users/4.jpg" alt="user"
-                                                class="img-circle"> <span
-                                                class="profile-status offline pull-right"></span> </div>
-                                        <div class="mail-contnet">
-                                            <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span>
-                                            <span class="time">9:02 AM</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <a class="nav-link text-center link" href="javascript:void(0);"> <strong>See all
-                                        e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <!-- ============================================================== -->
-                <!-- End Messages -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- mega menu -->
-                <!-- ============================================================== -->
-                <li class="nav-item dropdown mega-dropdown"> <a
-                        class="nav-link dropdown-toggle waves-effect waves-dark" href=""
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                            class="ti-layout-width-default"></i></a>
-                    <div class="dropdown-menu animated bounceInDown">
-                        <ul class="mega-dropdown-menu row">
-                            <li class="col-lg-3 col-xlg-2 m-b-30">
-                                <h4 class="m-b-20">CAROUSEL</h4>
-                                <!-- CAROUSEL -->
-                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox">
-                                        <div class="carousel-item active">
-                                            <div class="container"> <img class="d-block img-fluid"
-                                                    src="/assets/images/big/img1.jpg" alt="First slide"></div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="container"><img class="d-block img-fluid"
-                                                    src="/assets/images/big/img2.jpg" alt="Second slide"></div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="container"><img class="d-block img-fluid"
-                                                    src="/assets/images/big/img3.jpg" alt="Third slide"></div>
-                                        </div>
-                                    </div>
-                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
-                                        data-slide="prev"> <span class="carousel-control-prev-icon"
-                                            aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
-                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button"
-                                        data-slide="next"> <span class="carousel-control-next-icon"
-                                            aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
-                                </div>
-                                <!-- End CAROUSEL -->
-                            </li>
-                            <li class="col-lg-3 m-b-30">
-                                <h4 class="m-b-20">ACCORDION</h4>
-                                <!-- Accordian -->
-                                <div id="accordion" class="nav-accordion" role="tablist"
-                                    aria-multiselectable="true">
-                                    <div class="card">
-                                        <div class="card-header" role="tab" id="headingOne">
-                                            <h5 class="mb-0">
-                                                <a data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseOne" aria-expanded="true"
-                                                    aria-controls="collapseOne">
-                                                    Collapsible Group Item #1
-                                                </a>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseOne" class="collapse show" role="tabpanel"
-                                            aria-labelledby="headingOne">
-                                            <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod
-                                                high. </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" role="tab" id="headingTwo">
-                                            <h5 class="mb-0">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseTwo" aria-expanded="false"
-                                                    aria-controls="collapseTwo">
-                                                    Collapsible Group Item #2
-                                                </a>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse" role="tabpanel"
-                                            aria-labelledby="headingTwo">
-                                            <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod
-                                                high life accusamus terry richardson ad squid. </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" role="tab" id="headingThree">
-                                            <h5 class="mb-0">
-                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                                    href="#collapseThree" aria-expanded="false"
-                                                    aria-controls="collapseThree">
-                                                    Collapsible Group Item #3
-                                                </a>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseThree" class="collapse" role="tabpanel"
-                                            aria-labelledby="headingThree">
-                                            <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod
-                                                high life accusamus terry richardson ad squid. </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="col-lg-3  m-b-30">
-                                <h4 class="m-b-20">CONTACT US</h4>
-                                <!-- Contact -->
-                                <form>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="exampleInputname1"
-                                            placeholder="Enter Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Enter email">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Message"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-info">Submit</button>
-                                </form>
-                            </li>
-                            <li class="col-lg-3 col-xlg-4 m-b-30">
-                                <h4 class="m-b-20">List style</h4>
-                                <!-- List style -->
-                                <ul class="list-style-none">
-                                    <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> You can
-                                            give link</a></li>
-                                    <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Give
-                                            link</a></li>
-                                    <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Another
-                                            Give link</a></li>
-                                    <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Forth
-                                            link</a></li>
-                                    <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Another
-                                            fifth link</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <!-- ============================================================== -->
-                <!-- End mega menu -->
-                <!-- ============================================================== -->
-                <li class="nav-item right-side-toggle"> <a class="nav-link  waves-effect waves-light"
-                        href="javascript:void(0)"><i class="ti-settings"></i></a></li>
-            </ul>
         </div>
-    </nav>
-</header>
+    </div>
+</nav>
+<!-- End Navbar -->
