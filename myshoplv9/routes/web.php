@@ -57,3 +57,7 @@ Route::post('/upload/product/image',[ProductController::class, 'uploadProductIma
 Route::get('/product/getImage/{filename}', [ProductController::class, 'getFile'])->name('product.getfile');
 Route::post('/admin/product/store', [ProductController::class, 'create'])->name('admin.product.store');
 
+Route::get('product/show/{id}', function() {
+    return view('shop.product.product-show');
+});
+
