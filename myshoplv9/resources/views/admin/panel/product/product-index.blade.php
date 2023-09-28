@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.layout.admin-layout', ['sidebarActive' => 'adminProductsIndex'])
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Add Bootstrap CSS CDN links here -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+@section('exclusiveStyles')
     <script src="https://cdn.tiny.cloud/1/2uyos33endb56kseb850bzheza27fwpir3wtax7l6qglo2pp/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
 
-    <title>محصول جدید</title>
-</head>
-
-<body>
+@section('mainContent')
     <div class="container">
         <h2>Posts</h2>
         @if (session('success'))
@@ -28,23 +20,26 @@
         <div class="mb-3 mt-3">
             <input type="text" class="form-control" id="searchPost" placeholder="Search Post">
         </div>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Categories</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="PostsTableBody">
-            </tbody>
-        </table>
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Categories</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="PostsTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -63,7 +58,10 @@
             </div>
         </div>
     </div>
+@endsection
 
+
+@section('exclusiveScripts')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
@@ -239,7 +237,7 @@
 
             const changePopularity = (product) => {
                 const url = product.is_popular ? '/admin/products/removePopular' :
-                '/admin/products/makePopular';
+                    '/admin/products/makePopular';
                 $.ajax({
                     url: url,
                     method: 'POST',
@@ -263,6 +261,4 @@
             }
         });
     </script>
-</body>
-
-</html>
+@endsection

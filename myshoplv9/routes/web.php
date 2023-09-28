@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/admin/dashboard', function() {
+    return view('admin.panel.admin-dashboard');
+});
 Route::get('/myimage/{name}', [CategoryController::class, 'getImage']);
 Route::get('/product/image/{name}', [ProductController::class, 'getImage']);
 Route::get('/mainSlider/image/{name}', [MainSliderController::class, 'getImage']);

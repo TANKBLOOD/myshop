@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('admin.layout.admin-layout', ['sidebarActive' => 'adminCategoryIndex'])
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category CRUD</title>
-    <!-- Include Bootstrap CSS via CDN -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
+@section('mainContent')
     <div class="container">
         <div class="header">
             <div class="table-title">
@@ -26,17 +17,19 @@
             </form>
 
         </div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>عکس</th>
-                    <th>نام</th>
-                    <th>تاریخ</th>
-                    <th>عملیات</th>
-                </tr>
-            </thead>
-            <tbody id="categoryTableBody">
-                {{-- <!-- Use Blade directives to loop through categories -->
+        <div class="card">
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+                <thead>
+                    <tr>
+                        <th>عکس</th>
+                        <th>نام</th>
+                        <th>تاریخ</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody id="categoryTableBody">
+                    {{-- <!-- Use Blade directives to loop through categories -->
                 @foreach ($categories as $product)
                     <tr>
                         <td>
@@ -56,8 +49,10 @@
 
                     </tr>
                 @endforeach --}}
-            </tbody>
-        </table>
+                </tbody>
+              </table>
+            </div>
+        </div>
     </div>
 
     <!-- Add Category Modal -->
@@ -130,8 +125,8 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -150,7 +145,9 @@
             </div>
         </div>
     </div>
+@endsection
 
+@section('exclusiveScripts')
     <!-- Include Bootstrap JS via CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -601,6 +598,4 @@
         fetchCategories();
     </script>
     <!-- Include your custom JavaScript for handling modals and AJAX here -->
-</body>
-
-</html>
+@endsection
