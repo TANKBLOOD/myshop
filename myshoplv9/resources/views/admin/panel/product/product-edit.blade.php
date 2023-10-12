@@ -22,28 +22,34 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="title">عنوان محصول</label>
-                        <input type="text" class="form-control" id="title" name="title" value="{{$product->title}}">
+                        <input type="text" class="form-control" id="title" name="title"
+                            value="{{ $product->title }}">
                     </div>
                     <div class="form-group">
                         <label for="meta_title">ساب تایتل</label>
-                        <input type="text" class="form-control" id="meta_title" name="meta_title" value="{{$product->meta_title}}">
+                        <input type="text" class="form-control" id="meta_title" name="meta_title"
+                            value="{{ $product->meta_title }}">
                     </div>
                     <div class="form-group">
                         <label for="summary">خلاصه محصول</label>
-                        <input type="text" class="form-control" id="summary" name="summary" value="{{$product->summary}}">
+                        <input type="text" class="form-control" id="summary" name="summary"
+                            value="{{ $product->summary }}">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="price">قیمت محصول</label>
-                            <input type="number" class="form-control" id="price" name="price" value="{{$product->price}}">
+                            <input type="number" class="form-control" id="price" name="price"
+                                value="{{ $product->price }}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="quantity">تعداد محصول</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" value="{{$product->quantity}}">
+                            <input type="number" class="form-control" id="quantity" name="quantity"
+                                value="{{ $product->quantity }}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="discount">تخفیف محصول</label>
-                            <input type="number" class="form-control" id="discount" name="discount" value="{{$product->discount}}">
+                            <input type="number" class="form-control" id="discount" name="discount"
+                                value="{{ $product->discount }}">
                         </div>
                     </div>
                 </div>
@@ -101,64 +107,83 @@
                 </div>
             </div>
             @php
-                $productSpecifications= json_decode($product->product_specifications);
+                $productSpecifications = json_decode($product->product_specifications);
             @endphp
             <div class="row">
-                <div class="col-md-4 mb-3">
+                @foreach ($productSpecifications as $specification)
+                    <div class="col-md-4 mb-3">
+                        <label for="brand">{{ $specification->title ?? '' }}</label>
+                        <input type="text" id="brand" class="form-control" data-persian="{{$specification->title}}"
+                            onchange="onProductSpecificationChange(this)"
+                            value="{{ $specification->value ?? '' }}">
+                    </div>
+                @endforeach
+                {{-- <div class="col-md-4 mb-3">
                     <label for="brand">وزن</label>
                     <input type="text" id="brand" class="form-control"
-                        onchange="onProductSpecificationChange(this)" value="{{$productSpecifications->brand ?? ''}}">
+                        onchange="onProductSpecificationChange(this)"
+                        value="{{ $productSpecifications->brand ?? '' }}">
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="count">جنس</label>
                     <input type="text" id="count" class="form-control"
-                        onchange="onProductSpecificationChange(this)" value="{{$productSpecifications->count ?? ''}}">
+                        onchange="onProductSpecificationChange(this)"
+                        value="{{ $productSpecifications->count ?? '' }}">
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="bodyMatrial">ابعاد</label>
                     <input type="text" id="bodyMatrial" class="form-control"
-                        onchange="onProductSpecificationChange(this)" value="{{$productSpecifications->bodyMatrial ?? ''}}">
+                        onchange="onProductSpecificationChange(this)"
+                        value="{{ $productSpecifications->bodyMatrial ?? '' }}">
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="fabricMaterial">کیفیت</label>
                     <input type="text" id="fabricMaterial" class="form-control"
-                        onchange="onProductSpecificationChange(this)" value="{{$productSpecifications->fabricMaterial ?? ''}}">
+                        onchange="onProductSpecificationChange(this)"
+                        value="{{ $productSpecifications->fabricMaterial ?? '' }}">
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="seatMaterial">ولتاژ</label>
                     <input type="text" id="seatMaterial" class="form-control"
-                        onchange="onProductSpecificationChange(this)" value="{{$productSpecifications->seatMaterial ?? ''}}">
+                        onchange="onProductSpecificationChange(this)"
+                        value="{{ $productSpecifications->seatMaterial ?? '' }}">
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="legMaterial">نصب</label>
                     <input type="text" id="legMaterial" class="form-control"
-                        onchange="onProductSpecificationChange(this)" value="{{$productSpecifications->legMaterial ?? ''}}">
+                        onchange="onProductSpecificationChange(this)"
+                        value="{{ $productSpecifications->legMaterial ?? '' }}">
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="sewingType">طریقه استفاده</label>
                     <input type="text" id="sewingType" class="form-control"
-                        onchange="onProductSpecificationChange(this)" value="{{$productSpecifications->sewingType ?? ''}}">
+                        onchange="onProductSpecificationChange(this)"
+                        value="{{ $productSpecifications->sewingType ?? '' }}">
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="mechanism">طول عمر</label>
                     <input type="text" id="mechanism" class="form-control"
-                        onchange="onProductSpecificationChange(this)" value="{{$productSpecifications->mechanism ?? ''}}">
+                        onchange="onProductSpecificationChange(this)"
+                        value="{{ $productSpecifications->mechanism ?? '' }}">
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="spongeDensity">دمای مناسب</label>
                     <input type="text" id="spongeDensity" class="form-control"
-                        onchange="onProductSpecificationChange(this)" value="{{$productSpecifications->spongeDensity ?? ''}}">
+                        onchange="onProductSpecificationChange(this)"
+                        value="{{ $productSpecifications->spongeDensity ?? '' }}">
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="cushionCount">ابعاد بسته بندی</label>
                     <input type="text" id="cushionCount" class="form-control"
-                        onchange="onProductSpecificationChange(this)" value="{{$productSpecifications->cushionCount ?? ''}}">
+                        onchange="onProductSpecificationChange(this)"
+                        value="{{ $productSpecifications->cushionCount ?? '' }}">
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="tolerableWeight">مصرف انرژی</label>
                     <input type="text" id="tolerableWeight" class="form-control"
-                        onchange="onProductSpecificationChange(this)" value="{{$productSpecifications->tolerableWeight ?? ''}}">
-                </div>
+                        onchange="onProductSpecificationChange(this)"
+                        value="{{ $productSpecifications->tolerableWeight ?? '' }}">
+                </div> --}}
             </div>
         </div>
     </form>
@@ -219,7 +244,7 @@
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
         });
-        let categories= JSON.parse("{{json_encode($product->category->pluck('id'))}}");
+        let categories = JSON.parse("{{ json_encode($product->category->pluck('id')) }}");
         $('#category_id').val(categories);
     </script>
     <script>
@@ -228,10 +253,10 @@
         // Function to handle changes in input fields
         function onProductSpecificationChange(e) {
             const id = e.id;
-            const value = e.value;
+            const title= e.getAttribute('data-persian');
 
             // Update the productSpecification object with the new key-value pair
-            productSpecification[id] = value;
+            productSpecification[id] = {title: title, value: value};
 
             console.log(productSpecification);
         }
@@ -244,7 +269,7 @@
 
             var formData = new FormData(form);
             formData.append('productSpecifications', JSON.stringify(productSpecification));
-            formData.append('id', "{{$product->id}}");
+            formData.append('id', "{{ $product->id }}");
             $.ajax({
                 url: '/admin/product/update', // Replace with your Laravel route
                 method: 'POST',

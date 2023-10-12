@@ -88,12 +88,12 @@ class ProductController extends Controller
 
     public function editForm($id)
     {
-        $product= Product::findOrFail($id);
+        $product = Product::findOrFail($id);
         $categories = Category::all();
 
         return view('admin.panel.product.product-edit', [
             'categories' => $categories,
-            'product'=> $product,
+            'product' => $product,
         ]);
     }
     public function update(Request $request)
@@ -171,6 +171,14 @@ class ProductController extends Controller
         return response()->json([
             'product' => $product,
             'categories' => $product->category,
+        ]);
+    }
+
+    public function show(Product $product)
+    {
+        // dd($product);
+        return view('shop.product.product-show', [
+            'product' => $product,
         ]);
     }
 

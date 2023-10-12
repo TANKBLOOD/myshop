@@ -89,58 +89,84 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <label for="brand">وزن</label>
-                        <input type="text" id="brand" class="form-control"
-                            onchange="onProductSpecificationChange(this)">
-                    </div>
-                    <div class="col-md-4 mb-3">
                         <label for="count">جنس</label>
-                        <input type="text" id="count" class="form-control"
+                        <input type="text" id="count" class="form-control" data-persian="جنس"
                             onchange="onProductSpecificationChange(this)">
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="bodyMatrial">ابعاد</label>
-                        <input type="text" id="bodyMatrial" class="form-control"
+                        <label for="count">رنگ</label>
+                        <input type="text" id="color" class="form-control" data-persian="رنگ"
                             onchange="onProductSpecificationChange(this)">
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="fabricMaterial">کیفیت</label>
-                        <input type="text" id="fabricMaterial" class="form-control"
+                        <label for="count">قطر</label>
+                        <input type="text" id="diameter" class="form-control" data-persian="قطر"
                             onchange="onProductSpecificationChange(this)">
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="seatMaterial">ولتاژ</label>
-                        <input type="text" id="seatMaterial" class="form-control"
+                        <label for="count">طول</label>
+                        <input type="text" id="length" class="form-control" data-persian="طول"
                             onchange="onProductSpecificationChange(this)">
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="legMaterial">نصب</label>
-                        <input type="text" id="legMaterial" class="form-control"
+                        <label for="brand">وزن</label>
+                        <input type="text" id="weight" class="form-control" data-persian="وزن"
                             onchange="onProductSpecificationChange(this)">
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="sewingType">طریقه استفاده</label>
-                        <input type="text" id="sewingType" class="form-control"
+                        <label for="brand">نوع آچار</label>
+                        <input type="text" id="wrenchType" class="form-control" data-persian="نوع آچار"
                             onchange="onProductSpecificationChange(this)">
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="mechanism">طول عمر</label>
-                        <input type="text" id="mechanism" class="form-control"
+                        <label for="brand">نوع نوک</label>
+                        <input type="text" id="tipType" class="form-control" data-persian="نوع نوک"
                             onchange="onProductSpecificationChange(this)">
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="spongeDensity">دمای مناسب</label>
-                        <input type="text" id="spongeDensity" class="form-control"
+                        <label for="brand">نوع دنده</label>
+                        <input type="text" id="gearType" class="form-control" data-persian="نوع دنده"
                             onchange="onProductSpecificationChange(this)">
                     </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="brand">نوع اتصال</label>
+                        <input type="text" id="connectionType" class="form-control" data-persian="نوع اتصال"
+                            onchange="onProductSpecificationChange(this)">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="brand">نوع تولید</label>
+                        <input type="text" id="createType" class="form-control" data-persian="نوع تولید"
+                            onchange="onProductSpecificationChange(this)">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="brand">دمای کارکرد</label>
+                        <input type="text" id="operatingTemperature" class="form-control" data-persian="دمای کارکرد"
+                            onchange="onProductSpecificationChange(this)">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="brand">شرایط کارکرد</label>
+                        <input type="text" id="operatingCondition" class="form-control" data-persian="شرایط کارکرد"
+                            onchange="onProductSpecificationChange(this)">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="brand">رطوبت</label>
+                        <input type="text" id="humidity" class="form-control" data-persian="رطوبت"
+                            onchange="onProductSpecificationChange(this)">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="brand">نوع آبکاری</label>
+                        <input type="text" id="platingType" class="form-control" data-persian="نوع آبکاری"
+                            onchange="onProductSpecificationChange(this)">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="brand">گرید پیچ</label>
+                        <input type="text" id="grade" class="form-control" data-persian="گرید پیچ"
+                            onchange="onProductSpecificationChange(this)">
+                    </div>
+
                     <div class="col-md-4 mb-3">
                         <label for="cushionCount">ابعاد بسته بندی</label>
-                        <input type="text" id="cushionCount" class="form-control"
-                            onchange="onProductSpecificationChange(this)">
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="tolerableWeight">مصرف انرژی</label>
-                        <input type="text" id="tolerableWeight" class="form-control"
+                        <input type="text" id="cushionCount" class="form-control" data-persian="ابعاد بسته بندی"
                             onchange="onProductSpecificationChange(this)">
                     </div>
                 </div>
@@ -219,9 +245,10 @@
         function onProductSpecificationChange(e) {
             const id = e.id;
             const value = e.value;
+            const title= e.getAttribute('data-persian');
 
             // Update the productSpecification object with the new key-value pair
-            productSpecification[id] = value;
+            productSpecification[id] = {title: title, value: value};
 
             console.log(productSpecification);
         }

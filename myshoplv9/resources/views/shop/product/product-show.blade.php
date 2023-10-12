@@ -30,36 +30,13 @@
                                 </div>
                                 <div class="swiper product-gallery">
                                     <div class="swiper-wrapper" title="برای بزرگنمایی تصویر دابل کلیک کنید">
+                                        @foreach ($product->images as $image)
                                         <div class="swiper-slide">
                                             <div class="swiper-zoom-container">
-                                                <img class="img-fluid" src="/assets/shop-assets/image/product/laptop-1.jpg" />
+                                                <img class="img-fluid" src="/product/image/{{$image}}" />
                                             </div>
                                         </div>
-                                        <div class="swiper-slide">
-                                            <div class="swiper-zoom-container">
-                                                <img class="img-fluid" src="/assets/shop-assets/image/product/laptop-2.jpg" />
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="swiper-zoom-container">
-                                                <img class="img-fluid" src="/assets/shop-assets/image/product/laptop-3.jpg" />
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="swiper-zoom-container">
-                                                <img class="img-fluid" src="/assets/shop-assets/image/product/laptop-4.jpg" />
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="swiper-zoom-container">
-                                                <img class="img-fluid" src="/assets/shop-assets/image/product/laptop-5.jpg" />
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <div class="swiper-zoom-container">
-                                                <img class="img-fluid" src="/assets/shop-assets/image/product/laptop2.jpg" />
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                     <div class="swiper-button-next d-none d-lg-flex"></div>
                                     <div class="swiper-button-prev d-none d-lg-flex"></div>
@@ -67,24 +44,11 @@
                                 </div>
                                 <div thumbsSlider="" class="swiper product-gallery-thumb">
                                     <div class="swiper-wrapper">
+                                        @foreach ($product->images as $image)
                                         <div class="swiper-slide">
-                                            <img class="img-fluid" src="/assets/shop-assets/image/product/laptop-1.jpg" />
+                                            <img class="img-fluid" src="/product/image/{{$image}}" />
                                         </div>
-                                        <div class="swiper-slide">
-                                            <img class="img-fluid" src="/assets/shop-assets/image/product/laptop-2.jpg" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img class="img-fluid" src="/assets/shop-assets/image/product/laptop-3.jpg" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img class="img-fluid" src="/assets/shop-assets/image/product/laptop-4.jpg" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img class="img-fluid" src="/assets/shop-assets/image/product/laptop-5.jpg" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img class="img-fluid" src="/assets/shop-assets/image/product/laptop-2.jpg" />
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -93,11 +57,8 @@
                             <div class="product-meta-title">
                                 <div class="row align-items-baseline gy-3">
                                     <div class="col-lg-8">
-                                        <h5 class="font-16">
-                                            ساعت هوشمند سامسونگ مدل Galaxy Watch3 SM-R840 45mm بند چرمی
-                                        </h5>
-                                        <p class="mb-0 mt-2 text-muted">Samsung smart watch model Galaxy Watch3 SM-R840 45mm
-                                            leather strap</p>
+                                        <h5 class="font-16">{{$product->title}}</h5>
+                                        <p class="mb-0 mt-2 text-muted">{{$product->meta_title}}</p>
                                     </div>
                                     <div class="col-lg-4">
                                         <a href="" class="text-lg-end d-block">
@@ -178,11 +139,13 @@
                             </div>
                             <div class="product-meta-action">
                                 <div class="row align-items-center gy-3">
+                                    @if (isset($product->discount))
+                                        <div class="col-lg-3 col-6 w-100-in-400">
+                                            <p class="mb-0 old-price font-16 text-lg-end text-center">{{$product->price}} تومان</p>
+                                        </div>
+                                    @endif
                                     <div class="col-lg-3 col-6 w-100-in-400">
-                                        <p class="mb-0 old-price font-16 text-lg-end text-center">1,500,000 تومان</p>
-                                    </div>
-                                    <div class="col-lg-3 col-6 w-100-in-400">
-                                        <h6 class="font-16 new-price main-color-one-color">1,200,000 تومان</h6>
+                                        <h6 class="font-16 new-price main-color-one-color">{{$product->price - ceil($product->price * $product->discount / 100)}} تومان</h6>
                                     </div>
                                     <div class="col-lg-3 col-6 w-100-in-400">
                                         <div class="d-flex justify-content-center">
@@ -225,13 +188,13 @@
                                                         data-toggle="tab" href="#productDescLess-pane">توضیحات
                                                         کالا</a></button>
                                             </li>
-                                            <li class="nav-item">
+                                            {{-- <li class="nav-item">
                                                 <button class=" waves-effect waves-light" id="productDesc"
                                                     data-bs-toggle="tab" data-bs-target="#productDesc-pane"
                                                     role="tab" type="button" aria-selected="true"><a
                                                         data-toggle="tab" href="#productDesc-pane">
                                                         مشخصات کالا</a></button>
-                                            </li>
+                                            </li> --}}
                                             <li class="nav-item">
                                                 <button class=" waves-effect waves-light" id="productTable"
                                                     data-bs-toggle="tab" data-bs-target="#productTable-pane"
@@ -258,48 +221,11 @@
                                                         <h6 class="font-22 mb-2">معرفی محصول</h6>
 
                                                         <div class="row gy-3">
-                                                            <div class="col-lg-6">
-                                                                <p>
-                                                                    اگر به دنبال تهیه یک هدفون بی‌سیم گیمینگ هستید، هدفون
-                                                                    بلوتوثی مدل K55
-                                                                    به‌عنوان
-                                                                    یکی از جدیدترین گزینه‌های موجود در بازار ارزش بررسی را
-                                                                    دارد. این مدل با
-                                                                    ابعادی
-                                                                    کوچک تولید شده است. ابعاد و وزن کم آن، جابه‌جایی این
-                                                                    وسیله و استفاده
-                                                                    طولانی‌مدت
-                                                                    از آن را آسان می‌کند و باعث خستگی گوش‌ها نخواهد شد. این
-                                                                    مدل برای اتصال
-                                                                    به
-                                                                    دستگاه‌ به بلوتوث نسخه 5.0 مجهز شده است و در مدت زمان
-                                                                    اندکی، اتصال با
-                                                                    گوشی
-                                                                    موبایل اندروید یا ios شما برقرار خواهد شد. هدفون بی سیم
-                                                                    K55 دارای یک
-                                                                    میکروفون با
-                                                                    کیفیت است و ...
-                                                                </p>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <div class="video">
-                                                                    <video id="aboutVideo" class="img-fluid vd-style" loop
-                                                                        preload="none"
-                                                                        poster="/assets/shop-assets/image/product/laptop-1.jpg">
-                                                                        <source src="/assets/shop-assets/video/video.mp4"
-                                                                            type="video/mp4">
-                                                                    </video>
-                                                                    <div class="play-btn pointer active">
-                                                                        <div class="play">
-                                                                            <i class="bi bi-play-fill" id="play-icon"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            {!! $product->content !!}
                                                         </div>
 
                                                         <!-- متن بیشتر -->
-                                                        <div class="read-more-target">
+                                                        {{-- <div class="read-more-target">
                                                             <p>
                                                                 و این ویژگی، آن را برای مکالمه مناسب می‌سازد. از ویژگی‌های
                                                                 اصلی این محصول محفظه نگهدارنده یا همان کیس آن است. این کیس
@@ -309,14 +235,14 @@
                                                                 در حدود 4-6 ساعت مکالمه و 4-6 ساعت پخش موسیقی را پاسخ‌گو
                                                                 خواهد بود.
                                                             </p>
-                                                        </div>
+                                                        </div> --}}
                                                         <!-- پایان متن بیشتر -->
                                                     </div>
                                                     <!-- پایان والد بیشتر کمتر -->
-                                                    <label for="readMore3" class="read-more-trigger"></label>
+                                                    {{-- <label for="readMore3" class="read-more-trigger"></label> --}}
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade product-desc-contents" id="productDesc-pane">
+                                            {{-- <div class="tab-pane fade product-desc-contents" id="productDesc-pane">
                                                 <div class="product-desc-content">
                                                     <input type="checkbox" class="read-more-state" id="readMore2" />
                                                     <!-- والد بیشتر ، کمتر ، تمام متن توضیحات باید داخل این تگ قرار بگیرند -->
@@ -679,7 +605,7 @@
                                                     <!-- پایان والد بیشتر کمتر -->
                                                     <label for="readMore2" class="read-more-trigger"></label>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="tab-pane fade" id="productTable-pane">
                                                 <div class="tab-pane fade active show" id="productTable-pane"
                                                     role="tabpanel" aria-labelledby="#productTable">
@@ -695,251 +621,25 @@
                                                         <section>
                                                             <ul class="param_list list-inline">
                                                                 <div class="container-fluid">
+                                                                    @foreach (json_decode($product->product_specifications) as $key => $value)
                                                                     <div class="row ps-md-2">
                                                                         <li
                                                                             class="list-inline-item col-md-3 pe-md-1 pe-md-3 p-0 m-0">
                                                                             <div class="box_params_list">
                                                                                 <p class="block border_right_custom1">
-                                                                                    قابلیت پخش موسیقی
+                                                                                    {{$value->title}}
                                                                                 </p>
                                                                             </div>
                                                                         </li>
                                                                         <li class="list-inline-item col-md-8 p-0 m-0">
                                                                             <div class="box_params_list">
                                                                                 <p class="block border_right_custom2">
-                                                                                    دارد
+                                                                                    {{$value->value}}
                                                                                 </p>
                                                                             </div>
                                                                         </li>
                                                                     </div>
-                                                                    <div class="row ps-md-2">
-                                                                        <li
-                                                                            class="list-inline-item col-md-3 pe-md-1 pe-md-3 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom1">
-                                                                                    قابلیت کنترل صدا و موزیک
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="list-inline-item col-md-8 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom2">
-                                                                                    ندارد
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                    </div>
-                                                                    <div class="row ps-md-2">
-                                                                        <li
-                                                                            class="list-inline-item col-md-3 pe-md-1 pe-md-3 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom1">
-                                                                                    راهنمایی صوتی
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="list-inline-item col-md-8 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom2">
-                                                                                    ندارد
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                    </div>
-
-                                                                </div>
-                                                            </ul>
-                                                        </section>
-                                                    </div>
-                                                    <div class="box_list mt-4">
-                                                        <p class="title"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                width="16" height="16" fill="currentColor"
-                                                                class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-                                                                <path
-                                                                    d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z">
-                                                                </path>
-                                                            </svg>مشخصات کلی</p>
-                                                        <section>
-                                                            <ul class="param_list list-inline">
-                                                                <div class="container-fluid">
-                                                                    <div class="row ps-md-2">
-                                                                        <li
-                                                                            class="list-inline-item col-md-3 pe-md-1 pe-md-3 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom1">
-                                                                                    قابلیت پخش موسیقی
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="list-inline-item col-md-8 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom2">
-                                                                                    دارد
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                    </div>
-                                                                    <div class="row ps-md-2">
-                                                                        <li
-                                                                            class="list-inline-item col-md-3 pe-md-1 pe-md-3 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom1">
-                                                                                    قابلیت کنترل صدا و موزیک
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="list-inline-item col-md-8 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom2">
-                                                                                    ندارد
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                    </div>
-                                                                    <div class="row ps-md-2">
-                                                                        <li
-                                                                            class="list-inline-item col-md-3 pe-md-1 pe-md-3 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom1">
-                                                                                    راهنمایی صوتی
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="list-inline-item col-md-8 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom2">
-                                                                                    ندارد
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                    </div>
-
-                                                                </div>
-                                                            </ul>
-                                                        </section>
-                                                    </div>
-                                                    <div class="box_list mt-4">
-                                                        <p class="title"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                width="16" height="16" fill="currentColor"
-                                                                class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-                                                                <path
-                                                                    d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z">
-                                                                </path>
-                                                            </svg>مشخصات کلی</p>
-                                                        <section>
-                                                            <ul class="param_list list-inline">
-                                                                <div class="container-fluid">
-                                                                    <div class="row ps-md-2">
-                                                                        <li
-                                                                            class="list-inline-item col-md-3 pe-md-1 pe-md-3 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom1">
-                                                                                    قابلیت پخش موسیقی
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="list-inline-item col-md-8 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom2">
-                                                                                    دارد
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                    </div>
-                                                                    <div class="row ps-md-2">
-                                                                        <li
-                                                                            class="list-inline-item col-md-3 pe-md-1 pe-md-3 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom1">
-                                                                                    قابلیت کنترل صدا و موزیک
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="list-inline-item col-md-8 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom2">
-                                                                                    ندارد
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                    </div>
-                                                                    <div class="row ps-md-2">
-                                                                        <li
-                                                                            class="list-inline-item col-md-3 pe-md-1 pe-md-3 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom1">
-                                                                                    راهنمایی صوتی
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="list-inline-item col-md-8 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom2">
-                                                                                    ندارد
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                    </div>
-
-                                                                </div>
-                                                            </ul>
-                                                        </section>
-                                                    </div>
-                                                    <div class="box_list mt-4">
-                                                        <p class="title"><svg xmlns="http://www.w3.org/2000/svg"
-                                                                width="16" height="16" fill="currentColor"
-                                                                class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-                                                                <path
-                                                                    d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z">
-                                                                </path>
-                                                            </svg>مشخصات کلی</p>
-                                                        <section>
-                                                            <ul class="param_list list-inline">
-                                                                <div class="container-fluid">
-                                                                    <div class="row ps-md-2">
-                                                                        <li
-                                                                            class="list-inline-item col-md-3 pe-md-1 pe-md-3 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom1">
-                                                                                    راهنمایی صوتی
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li class="list-inline-item col-md-8 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom2">
-                                                                                    دارد
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                    </div>
-                                                                    <div class="row ps-md-2">
-                                                                        <li
-                                                                            class="list-inline-item col-md-3 pe-md-1 pe-md-3 p-0 m-0">
-
-                                                                        </li>
-                                                                        <li class="list-inline-item col-md-8 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom2">
-                                                                                    ندارد
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                    </div>
-                                                                    <div class="row ps-md-2">
-                                                                        <li
-                                                                            class="list-inline-item col-md-3 pe-md-1 pe-md-3 p-0 m-0">
-
-                                                                        </li>
-                                                                        <li class="list-inline-item col-md-8 p-0 m-0">
-                                                                            <div class="box_params_list">
-                                                                                <p class="block border_right_custom2">
-                                                                                    ندارد
-                                                                                </p>
-                                                                            </div>
-                                                                        </li>
-                                                                    </div>
-
+                                                                    @endforeach
                                                                 </div>
                                                             </ul>
                                                         </section>
