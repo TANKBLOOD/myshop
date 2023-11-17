@@ -18,158 +18,29 @@
         </div>
         <div class="category-items">
             <div class="row gy-3 justify-content-center">
-                <div class="col-lg-3 col-sm-6 col-12">
+                @foreach ($specialCats as $specialCat)
+                    <div class="col-lg-3 col-sm-6 col-12">
 
-                    <div class="category-item p-3 rounded-3 bg-white shadow-box">
-                        <a href="">
-                            <div
-                                class="d-flex align-items-center justify-content-md-flex-start justify-content-between">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/mobile.png" alt="" class="img-fluid">
+                        <div class="category-item p-3 rounded-3 bg-white shadow-box">
+                            <a href="">
+                                <div
+                                    class="d-flex align-items-center justify-content-md-flex-start justify-content-between">
+                                    <div class="image">
+                                        <img src="/myimage/{{$specialCat->avatar_image}}" alt=""
+                                            class="img-fluid">
+                                    </div>
+                                    <div class="text ms-3">
+                                        <p class="text-center font-14 text-overflow-1">{{$specialCat->title}}</p>
+                                        <a href=""
+                                            class="btn text-muted-two btn-sm font-14 px-3 light-btn shadow-sm"><span>مشاهده</span>
+                                            <i
+                                                class="bi bi-chevron-double-left font-16 main-color-one-color ms-2"></i></a>
+                                    </div>
                                 </div>
-                                <div class="text ms-3">
-                                    <p class="text-center font-14 text-overflow-1">تلفن همراه</p>
-                                    <a href=""
-                                        class="btn text-muted-two btn-sm font-14 px-3 light-btn shadow-sm"><span>مشاهده</span>
-                                        <i class="bi bi-chevron-double-left font-16 main-color-one-color ms-2"></i></a>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-
-                    <div class="category-item p-3 rounded-3 bg-white shadow-box">
-                        <a href="">
-                            <div
-                                class="d-flex align-items-center justify-content-md-flex-start justify-content-between">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/varzeshi.png" alt="" class="img-fluid">
-                                </div>
-                                <div class="text ms-3">
-                                    <p class="text-center font-14 text-overflow-1">کالای ورزشی</p>
-                                    <a href=""
-                                        class="btn text-muted-two btn-sm font-14 px-3 light-btn shadow-sm"><span>مشاهده</span>
-                                        <i class="bi bi-chevron-double-left font-16 main-color-one-color ms-2"></i></a>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-
-                    <div class="category-item p-3 rounded-3 bg-white shadow-box">
-                        <a href="">
-                            <div
-                                class="d-flex align-items-center justify-content-md-flex-start justify-content-between">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/kalaye-degital.png" alt="" class="img-fluid">
-                                </div>
-                                <div class="text ms-3">
-                                    <p class="text-center font-14 text-overflow-1">کالای دیجیتال</p>
-                                    <a href=""
-                                        class="btn text-muted-two btn-sm font-14 px-3 light-btn shadow-sm"><span>مشاهده</span>
-                                        <i class="bi bi-chevron-double-left font-16 main-color-one-color ms-2"></i></a>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-
-                    <div class="category-item p-3 rounded-3 bg-white shadow-box">
-                        <a href="">
-                            <div
-                                class="d-flex align-items-center justify-content-md-flex-start justify-content-between">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/poshak.png" alt="" class="img-fluid">
-                                </div>
-                                <div class="text ms-3">
-                                    <p class="text-center font-14 text-overflow-1">پوشاک</p>
-                                    <a href=""
-                                        class="btn text-muted-two btn-sm font-14 px-3 light-btn shadow-sm"><span>مشاهده</span>
-                                        <i class="bi bi-chevron-double-left font-16 main-color-one-color ms-2"></i></a>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-
-                    <div class="category-item p-3 rounded-3 bg-white shadow-box">
-                        <a href="">
-                            <div
-                                class="d-flex align-items-center justify-content-md-flex-start justify-content-between">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/lavazem-tahrir.png" alt="" class="img-fluid">
-                                </div>
-                                <div class="text ms-3">
-                                    <p class="text-center font-14 text-overflow-1">لوازم تحریر</p>
-                                    <a href=""
-                                        class="btn text-muted-two btn-sm font-14 px-3 light-btn shadow-sm"><span>مشاهده</span>
-                                        <i class="bi bi-chevron-double-left font-16 main-color-one-color ms-2"></i></a>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-
-                    <div class="category-item p-3 rounded-3 bg-white shadow-box">
-                        <a href="">
-                            <div
-                                class="d-flex align-items-center justify-content-md-flex-start justify-content-between">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/milk.png" alt="" class="img-fluid">
-                                </div>
-                                <div class="text ms-3">
-                                    <p class="text-center font-14 text-overflow-1">کالای سوپر مارکتی</p>
-                                    <a href=""
-                                        class="btn text-muted-two btn-sm font-14 px-3 light-btn shadow-sm"><span>مشاهده</span>
-                                        <i class="bi bi-chevron-double-left font-16 main-color-one-color ms-2"></i></a>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-
-                    <div class="category-item p-3 rounded-3 bg-white shadow-box">
-                        <a href="">
-                            <div
-                                class="d-flex align-items-center justify-content-md-flex-start justify-content-between">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/children.png" alt="" class="img-fluid">
-                                </div>
-                                <div class="text ms-3">
-                                    <p class="text-center font-14 text-overflow-1">اسباب بازی</p>
-                                    <a href=""
-                                        class="btn text-muted-two btn-sm font-14 px-3 light-btn shadow-sm"><span>مشاهده</span>
-                                        <i class="bi bi-chevron-double-left font-16 main-color-one-color ms-2"></i></a>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-
-                    <div class="category-item p-3 rounded-3 bg-white shadow-box">
-                        <a href="">
-                            <div
-                                class="d-flex align-items-center justify-content-md-flex-start justify-content-between">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/abzar-khodro.png" alt="" class="img-fluid">
-                                </div>
-                                <div class="text ms-3">
-                                    <p class="text-center font-14 text-overflow-1">لوازم خودرو</p>
-                                    <a href=""
-                                        class="btn text-muted-two btn-sm font-14 px-3 light-btn shadow-sm"><span>مشاهده</span>
-                                        <i class="bi bi-chevron-double-left font-16 main-color-one-color ms-2"></i></a>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -206,8 +77,8 @@
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="image">
-                                                    <img src="/assets/shop-assets/image/product/laptop-1.jpg" loading="lazy"
-                                                        class="img-fluid" alt="">
+                                                    <img src="/assets/shop-assets/image/product/laptop-1.jpg"
+                                                        loading="lazy" class="img-fluid" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-lg-8">
@@ -278,8 +149,8 @@
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="image">
-                                                    <img src="/assets/shop-assets/image/product/laptop-2.jpg" loading="lazy"
-                                                        class="img-fluid" alt="">
+                                                    <img src="/assets/shop-assets/image/product/laptop-2.jpg"
+                                                        loading="lazy" class="img-fluid" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-lg-8">
@@ -350,8 +221,8 @@
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="image">
-                                                    <img src="/assets/shop-assets/image/product/laptop-3.jpg" loading="lazy"
-                                                        class="img-fluid" alt="">
+                                                    <img src="/assets/shop-assets/image/product/laptop-3.jpg"
+                                                        loading="lazy" class="img-fluid" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-lg-8">
@@ -422,8 +293,8 @@
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="image">
-                                                    <img src="/assets/shop-assets/image/product/laptop-4.jpg" loading="lazy"
-                                                        class="img-fluid" alt="">
+                                                    <img src="/assets/shop-assets/image/product/laptop-4.jpg"
+                                                        loading="lazy" class="img-fluid" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-lg-8">
@@ -494,8 +365,8 @@
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="image">
-                                                    <img src="/assets/shop-assets/image/product/laptop-5.jpg" loading="lazy"
-                                                        class="img-fluid" alt="">
+                                                    <img src="/assets/shop-assets/image/product/laptop-5.jpg"
+                                                        loading="lazy" class="img-fluid" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-lg-8">
@@ -576,8 +447,8 @@
                                         <div class="row gy-2">
                                             <div class="col-4">
                                                 <div class="image">
-                                                    <img src="/assets/shop-assets/image/product/laptop-1.jpg" loading="lazy"
-                                                        alt="" class="img-fluid">
+                                                    <img src="/assets/shop-assets/image/product/laptop-1.jpg"
+                                                        loading="lazy" alt="" class="img-fluid">
                                                 </div>
                                             </div>
                                             <div class="col-8">
@@ -603,8 +474,8 @@
                                         <div class="row gy-2">
                                             <div class="col-4">
                                                 <div class="image">
-                                                    <img src="/assets/shop-assets/image/product/laptop-2.jpg" loading="lazy"
-                                                        alt="" class="img-fluid">
+                                                    <img src="/assets/shop-assets/image/product/laptop-2.jpg"
+                                                        loading="lazy" alt="" class="img-fluid">
                                                 </div>
                                             </div>
                                             <div class="col-8">
@@ -630,8 +501,8 @@
                                         <div class="row gy-2">
                                             <div class="col-4">
                                                 <div class="image">
-                                                    <img src="/assets/shop-assets/image/product/laptop-3.jpg" loading="lazy"
-                                                        alt="" class="img-fluid">
+                                                    <img src="/assets/shop-assets/image/product/laptop-3.jpg"
+                                                        loading="lazy" alt="" class="img-fluid">
                                                 </div>
                                             </div>
                                             <div class="col-8">
@@ -657,8 +528,8 @@
                                         <div class="row gy-2">
                                             <div class="col-4">
                                                 <div class="image">
-                                                    <img src="/assets/shop-assets/image/product/laptop-4.jpg" loading="lazy"
-                                                        alt="" class="img-fluid">
+                                                    <img src="/assets/shop-assets/image/product/laptop-4.jpg"
+                                                        loading="lazy" alt="" class="img-fluid">
                                                 </div>
                                             </div>
                                             <div class="col-8">
@@ -684,8 +555,8 @@
                                         <div class="row gy-2">
                                             <div class="col-4">
                                                 <div class="image">
-                                                    <img src="/assets/shop-assets/image/product/laptop-5.jpg" loading="lazy"
-                                                        alt="" class="img-fluid">
+                                                    <img src="/assets/shop-assets/image/product/laptop-5.jpg"
+                                                        loading="lazy" alt="" class="img-fluid">
                                                 </div>
                                             </div>
                                             <div class="col-8">

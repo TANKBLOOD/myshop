@@ -52,4 +52,14 @@ class Product extends Model
             ->select('products.*', DB::raw('IF(popular_products.product_id IS NOT NULL, 1, 0) as is_popular'))
             ->paginate(3);
     }
+
+    public function discountedPrice()
+    {
+        if ($this->discount != null && $this->discount > 0) {
+            $discountAmount = ($this->discount / 100) * $this->price;
+            return $this->price - $discountAmount;
+        }
+
+        return $this->price;
+    }
 }

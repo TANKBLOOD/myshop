@@ -10,7 +10,7 @@ class ProfileController extends Controller
 {
     public function userProfileInfo(Request $request, $userId) {
         $profile= Profile::where('user_id', $userId)->first();
-        
+
         return $profile;
     }
 
@@ -26,5 +26,9 @@ class ProfileController extends Controller
         ]);
 
         return $updated;
+    }
+
+    public function show() {
+        return view('customer.customer-profile');
     }
 }
