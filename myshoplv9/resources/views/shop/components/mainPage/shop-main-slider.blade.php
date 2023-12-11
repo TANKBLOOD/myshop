@@ -39,7 +39,7 @@
                                             <p class="old-price">6,500,000 تومان</p>
                                         </div>
                                         <div class="link">
-                                            <a href="" class="btn border-0 rounded-3 main-color-one-bg">
+                                            <a href="/product/show/{{$products->slug}}" class="btn border-0 rounded-3 main-color-one-bg">
                                                 <i class="bi bi-basket text-white"></i>
                                                 <span class="text-white">خرید محصول</span>
                                             </a>

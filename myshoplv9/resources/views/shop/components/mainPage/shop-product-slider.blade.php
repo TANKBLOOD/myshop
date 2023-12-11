@@ -69,7 +69,7 @@
 
                                     </div>
                                     <div class="link">
-                                        <a href="" class="btn border-0 rounded-3 main-color-one-bg">
+                                        <a href="/product/show/{{$product->slug}}" class="btn border-0 rounded-3 main-color-one-bg">
                                             <i class="bi bi-basket text-white"></i>
                                             <span class="text-white">خرید محصول</span>
                                         </a>
