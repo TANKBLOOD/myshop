@@ -292,4 +292,21 @@ class ProductController extends Controller
         // Return the file contents with the appropriate MIME type
         return response($fileContents)->header('Content-Type', $mimeType);
     }
+
+    public function similarProducts(Product $product)
+    {
+        $categoryIds = $product->category->pluck('id');
+
+        // Then eager load the categories when getting products
+        $similarProducts = Product::with('category')
+            ->whereHas('category', function ($q) use ($categoryIds) {
+                $q->whereIn('category_id', $categoryIds);
+            })
+            ->limit(10)
+            ->get();
+
+        return response()->json([
+            'similarProducts' => $similarProducts,
+        ]);
+    }
 }
