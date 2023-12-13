@@ -18,295 +18,32 @@
         </div>
         <div class="parent">
             <div class="row g-3">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item bg-white p-2 shadow-box rounded-3">
-                        <div class="row gy-2 align-items-center">
-                            <div class="col-4">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/product/laptop-1.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                    <div class="number me-2">
-                                        <h4 class="font-22 main-color-one-color">1</h4>
+                @foreach ($topSellProducts as $index => $item)
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="item bg-white p-2 shadow-box rounded-3">
+                            <div class="row gy-2 align-items-center">
+                                <div class="col-4">
+                                    <div class="image">
+                                        <img src="/product/image/{{ $item->avatar_image }}" alt=""
+                                            class="img-fluid">
                                     </div>
-                                    <a href="">
-                                        <div class="title">
-                                            <h6 class="font-14 text-overflow-2">لپ تاپ 14.2
-                                                اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro</h6>
+                                </div>
+                                <div class="col-8">
+                                    <div class="d-flex align-items-center">
+                                        <div class="number me-2">
+                                            <h4 class="font-22 main-color-one-color">{{$index + 1}}</h4>
                                         </div>
-                                    </a>
+                                        <a href="">
+                                            <div class="title">
+                                                <h6 class="font-14 text-overflow-2">{{ $item->title }}</h6>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item bg-white p-2 shadow-box rounded-3">
-                        <div class="row gy-2 align-items-center">
-                            <div class="col-4">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/product/laptop-2.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                    <div class="number me-2">
-                                        <h4 class="font-22 main-color-one-color">2</h4>
-                                    </div>
-                                    <a href="">
-                                        <div class="title">
-                                            <h6 class="font-14 text-overflow-2">لپ تاپ 14.2
-                                                اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro</h6>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item bg-white p-2 shadow-box rounded-3">
-                        <div class="row gy-2 align-items-center">
-                            <div class="col-4">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/product/laptop-3.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                    <div class="number me-2">
-                                        <h4 class="font-22 main-color-one-color">3</h4>
-                                    </div>
-                                    <a href="">
-                                        <div class="title">
-                                            <h6 class="font-14 text-overflow-2">لپ تاپ 14.2
-                                                اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro</h6>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item bg-white p-2 shadow-box rounded-3">
-                        <div class="row gy-2 align-items-center">
-                            <div class="col-4">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/product/laptop-4.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                    <div class="number me-2">
-                                        <h4 class="font-22 main-color-one-color">4</h4>
-                                    </div>
-                                    <a href="">
-                                        <div class="title">
-                                            <h6 class="font-14 text-overflow-2">لپ تاپ 14.2
-                                                اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro</h6>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item bg-white p-2 shadow-box rounded-3">
-                        <div class="row gy-2 align-items-center">
-                            <div class="col-4">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/product/laptop-5.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                    <div class="number me-2">
-                                        <h4 class="font-22 main-color-one-color">5</h4>
-                                    </div>
-                                    <a href="">
-                                        <div class="title">
-                                            <h6 class="font-14 text-overflow-2">لپ تاپ 14.2
-                                                اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro</h6>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item bg-white p-2 shadow-box rounded-3">
-                        <div class="row gy-2 align-items-center">
-                            <div class="col-4">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/product/product-image1.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                    <div class="number me-2">
-                                        <h4 class="font-22 main-color-one-color">6</h4>
-                                    </div>
-                                    <a href="">
-                                        <div class="title">
-                                            <h6 class="font-14 text-overflow-2">لپ تاپ 14.2
-                                                اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro</h6>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item bg-white p-2 shadow-box rounded-3">
-                        <div class="row gy-2 align-items-center">
-                            <div class="col-4">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/product/product-image2.jpg" alt=""
-                                        class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                    <div class="number me-2">
-                                        <h4 class="font-22 main-color-one-color">7</h4>
-                                    </div>
-                                    <a href="">
-                                        <div class="title">
-                                            <h6 class="font-14 text-overflow-2">لپ تاپ 14.2
-                                                اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro</h6>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item bg-white p-2 shadow-box rounded-3">
-                        <div class="row gy-2 align-items-center">
-                            <div class="col-4">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/product/wach2.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                    <div class="number me-2">
-                                        <h4 class="font-22 main-color-one-color">8</h4>
-                                    </div>
-                                    <a href="">
-                                        <div class="title">
-                                            <h6 class="font-14 text-overflow-2">لپ تاپ 14.2
-                                                اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro</h6>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item bg-white p-2 shadow-box rounded-3">
-                        <div class="row gy-2 align-items-center">
-                            <div class="col-4">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/product/wach3.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                    <div class="number me-2">
-                                        <h4 class="font-22 main-color-one-color">9</h4>
-                                    </div>
-                                    <a href="">
-                                        <div class="title">
-                                            <h6 class="font-14 text-overflow-2">لپ تاپ 14.2
-                                                اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro</h6>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item bg-white p-2 shadow-box rounded-3">
-                        <div class="row gy-2 align-items-center">
-                            <div class="col-4">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/product/wach4.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                    <div class="number me-2">
-                                        <h4 class="font-22 main-color-one-color">10</h4>
-                                    </div>
-                                    <a href="">
-                                        <div class="title">
-                                            <h6 class="font-14 text-overflow-2">لپ تاپ 14.2
-                                                اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro</h6>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item bg-white p-2 shadow-box rounded-3">
-                        <div class="row gy-2 align-items-center">
-                            <div class="col-4">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/product/television3.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                    <div class="number me-2">
-                                        <h4 class="font-22 main-color-one-color">11</h4>
-                                    </div>
-                                    <a href="">
-                                        <div class="title">
-                                            <h6 class="font-14 text-overflow-2">لپ تاپ 14.2
-                                                اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro</h6>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item bg-white p-2 shadow-box rounded-3">
-                        <div class="row gy-2 align-items-center">
-                            <div class="col-4">
-                                <div class="image">
-                                    <img src="/assets/shop-assets/image/product/television1.jpg" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="d-flex align-items-center">
-                                    <div class="number me-2">
-                                        <h4 class="font-22 main-color-one-color">12</h4>
-                                    </div>
-                                    <a href="">
-                                        <div class="title">
-                                            <h6 class="font-14 text-overflow-2">لپ تاپ 14.2
-                                                اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro</h6>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

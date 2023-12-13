@@ -250,11 +250,11 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="d-flex align-items-center justify-content-end">
-                        <a href=""
-                            class="main-color-three-bg btn border-0 d-flex align-items-center rounded-pill">02133223322<i
+                        <a href="https://wa.me/989126623998" target="_blank"
+                            class="main-color-three-bg btn border-0 d-flex align-items-center rounded-pill">09126623998<i
                                 class="bi bi-whatsapp text-white ms-2"></i></a>
-                        <a href=""
-                            class="main-color-two-bg btn border-0 d-flex align-items-center ms-3 rounded-pill">02133223322<i
+                        <a href="tel:02155381195"
+                            class="main-color-two-bg btn border-0 d-flex align-items-center ms-3 rounded-pill">021-55381195<i
                                 class="bi bi-telephone-fill ms-2 text-white"></i></a>
                     </div>
                 </div>

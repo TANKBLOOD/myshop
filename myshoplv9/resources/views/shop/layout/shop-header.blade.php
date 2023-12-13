@@ -20,7 +20,7 @@
                             </div>
                             <div class="offcanvas-body">
                                 <a href="" class="text-center d-block mb-3">
-                                    <img src="/assets/shop-assets/image/logo.png" alt="" class="img-fluid" width="200">
+                                    <img src="{{asset('assets/img/mainlogo.png')}}" alt="" class="img-fluid" width="200">
                                 </a>
                                 <div class="header-bottom-form mb-4 w-100">
                                     <div class="search-form">
@@ -194,7 +194,7 @@
                     </div>
                     <a href="index.html">
                         <div class="logo">
-                            <img src="/assets/shop-assets/image/logo.png" alt="" class="img-fluid">
+                            <img src="{{asset('assets/img/logomat.png')}}" style="max-height: 100px;padding-right: 40px;margin-top:-15px;" alt="" class="img-fluid">
                         </div>
                     </a>
                 </div>

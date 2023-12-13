@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قالب سانیار</title>
+    <title>هایپر ابزار ساختمان و تجهیزات ماربل</title>
     <link rel="stylesheet" href="/assets/shop-assets/css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="/assets/shop-assets/font/bootstrap-icon/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/shop-assets/plugin/waves/waves.min.css">
@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="/assets/shop-assets/plugin/tagify/tagify.css">
     <!-- ======== end tagify -->
 
+    <link rel="shortcut icon" href="{{asset('assets/img/mainlogo.png')}}" type="image/x-icon">
+
     @yield('exclusive-styles')
 
 </head>
@@ -26,9 +28,9 @@
 <body>
     @include('shop.layout.shop-header')
     @include('shop.layout.shop-mega-menu')
-    @include('shop.layout.shop-breadcroumb')
+    {{-- @include('shop.layout.shop-breadcroumb') --}}
     @yield('main-content')
-    @include('shop.layout.shop-similar-products')
+    {{-- @include('shop.layout.shop-similar-products') --}}
     @include('shop.layout.shop-footer')
     <!-- mobile menu -->
 
