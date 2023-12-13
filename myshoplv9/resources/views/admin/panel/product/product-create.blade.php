@@ -74,8 +74,8 @@
                         <div class="form-group">
                             <!-- Display avatar image preview here -->
                             <!-- Example:
-                                <img src="avatar-preview.jpg" alt="Avatar Preview">
-                                -->
+                                        <img src="avatar-preview.jpg" alt="Avatar Preview">
+                                        -->
                         </div>
                         <div class="form-group">
                             <label for="avatar_image">عکس اواتار</label>
@@ -186,98 +186,99 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        function filePickerCallback(callback, value, meta) {
-            var input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
-
-            input.onchange = function() {
-                var file = this.files[0];
-                var formData = new FormData();
-                formData.append('image', file);
-
-                // Send the file to the server using AJAX
-                fetch('/upload/product/image', {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        }
-                    })
-                    .then(function(response) {
-                        return response.json();
-                    })
-                    .then(function(data) {
-                        // Insert the uploaded image URL into the editor
-                        callback(data.location);
-                    })
-                    .catch(function() {
-                        alert('Image upload failed');
-                    });
-            };
-
-            input.click();
-        }
-
-        tinymce.init({
-            selector: 'textarea#mainContent',
-            height: 600,
-            menubar: 'file edit view insert format tools table help',
-            plugins: 'advlist autolink lists link image imagetools charmap print preview hr anchor pagebreak table toc code',
-            toolbar: 'undo redo | bold italic | numlist bullist | styleselect | alignleft aligncenter alignright alignjustify | image link | table | code',
-            file_picker_callback: filePickerCallback,
-            content_css: 'path/to/your/custom-styles.css',
-            language: 'en',
-            relative_urls: false,
-            remove_script_host: false,
-        });
-    </script>
-    <script>
         $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
-        });
-    </script>
-    <script>
-        // Initialize an empty object for productSpecification
-        let productSpecification = {};
 
-        // Function to handle changes in input fields
-        function onProductSpecificationChange(e) {
-            const id = e.id;
-            const value = e.value;
-            const title= e.getAttribute('data-persian');
+            function filePickerCallback(callback, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
 
-            // Update the productSpecification object with the new key-value pair
-            productSpecification[id] = {title: title, value: value};
+                input.onchange = function() {
+                    var file = this.files[0];
+                    var formData = new FormData();
+                    formData.append('image', file);
 
-            console.log(productSpecification);
-        }
+                    // Send the file to the server using AJAX
+                    fetch('/upload/product/image', {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            }
+                        })
+                        .then(function(response) {
+                            return response.json();
+                        })
+                        .then(function(data) {
+                            // Insert the uploaded image URL into the editor
+                            callback(data.location);
+                        })
+                        .catch(function() {
+                            alert('Image upload failed');
+                        });
+                };
 
-        $("#createProductForm").submit(function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            // Your custom code for handling the form submission
-            // Send an AJAX POST request to your Laravel backend
-            const form = document.getElementById('createProductForm');
+                input.click();
+            }
 
-            var formData = new FormData(form);
-            formData.append('productSpecifications', JSON.stringify(productSpecification));
-            $.ajax({
-                url: '/admin/product/store', // Replace with your Laravel route
-                method: 'POST',
-                data: formData,
-                processData: false, // Don't process the data
-                contentType: false, // Don't set content type (let jQuery do it)
-                success: function(response) {
-                    // Handle the success response
+            tinymce.init({
+                selector: 'textarea#mainContent',
+                height: 600,
+                menubar: 'file edit view insert format tools table help',
+                plugins: 'advlist autolink lists link image imagetools charmap print preview hr anchor pagebreak table toc code',
+                toolbar: 'undo redo | bold italic | numlist bullist | styleselect | alignleft aligncenter alignright alignjustify | image link | table | code',
+                file_picker_callback: filePickerCallback,
+                content_css: 'path/to/your/custom-styles.css',
+                language: 'en',
+                relative_urls: false,
+                remove_script_host: false,
+            });
 
-                    alert('product created');
-                    // You can redirect or show a success message here
-                },
-                error: function(xhr, status, error) {
-                    // Handle any errors
-                    console.error('Error:', error);
-                    // You can display an error message here
-                }
+            // Initialize an empty object for productSpecification
+            let productSpecification = {};
+
+            // Function to handle changes in input fields
+            function onProductSpecificationChange(e) {
+                const id = e.id;
+                const value = e.value;
+                const title = e.getAttribute('data-persian');
+
+                // Update the productSpecification object with the new key-value pair
+                productSpecification[id] = {
+                    title: title,
+                    value: value
+                };
+
+                console.log(productSpecification);
+            }
+
+            $("#createProductForm").submit(function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                // Your custom code for handling the form submission
+                // Send an AJAX POST request to your Laravel backend
+                const form = document.getElementById('createProductForm');
+
+                var formData = new FormData(form);
+                formData.append('productSpecifications', JSON.stringify(productSpecification));
+                $.ajax({
+                    url: '/admin/product/store', // Replace with your Laravel route
+                    method: 'POST',
+                    data: formData,
+                    processData: false, // Don't process the data
+                    contentType: false, // Don't set content type (let jQuery do it)
+                    success: function(response) {
+                        // Handle the success response
+
+                        alert('product created');
+                        // You can redirect or show a success message here
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle any errors
+                        console.error('Error:', error);
+                        // You can display an error message here
+                    }
+                });
             });
         });
     </script>

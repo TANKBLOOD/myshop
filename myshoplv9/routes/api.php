@@ -77,3 +77,5 @@ Route::post('/statistic/plusProductView', [SiteViewsController::class, 'plusProd
 Route::post('/statistic/getProductViewSummary', [SiteViewsController::class, 'getProductViewSummary']);
 
 Route::get('/megaMenuCats', [CategoryController::class, 'megaMenu']);
+
+Route::get('/product/similar/{product}', [ProductController::class, 'similarProducts'])->name('product.similar');

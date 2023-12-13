@@ -76,3 +76,5 @@ Route::get('/mainSlider/image/{name}', [MainSliderController::class, 'getImage']
 
 // Route::get('/megaMenuCats', [CategoryController::class, 'megaMenu']);
 Route::get('/product/show/{product}', [ProductController::class, 'show'])->name('product.show');
+
+Route::get('/product/similar/{product}', [ProductController::class, 'similarProducts'])->name('product.similar');
