@@ -50,7 +50,7 @@ class Product extends Model
         return self::leftJoin('popular_products', 'products.id', '=', 'popular_products.product_id')
             ->with('category') // Load the 'categories' relationship
             ->select('products.*', DB::raw('IF(popular_products.product_id IS NOT NULL, 1, 0) as is_popular'))
-            ->paginate(3);
+            ->paginate(50);
     }
 
     public function discountedPrice()

@@ -1836,6 +1836,7 @@ figure.avatar img {
     background-color: #fff;
     border-radius: 5px;
     padding: 10px;
+    max-height: 80px;
 }
 
 
@@ -2580,7 +2581,7 @@ div#btncollapzion {
 .product-meta-garanty i{
     margin-left: 7px;
     color: #0b8502;
-}   
+}
 
 .product-meta-color{
     margin-top: 20px;
@@ -2605,7 +2606,7 @@ div#btncollapzion {
 
 .product-meta-color-items label:hover{
     background-color: #e2e2e2 !important;
-    
+
 }
 
 .product-meta-color-items .btn-check:checked+.btn{
@@ -4032,7 +4033,7 @@ tags.tagify.commentTags {
 
 .video-blog-item{
     display: flex;
-    align-items: flex-start;   
+    align-items: flex-start;
     justify-content: start;
 }
 
@@ -4169,7 +4170,7 @@ img{
 
 .mini-blog-item{
     display: flex;
-    align-items: flex-start;   
+    align-items: flex-start;
     justify-content: start;
 }
 

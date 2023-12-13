@@ -21,10 +21,15 @@ class PagesController extends Controller
         // Retrieve popular products with their details and orders using eager loading
         $popularProducts = Product::whereIn('id', $popularProductIds)->get();
 
+        //get top 12 products based on create date
+        $topSellProducts= Product::orderBy('created_at', 'desc')->take(12)->get();
+
+
         return view('welcome', [
             'specialCats'=> $specialCategories,
             'productsWithDiscount'=> $productsWithDiscount,
             'popularProducts'=> $popularProducts,
+            'topSellProducts'=> $topSellProducts,
         ]);
     }
 }
