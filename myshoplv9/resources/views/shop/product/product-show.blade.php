@@ -138,7 +138,8 @@
                             <div class="product-meta-count text-muted">
                                 <span>14 عدد در انبار</span>
                             </div>
-                            <div class="product-meta-action">
+
+                            <div class="product-meta-action product" data-product-id="{{ $product->id }}">
                                 <div class="row align-items-center gy-3">
                                     @if (isset($product->discount))
                                         <div class="col-lg-3 col-6 w-100-in-400">
@@ -153,13 +154,14 @@
                                     </div>
                                     <div class="col-lg-3 col-6 w-100-in-400">
                                         <div class="d-flex justify-content-center">
-                                            <a href="" class="btn w-100 border-0 main-color-three-bg"><i
+                                            <a class="btn w-100 border-0 main-color-three-bg add-to-cart-button"><i
                                                     class="bi bi-basket text-white font-20 me-1"></i>خرید کالا</a>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-6 w-100-in-400">
                                         <div class="counter">
-                                            <input type="text" name="count" class="counter" value="1">
+                                            <input type="text" name="count" class="counter" value="1"
+                                                id="product-count">
                                         </div>
                                     </div>
                                 </div>
@@ -798,7 +800,8 @@
                                     <div class="row gy-3">
                                         <div class="col-12 w-100-in-400">
                                             <div class="counter">
-                                                <input type="text" name="count" class="counter" value="1">
+                                                <input type="text" name="count" class="counter" value="1"
+                                                    id="product-count">
                                             </div>
                                         </div>
                                         <div class="col-12 w-100-in-400">
@@ -897,4 +900,95 @@
         </div>
     </div>
     <!-- end chart modal -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            ///شمارنده محصول برای اضافه کردن به سبد خرید
+            $("input[name='count']").TouchSpin({
+                min: 0,
+                max: '1000000000000000',
+                buttondown_class: "btn-counter waves-effect waves-light",
+                buttonup_class: "btn-counter waves-effect waves-light"
+            });
+            const addItemToCart = () => {
+                // Get the product ID from the parent element's data attribute
+                const productId = "{{ $product->id }}";
+
+                // Define the data to be sent in the request body
+                const data = {
+                    productId: productId
+                };
+
+                // Send a POST request to the server
+                fetch('/user/cart/add', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        // Handle the response data
+                        alert(`Item added to cart with ID: ${data.itemId}`);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            }
+
+            const removeItemFromCart = () => {
+                // Get the product ID from the parent element's data attribute
+                const productId = "{{ $product->id }}";
+
+                // Define the data to be sent in the request body
+                const data = {
+                    productId: productId
+                };
+
+                // Send a POST request to the server
+                fetch('/user/cart/remove', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        // Handle the response data
+                        alert(`Item removed from cart with ID: ${data.itemId}`);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            }
+            // Add event listeners to all add-to-cart buttons
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    addItemToCart();
+                });
+            });
+
+            var previousItemCount = $("#product-count").val();
+
+            // Handle value change event
+            $("input[name='count']").on('change', function() {
+                var currentValue = $(this).val(); // Get the current value
+
+                if (currentValue > previousItemCount) {
+                    addItemToCart(); // Call function to handle increase
+                } else if (currentValue < previousItemCount) {
+                    removeItemFromCart(); // Call function to handle decrease
+                }
+
+                previousItemCount = currentValue; // Update the previous value
+            });
+        });
+    </script>
 @endsection

@@ -13,6 +13,7 @@ class CartController extends Controller
     //
     public function customerCartPage(Request $request) {
 
+        return view('shop.cart.customer-cart');
     }
     public function cartInfo(Request $request) {
         $userCart= $request->user()->cart;
@@ -21,6 +22,7 @@ class CartController extends Controller
        return response()->json([
             'userCart'=> $userCart,
             'userCartItems'=> $userCartItems,
+            'success'=> true,
        ], 200);
     }
 

@@ -15,7 +15,7 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
     public function items() {
-        return $this->hasMany(CartImte::class);
+        return $this->hasMany(CartItem::class);
     }
 
     public function addItem($productId) {
@@ -37,13 +37,17 @@ class Cart extends Model
     }
 
     public function removeItem($productId) {
-        if($item= $this->items->where('product_id', $productId)->first() && $item->quantity > 1) {
+        $item= $this->items->where('product_id', $productId)->first();
+        if($item && $item->quantity > 1) {
             $item->quantity= $item->quantity - 1;
             $item->save();
 
             return $item->id;
         }else {
-            $item= $this->items->where('product_id', $productId)->delete();
+            $item= $this->items->where('product_id', $productId)->first();
+            if($item) {
+                $item->delete();
+            }
 
             return 0;
         }

@@ -29,7 +29,7 @@ $(function () {
 
     ///شمارنده محصول برای اضافه کردن به سبد خرید
     $("input[name='count']").TouchSpin({
-        min: 1,
+        min: 0,
         max: '1000000000000000',
         buttondown_class: "btn-counter waves-effect waves-light",
         buttonup_class: "btn-counter waves-effect waves-light"
