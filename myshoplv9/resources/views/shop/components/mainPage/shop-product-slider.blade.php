@@ -66,7 +66,6 @@
                                             <p class="new-price">{{ $product->price }} تومان</p>
                                             <p class="old-price mt-4"></p>
                                         @endif
-
                                     </div>
                                     <div class="link">
                                         <a href="/product/show/{{$product->slug}}" class="btn border-0 rounded-3 main-color-one-bg">

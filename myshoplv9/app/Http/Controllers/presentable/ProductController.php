@@ -309,4 +309,15 @@ class ProductController extends Controller
             'similarProducts' => $similarProducts,
         ]);
     }
+
+    public function getCategoryProducts(Request $request, $slug) {
+        $category= Category::where('slug', $slug)->first();
+
+        $products= $category->products;
+
+        return view('shop.product.category-products', [
+            'category'=> $category,
+            'products' => $products
+        ]);
+    }
 }

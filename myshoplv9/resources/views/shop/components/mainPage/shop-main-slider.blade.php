@@ -11,7 +11,7 @@
                                 <div class="product-box">
                                     <div class="product-timer">
                                         <div class="timer-label">
-                                            <span>{{$products->discount}} تخفیف</span>
+                                            <span>{{ $products->discount }} تخفیف</span>
                                         </div>
                                         <div class="timer">
                                             <div class='countdown' data-date="2025-01-01" data-time="18:30">
@@ -19,14 +19,13 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <img src="/product/image/{{$products->avatar_image}}" loading="lazy"
+                                        <img src="/product/image/{{ $products->avatar_image }}" loading="lazy"
                                             alt="" class="img-fluid">
                                     </div>
                                     <div class="product-title">
                                         <div class="title">
-                                            <p class="text-overflow-1">ساعت هوشمند شیائومی</p>
-                                            <span class="text-muted text-overflow-1">Mibro Lite XPAW004
-                                                Smartwatch</span>
+                                            <p class="text-overflow-1">{{$products->title}}</p>
+                                            <span class="text-muted text-overflow-1">{{$products->meta_title}}</span>
                                         </div>
                                         <div class="rating">
                                             <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
@@ -35,11 +34,17 @@
                                     </div>
                                     <div class="product-action">
                                         <div class="price">
-                                            <p class="new-price">3,175,000 تومان</p>
-                                            <p class="old-price">6,500,000 تومان</p>
+                                            @if ($products->discount && $products->discount != 0)
+                                                <p class="new-price">{{ $products->price }} تومان</p>
+                                                <p class="old-price">{{ $products->discountedPrice() }} تومان</p>
+                                            @else
+                                                <p class="new-price">{{ $products->price }} تومان</p>
+                                                <p class="old-price mt-4"></p>
+                                            @endif
                                         </div>
                                         <div class="link">
-                                            <a href="/product/show/{{$products->slug}}" class="btn border-0 rounded-3 main-color-one-bg">
+                                            <a href="/product/show/{{ $products->slug }}"
+                                                class="btn border-0 rounded-3 main-color-one-bg">
                                                 <i class="bi bi-basket text-white"></i>
                                                 <span class="text-white">خرید محصول</span>
                                             </a>

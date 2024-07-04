@@ -33,36 +33,55 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <h6 class="font-18">فرم ورود / عضویت</h6>
                                         <a href="index.html">
-                                            <img src="assets/image/logo.png" alt="" class="img-fluid" width="150">
+                                            <img src="assets/image/logo.png" alt="" class="img-fluid"
+                                                width="150">
                                         </a>
                                     </div>
                                 </div>
                                 <form action="/customer/register" method="POST" id="form-auth">
+                                    @csrf
                                     <div class="form-group step-username">
-                                        <label for="username" class="form-label font-18">نام</label>
-                                        <input type="text" name="name" id="name" placeholder="لطفا نام خود را وارد کنید" class="form-control py-4">
-                                        <label for="username" class="form-label font-18">نام خانوادگی</label>
-                                        <input type="text" name="lastname" id="lastname" placeholder="لطفا نام خانوادگی خود را وارد کنید" class="form-control py-4">
-                                        <label for="username" class="form-label font-18">شماره تلفن</label>
-                                        <input type="text" name="username" id="username" placeholder="شماره تلفن خود را وارد کنید" class="form-control py-4">
+                                        <label for="name" class="form-label font-18">نام</label>
+                                        <input type="text" name="name" id="name"
+                                            placeholder="لطفا نام خود را وارد کنید" class="form-control py-4" required>
+
+                                        <label for="last_name" class="form-label font-18">نام خانوادگی</label>
+                                        <input type="text" name="last_name" id="last_name"
+                                            placeholder="لطفا نام خانوادگی خود را وارد کنید" class="form-control py-4"
+                                            required>
+
+                                        <label for="phone_number" class="form-label font-18">شماره تلفن</label>
+                                        <input type="text" name="phone_number" id="phone_number"
+                                            placeholder="شماره تلفن خود را وارد کنید" class="form-control py-4">
+                                        <label for="email" class="form-label font-18">ایمیل(اختیاری)</label>
+                                        <input type="text" name="email" id="email"
+                                            placeholder="ایمیل خود را وارد کنید" class="form-control py-4">
                                     </div>
                                     <div class="form-group step-passwd">
-                                        <label for="passwd" class="form-label font-18">کلمه عبور :</label>
-                                        <input type="password" name="password" id="password" placeholder="رمز عبور خود را وارد کنید" class="form-control py-4">
-                                        <label for="passwd" class="form-label font-18">تایید کلمه عبور:</label>
-                                        <input type="password" name="password_confirmation" id="password_confirmation" placeholder="رمز عبور خود را وارد کنید" class="form-control py-4">
+                                        <label for="code" class="form-label font-18">کلمه عبور :</label>
+                                        <input type="text" name="verify_code" id="code"
+                                            placeholder="کد ارسال شده را وارد کنید" class="form-control py-4" required>
                                     </div>
+
                                     <div class="form-group step-two py-4">
-                                        <a href="sending-code.html" class="main-color-one-color"> ورود با رمز یک بار مصرف <i class="bi bi-chevron-left font-14 main-color-one-color"></i></a>
+                                        <a href="sending-code.html" class="main-color-one-color"> ورود با رمز یک بار
+                                            مصرف <i class="bi bi-chevron-left font-14 main-color-one-color"></i></a>
                                     </div>
+
                                     <div class="form-group step-one">
-                                        <button type="button" class="btn border-0 main-color-one-bg w-100 py-3">ورود / ثبت نام</button>
+                                        <button type="submit" class="btn border-0 main-color-one-bg w-100 py-3">ورود /
+                                            ثبت نام</button>
                                     </div>
+
                                     <div class="form-group step-two">
-                                        <button type="button" class="btn border-0 btnForm main-color-one-bg w-100 py-3">تایید</button>
+                                        <button type="button"
+                                            class="btn border-0 btnForm main-color-one-bg w-100 py-3">تایید</button>
                                     </div>
+
                                     <div class="form-group text-center">
-                                        <a href="" class="text-center main-color-one-color border-animate fromCenter py-2  d-inline-block">فراموشی رمز عبور</a>
+                                        <a href=""
+                                            class="text-center main-color-one-color border-animate fromCenter py-2  d-inline-block">فراموشی
+                                            رمز عبور</a>
                                     </div>
                                 </form>
                             </div>
@@ -228,7 +247,69 @@
 
     <link rel="stylesheet" href="/assets/shop-assets/plugin/go-to-top/style.css">
     <link rel="stylesheet" href="/assets/shop-assets/plugin/rasta-contact/style.css">
+    <script>
+        $(document).ready(function() {
+            ///disable fild password in load form
+            $(".step-passwd").hide();
+            ///disable button submit in step one
+            $(".step-two").hide();
 
+            ///show filed password in step two form
+            $(".step-one").click(function() {
+
+                ///check empty fild username
+                if ($(".step-username #username").val() != "") {
+                    ///hide username filed
+                    $(".step-username").hide();
+                    ///show password filed
+                    $(".step-passwd").show();
+                    ///hide button step one
+                    $(this).hide();
+                    ///show button submit
+                    $(".step-two").show();
+
+                    fetch('/sendVerificationCode', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}' // Include the CSRF token for Laravel
+                            },
+                            body: JSON.stringify({
+                                phone: $('#phone_number').val(),
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Verification code sent successfully.');
+                            } else {
+                                alert('Error: ' + (data.error || 'Unknown error'));
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('An error occurred while sending the verification code.');
+                        });
+                } else {
+                    $(".step-username #username").addClass("border-danger border-2");
+                }
+
+
+                ///check empty fild password
+
+                $(".btnForm").click(function() {
+                    if ($(".step-passwd #code").val() != "") {
+                        $("#form-auth").submit();
+                    } else {
+                        $(".step-passwd #passwd").addClass("border-danger border-2");
+                    }
+                })
+
+
+            })
+
+        })
+    </script>
     <script>
         //// config floating contact
         $('#btncollapzion').Collapzion({

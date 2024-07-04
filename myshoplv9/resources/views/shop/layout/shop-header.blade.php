@@ -19,7 +19,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
-                                <a href="" class="text-center d-block mb-3">
+                                <a href="/" class="text-center d-block mb-3">
                                     <img src="{{asset('assets/img/mainlogo.png')}}" alt="" class="img-fluid" width="200">
                                 </a>
                                 <div class="header-bottom-form mb-4 w-100">
@@ -192,7 +192,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="index.html">
+                    <a href="/">
                         <div class="logo">
                             <img src="{{asset('assets/img/logomat.png')}}" style="max-height: 100px;padding-right: 40px;margin-top:-15px;" alt="" class="img-fluid">
                         </div>

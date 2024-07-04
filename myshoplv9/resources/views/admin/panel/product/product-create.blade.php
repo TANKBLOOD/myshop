@@ -74,8 +74,8 @@
                         <div class="form-group">
                             <!-- Display avatar image preview here -->
                             <!-- Example:
-                                        <img src="avatar-preview.jpg" alt="Avatar Preview">
-                                        -->
+                                                <img src="avatar-preview.jpg" alt="Avatar Preview">
+                                                -->
                         </div>
                         <div class="form-group">
                             <label for="avatar_image">عکس اواتار</label>
@@ -170,6 +170,16 @@
                             onchange="onProductSpecificationChange(this)">
                     </div>
                 </div>
+                <div class="container">
+                    <div class="row" id="dynamic-fields">
+                        <!-- Existing fields (if any) will be inserted here -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <button type="button" class="btn btn-primary" id="add-field-btn">Add Field</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-primary">انتشار</button>
@@ -235,23 +245,61 @@
                 remove_script_host: false,
             });
 
-            // Initialize an empty object for productSpecification
-            let productSpecification = {};
+            let fieldCount = 0;
+            const productSpecification = {};
 
-            // Function to handle changes in input fields
-            function onProductSpecificationChange(e) {
-                const id = e.id;
-                const value = e.value;
-                const title = e.getAttribute('data-persian');
+            function addField() {
+                fieldCount++;
+                const fieldId = `field-${fieldCount}`;
 
-                // Update the productSpecification object with the new key-value pair
-                productSpecification[id] = {
-                    title: title,
-                    value: value
+                const newFieldHTML = `
+            <div class="col-md-4 mb-3" id="${fieldId}-container">
+                <label for="${fieldId}-name">نام فیلد</label>
+                <input type="text" id="${fieldId}-name" class="form-control" placeholder="نام فیلد را وارد کنید">
+                <label for="${fieldId}-value">مقدار فیلد</label>
+                <input type="text" id="${fieldId}-value" class="form-control" placeholder="مقدار فیلد را وارد کنید">
+                <button type="button" class="btn btn-danger mt-2 remove-field-button" data-field-id="${fieldId}">حذف</button>
+            </div>
+        `;
+
+                $('#dynamic-fields').append(newFieldHTML);
+
+                // Attach change event to the new inputs
+                $(`#${fieldId}-name, #${fieldId}-value`).on('change', function() {
+                    updateProductSpecification(fieldId);
+                });
+            }
+
+            function removeField(fieldId) {
+                $(`#${fieldId}-container`).remove();
+                delete productSpecification[fieldId];
+                console.log(productSpecification);
+            }
+
+            function updateProductSpecification(fieldId) {
+                const fieldName = $(`#${fieldId}-name`).val();
+                const fieldValue = $(`#${fieldId}-value`).val();
+
+                productSpecification[fieldId] = {
+                    title: fieldName,
+                    value: fieldValue
                 };
 
                 console.log(productSpecification);
             }
+
+            // Attach events to dynamically added elements
+            $(document).on('click', '.remove-field-button', function() {
+                const fieldId = $(this).data('field-id');
+                removeField(fieldId);
+            });
+
+            // Attach click event to the add field button
+            $(document).ready(function() {
+                $('#add-field-btn').on('click', addField);
+            });
+
+            // Function to handle form submission
 
             $("#createProductForm").submit(function(event) {
                 event.preventDefault(); // Prevent the default form submission

@@ -17,7 +17,7 @@
                     <div class="col-8">
                         <a href="">
                             <div class="title">
-                                <h6 class="font-14">هدست مخصوص بازی پاب جی</h6>
+                                <h6 class="font-14">عالی هدست مخصوص بازی پاب جی</h6>
                                 <p class="mb-0 text-muted font-12 mt-2">مدل Quantom 300</p>
                             </div>
                             <div class="price">

@@ -6,6 +6,7 @@ use App\Http\Controllers\PageComponents\MainSliderController;
 use App\Http\Controllers\PageComponents\PagesController;
 use App\Http\Controllers\presentable\ProductController;
 use App\Http\Controllers\Relators\CategoryController;
+use App\Http\Controllers\Shopping\CartController;
 use App\Models\Presentable\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -78,3 +79,13 @@ Route::get('/mainSlider/image/{name}', [MainSliderController::class, 'getImage']
 Route::get('/product/show/{product}', [ProductController::class, 'show'])->name('product.show');
 
 Route::get('/product/similar/{product}', [ProductController::class, 'similarProducts'])->name('product.similar');
+
+Route::get('/category/{category}/products', [ProductController::class, 'getCategoryProducts'])->name('category.products');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('/user/cart/add', [CartController::class, 'addToCart']);
+    Route::post('/user/cart/remove', [CartController::class, 'removeFromCart']);
+    Route::post('/user/cart', [CartController::class, 'cartInfo']);
+});
+
+Route::post('/sendVerificationCode', [AuthController::class, 'sendVerificationCode'])->name('sendVerificationCode');

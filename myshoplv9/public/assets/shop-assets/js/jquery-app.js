@@ -5,7 +5,7 @@ $(function () {
         $(this).nextAll("ul").toggleClass("show");
         $(this).toggleClass('open');
     })
-    
+
     ///نمایش مگامنو آپدیدت جدید
     $(".main-menu-head").hover(function(){
         $(this).children().find(".main-menu-sub").first().addClass('main-menu-sub-active');
@@ -16,7 +16,7 @@ $(function () {
         $(this).children().removeClass('active');
     })
     $(".main-menu li").mouseover(function () {
-        
+
         $(".main-menu li").removeClass("main-menu-sub-active-li");
         $(this).addClass("main-menu-sub-active-li");
         $(".main-menu-sub").removeClass('main-menu-sub-active');
@@ -34,7 +34,7 @@ $(function () {
         buttondown_class: "btn-counter waves-effect waves-light",
         buttonup_class: "btn-counter waves-effect waves-light"
     });
- 
+
     ///انتخاب گر رنگ
     $(".category-sort .form-checks .form-check").click(function () {
         $(".category-sort .form-checks .form-check").removeClass("active");
@@ -61,12 +61,12 @@ $(function () {
         $(".bank-item").removeClass("active");
         $(this).addClass('active');
     })
-    
+
 
 
     jQuery('[data-bs-toggle="tooltip"]').tooltip();
     jQuery('[data-bs-toggle="modal"][title]').tooltip();
-    
+
 });
 
 
@@ -85,7 +85,7 @@ function topFunction() {
 
     $('.play-btn').click(function () {
         if ($('.play-btn').hasClass("active")) {
-            
+
             $('.play-btn').toggleClass("play-opacity");
 
             $("#aboutVideo").toggleClass('vd-style');
@@ -116,41 +116,64 @@ function topFunction() {
 * فرم چند مرحله ای ورود / ثبت نام
 */
 
-$(document).ready(function (){
-    ///disable fild password in load form
-    $(".step-passwd").hide();
-    ///disable button submit in step one
-    $(".step-two").hide();
+// $(document).ready(function (){
+//     ///disable fild password in load form
+//     $(".step-passwd").hide();
+//     ///disable button submit in step one
+//     $(".step-two").hide();
 
-    ///show filed password in step two form
-    $(".step-one").click(function (){
+//     ///show filed password in step two form
+//     $(".step-one").click(function (){
 
-        ///check empty fild username
-        if($(".step-username #username").val() != ""){
-            ///hide username filed
-            $(".step-username").hide();
-            ///show password filed
-            $(".step-passwd").show();
-            ///hide button step one
-            $(this).hide();
-            ///show button submit
-            $(".step-two").show();
-        }else{
-            $(".step-username #username").addClass("border-danger border-2");
-        }
+//         ///check empty fild username
+//         if($(".step-username #username").val() != ""){
+//             ///hide username filed
+//             $(".step-username").hide();
+//             ///show password filed
+//             $(".step-passwd").show();
+//             ///hide button step one
+//             $(this).hide();
+//             ///show button submit
+//             $(".step-two").show();
+
+//             fetch('/sendVerificationCode', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                     // 'X-CSRF-TOKEN': '{{ csrf_token() }}' // Include the CSRF token for Laravel
+//                 },
+//                 body: JSON.stringify({
+//                     phone: $('#phone_number').val(),
+//                 })
+//             })
+//             .then(response => response.json())
+//             .then(data => {
+//                 if (data.success) {
+//                     alert('Verification code sent successfully.');
+//                 } else {
+//                     alert('Error: ' + (data.error || 'Unknown error'));
+//                 }
+//             })
+//             .catch(error => {
+//                 console.error('Error:', error);
+//                 alert('An error occurred while sending the verification code.');
+//             });
+//         }else{
+//             $(".step-username #username").addClass("border-danger border-2");
+//         }
 
 
-        ///check empty fild password
+//         ///check empty fild password
 
-        $(".btnForm").click(function(){
-            if($(".step-passwd #passwd").val() !=""){
-                $("#form-auth").submit();
-            }else{
-                $(".step-passwd #passwd").addClass("border-danger border-2");
-            }
-        })
+//         $(".btnForm").click(function(){
+//             if($(".step-passwd #passwd").val() !=""){
+//                 $("#form-auth").submit();
+//             }else{
+//                 $(".step-passwd #passwd").addClass("border-danger border-2");
+//             }
+//         })
 
 
-    })
+//     })
 
-})
+// })
