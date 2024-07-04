@@ -188,18 +188,17 @@ class AuthController extends Controller
         $hashedPassword = Hash::make($randomPassword);
 
 
-        $userData= [
-            'name'=> $data['name'],
-            'email'=> $data['email'],
-            'phone'=> $data['phone_number'],
-            'password'=> $hashedPassword,
-            'user_type'=> 'CST',
+        $userData = [
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone_number'],
+            'password' => $hashedPassword,
+            'user_type' => 'CST',
         ];
 
         $user = User::create($userData);
 
-        // Optionally log in the customer after registration
-        // Auth::guard('customer')->login($customer);
+        auth()->login($user);
 
         return redirect('/customer/dashboard');
     }
@@ -207,5 +206,43 @@ class AuthController extends Controller
     public function customerLoginPage()
     {
         return view('customer.customer-login');
+    }
+
+    public function customerLogin(Request $request)
+    {
+        // Validate the incoming request
+        $request->validate([
+            'phone_number' => 'required|digits_between:10,15',
+            'verify_code' => 'required',
+        ]);
+
+        // Validate phone and the received code from the user
+        $verificationRecord = DB::table('phone_verifies')
+            ->where('phone', $request->phone_number)
+            ->where('code', $request->verify_code)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        // uncomment the following for activating the verification code check.
+        if (!$verificationRecord || strtotime($verificationRecord->created_at) <= strtotime('-2 minutes')) {
+            return response()->json([
+                'message' => 'Code is invalid or expired',
+            ], 403);
+        }
+
+        // Retrieve the user by phone number
+        $user = User::where('phone', $request->phone_number)->first();
+
+        // Check if user exists
+        if (!$user) {
+            return redirect()->back()->withErrors(['error' => 'User not found']);
+        }
+
+        // Log the user in
+        Auth::login($user);
+
+        // Redirect to the welcome page
+        return redirect('/');
+
     }
 }

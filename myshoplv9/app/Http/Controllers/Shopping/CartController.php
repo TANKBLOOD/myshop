@@ -11,6 +11,9 @@ use App\Models\Shopping\OrderItem;
 class CartController extends Controller
 {
     //
+    public function customerCartPage(Request $request) {
+
+    }
     public function cartInfo(Request $request) {
         $userCart= $request->user()->cart;
         $userCartItems= $userCart->items;

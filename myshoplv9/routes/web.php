@@ -67,6 +67,7 @@ Route::post('/admin/login', [AuthController::class, 'adminLogin'])->name('admin.
 Route::get('/customer/register', [AuthController::class, 'customerRegisterPage'])->name('customer.register.form');
 Route::post('/customer/register', [AuthController::class, 'customerRegister'])->name('customer.register.submit');
 
+Route::post('/customer/login', [AuthController::class, 'customerLogin'])->name('customer.login.submit');
 Route::get('/customer/login', [AuthController::class, 'customerLoginPage'])->name('customer.login.form');
 
 Route::get('/customer/profile', [ProfileController::class, 'show'])->name('customer.profile.show');

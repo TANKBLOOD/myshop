@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Presentable\Product;
 use App\Models\Relators\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
     //
     public function landing() {
+        $user = Auth::user();
         $specialCategories = Category::where('isSpecial', 1)->get();
 
         $productsWithDiscount = Product::whereNotNull('discount')->get();
@@ -30,6 +32,7 @@ class PagesController extends Controller
             'productsWithDiscount'=> $productsWithDiscount,
             'popularProducts'=> $popularProducts,
             'topSellProducts'=> $topSellProducts,
+            'user'=> $user,
         ]);
     }
 }

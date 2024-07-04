@@ -266,7 +266,7 @@
                             <a href="#register" data-bs-toggle="dropdown" aria-expanded="false" role="button"
                                 class="btn btn-white header-register border-0 rounded-pill">
                                 <i class="bi bi-person-circle font-20 text-muted me-1"></i>
-                                <span>ثبت نام</span>
+                                <span>{{$user ? $user->name : "ثبت نام"}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="" class="dropdown-item"><i
