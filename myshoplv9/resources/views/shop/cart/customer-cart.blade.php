@@ -62,180 +62,8 @@
         <div class="container-fluid">
             <div class="cart-product">
                 <div class="row gy-4">
-                    <div class="col-lg-9">
-                        <div class="cart-product-item">
-                            <div class="content-box">
-                                <div class="container-fluid">
-                                    <div class="cart-items">
-                                        <div class="item">
-                                            <div class="row gy-2">
-                                                <div class="col-2 w-100-in-400">
-                                                    <div class="image">
-                                                        <img src="/assets/shop-assets/image/product/laptop-2.jpg"
-                                                            alt="" class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <div class="col-10 w-100-in-400">
-                                                    <div class="d-flex justify-content-between align-items-start">
-                                                        <div class="d-flex align-items-start flex-column me-2">
-                                                            <div class="title d-flex align-items-center flex-wrap">
-                                                                <h6 class="font-16">لپ تاپ 14.2
-                                                                    اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro <span
-                                                                        class="badge ms-2 danger-label rounded-pill">17%</span>
-                                                                </h6>
-                                                            </div>
-                                                            <div
-                                                                class="cart-item-feature d-flex align-items-center flex-wrap mt-3">
-                                                                <div class="item d-flex align-items-center">
-                                                                    <div class="icon"><i class="bi bi-shop"></i></div>
-                                                                    <div class="saller-name mx-2">فروشنده:</div>
-                                                                    <div class="saller-name text-muted">ایران موبایل</div>
-                                                                </div>
-                                                                <div class="item d-flex align-items-center">
-                                                                    <div class="icon"><i class="bi bi-palette2"></i></div>
-                                                                    <div class="saller-name mx-2">رنگ:</div>
-                                                                    <div class="saller-name text-muted">
-                                                                        <div class="product-meta-color-items mt-0">
-                                                                            <label class="btn-light mb-0 px-2 py-1"
-                                                                                for="option1">
-                                                                                <span
-                                                                                    style="background-color: #c00;"></span>
-                                                                                قرمز
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item d-flex align-items-center">
-                                                                    <div class="icon"><i
-                                                                            class="bi bi-bounding-box-circles"></i></div>
-                                                                    <div class="saller-name mx-2">سایز:</div>
-                                                                    <div class="saller-name text-muted">
-                                                                        <div class="product-meta-color-items mt-0">
-                                                                            <label class="btn-light px-2 mb-0"
-                                                                                for="option1">
-                                                                                بزرگ
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="remove danger-label">
-                                                            <a href="">
-                                                                <i class="bi bi-trash-fill font-25"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="action d-flex flex-wrap justify-content-sm-end justify-content-center align-items-center mt-3">
-                                                        <div class="cart-item-feature d-flex align-items-center flex-wrap">
-                                                            <div class="item d-flex align-items-center me-2">
-                                                                <p class="mb-0 old-price font-16">1,900,000</p>
-                                                            </div>
-                                                            <div class="item d-flex align-items-center">
-                                                                <p class="mb-0 new-price font-16">1,300,000 تومان</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="counter">
-                                                            <input type="text" name="count" class="counter"
-                                                                value="1">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                    <div class="col-lg-9" id="cart-container">
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cart-product-item">
-                            <div class="content-box">
-                                <div class="container-fluid">
-                                    <div class="cart-items">
-                                        <div class="item">
-                                            <div class="row gy-2">
-                                                <div class="col-2 w-100-in-400">
-                                                    <div class="image">
-                                                        <img src="/assets/shop-assets/image/product/laptop-1.jpg"
-                                                            alt="" class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <div class="col-10 w-100-in-400">
-                                                    <div class="d-flex justify-content-between align-items-start">
-                                                        <div class="d-flex align-items-start flex-column me-2">
-                                                            <div class="title d-flex align-items-center flex-wrap">
-                                                                <h6 class="font-16">لپ تاپ 14.2
-                                                                    اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro <span
-                                                                        class="badge ms-2 danger-label rounded-pill">17%</span>
-                                                                </h6>
-                                                            </div>
-                                                            <div
-                                                                class="cart-item-feature d-flex align-items-center flex-wrap mt-3">
-                                                                <div class="item d-flex align-items-center">
-                                                                    <div class="icon"><i class="bi bi-shop"></i></div>
-                                                                    <div class="saller-name mx-2">فروشنده:</div>
-                                                                    <div class="saller-name text-muted">ایران موبایل</div>
-                                                                </div>
-                                                                <div class="item d-flex align-items-center">
-                                                                    <div class="icon"><i class="bi bi-palette2"></i>
-                                                                    </div>
-                                                                    <div class="saller-name mx-2">رنگ:</div>
-                                                                    <div class="saller-name text-muted">
-                                                                        <div class="product-meta-color-items mt-0">
-                                                                            <label class="btn-light mb-0 px-2 py-1"
-                                                                                for="option1">
-                                                                                <span
-                                                                                    style="background-color: #c00;"></span>
-                                                                                قرمز
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="item d-flex align-items-center">
-                                                                    <div class="icon"><i
-                                                                            class="bi bi-bounding-box-circles"></i></div>
-                                                                    <div class="saller-name mx-2">سایز:</div>
-                                                                    <div class="saller-name text-muted">
-                                                                        <div class="product-meta-color-items mt-0">
-                                                                            <label class="btn-light px-2 mb-0"
-                                                                                for="option1">
-                                                                                بزرگ
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="remove danger-label">
-                                                            <a href="">
-                                                                <i class="bi bi-trash-fill font-25"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="action d-flex flex-wrap justify-content-sm-end justify-content-center align-items-center mt-3">
-                                                        <div class="cart-item-feature d-flex align-items-center flex-wrap">
-                                                            <div class="item d-flex align-items-center me-2">
-                                                                <p class="mb-0 old-price font-16">1,900,000</p>
-                                                            </div>
-                                                            <div class="item d-flex align-items-center">
-                                                                <p class="mb-0 new-price font-16">1,300,000 تومان</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="counter">
-                                                            <input type="text" name="count" class="counter"
-                                                                value="1">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="cart-canvases position-sticky top-0">
@@ -279,7 +107,86 @@
         </div>
 
     </div>
+    <div id="cart-item-template" style="display: none;">
+        <div class="cart-product-item">
+            <div class="content-box">
+                <div class="container-fluid">
+                    <div class="cart-items">
+                        <div class="item">
+                            <div class="row gy-2">
+                                <div class="col-2 w-100-in-400">
+                                    <div class="image">
+                                        <img src="" alt="" class="img-fluid product-image">
+                                    </div>
+                                </div>
+                                <div class="col-10 w-100-in-400">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div class="d-flex align-items-start flex-column me-2">
+                                            <div class="title d-flex align-items-center flex-wrap">
+                                                <h6 class="font-16 product-title">
+                                                    <span class="badge ms-2 danger-label rounded-pill discount">17%</span>
+                                                </h6>
+                                            </div>
+                                            <div class="cart-item-feature d-flex align-items-center flex-wrap mt-3">
+                                                <div class="item d-flex align-items-center">
+                                                    <div class="icon"><i class="bi bi-shop"></i></div>
+                                                    <div class="saller-name mx-2">فروشنده:</div>
+                                                    <div class="saller-name text-muted product-seller"></div>
+                                                </div>
+                                                <div class="item d-flex align-items-center">
+                                                    <div class="icon"><i class="bi bi-palette2"></i></div>
+                                                    <div class="saller-name mx-2">رنگ:</div>
+                                                    <div class="saller-name text-muted">
+                                                        <div class="product-meta-color-items mt-0">
+                                                            <label class="btn-light mb-0 px-2 py-1">
+                                                                <span class="product-color"></span>
+                                                                <span class="product-color-name"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="item d-flex align-items-center">
+                                                    <div class="icon"><i class="bi bi-bounding-box-circles"></i></div>
+                                                    <div class="saller-name mx-2">سایز:</div>
+                                                    <div class="saller-name text-muted">
+                                                        <div class="product-meta-color-items mt-0">
+                                                            <label class="btn-light px-2 mb-0">
+                                                                <span class="product-size"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="remove danger-label">
+                                            <a href="#">
+                                                <i class="bi bi-trash-fill font-25"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="action d-flex flex-wrap justify-content-sm-end justify-content-center align-items-center mt-3">
+                                        <div class="cart-item-feature d-flex align-items-center flex-wrap">
+                                            <div class="item d-flex align-items-center me-2">
+                                                <p class="mb-0 old-price font-16"></p>
+                                            </div>
+                                            <div class="item d-flex align-items-center">
+                                                <p class="mb-0 new-price font-16"></p>
+                                            </div>
+                                        </div>
+                                        <div class="counter">
+                                            <input type="text" name="count" class="counter" value="1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- end content -->
     <script>
         const fetchUserCart = () => {
@@ -293,6 +200,7 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        showItems(data.userCartItems);
                         alert('data fetched');
                     } else {
                         alert('Error: ' + (data.error || 'Unknown error'));
@@ -302,6 +210,26 @@
                     console.error('Error:', error);
                     alert('An error occurred while sending the verification code.');
                 });
+        }
+        const showItems = (itemsArray) => {
+            console.log(itemsArray);
+            itemsArray.map((item) => {
+                console.log('in loope');
+                var $template = $('#cart-item-template .cart-product-item').clone();
+                console.log($template);
+                $template.find('.product-image').attr('src', `/product/image/${item.product.avatar_image}`);
+                $template.find('.product-title').prepend(item.product.title);
+                $template.find('.discount').text(item.product.discount);
+                $template.find('.product-seller').text(item.product.seller);
+                $template.find('.product-color').css('background-color', item.product.colorCode);
+                $template.find('.product-color-name').text(item.product.colorName);
+                $template.find('.product-size').text(item.product.size);
+                if(item.product.discount) {
+                    $template.find('.old-price').text(item.product.price);
+                    $template.find('.new-price').text(item.product.price - (item.product.discount * item.product.price / 100));
+                }
+                $('#cart-container').append($template);
+            })
         }
         fetchUserCart();
     </script>

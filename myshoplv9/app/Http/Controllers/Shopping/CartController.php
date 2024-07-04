@@ -17,7 +17,7 @@ class CartController extends Controller
     }
     public function cartInfo(Request $request) {
         $userCart= $request->user()->cart;
-        $userCartItems= $userCart->items;
+        $userCartItems= $userCart->items()->with('product')->get();
 
        return response()->json([
             'userCart'=> $userCart,
