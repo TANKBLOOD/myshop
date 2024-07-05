@@ -6,9 +6,8 @@
             <div class="col-lg-2 col-6 order-lg-1 order-1">
                 <div class="d-flex align-items-center">
                     <div class="responsive-menu d-lg-none d-block">
-                        <button class="btn border-0 p-0 btn-responsive-menu" type="button"
-                            data-bs-toggle="offcanvas" data-bs-target="#responsiveMenu"
-                            aria-controls="responsive menu">
+                        <button class="btn border-0 p-0 btn-responsive-menu" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#responsiveMenu" aria-controls="responsive menu">
                             <i class="bi bi-list font-30"></i>
                         </button>
                         <div class="offcanvas offcanvas-start" tabindex="-1" id="responsiveMenu"
@@ -20,7 +19,8 @@
                             </div>
                             <div class="offcanvas-body">
                                 <a href="/" class="text-center d-block mb-3">
-                                    <img src="{{asset('assets/img/mainlogo.png')}}" alt="" class="img-fluid" width="200">
+                                    <img src="{{ asset('assets/img/mainlogo.png') }}" alt="" class="img-fluid"
+                                        width="200">
                                 </a>
                                 <div class="header-bottom-form mb-4 w-100">
                                     <div class="search-form">
@@ -49,21 +49,26 @@
                                                 <ul class="navbar-nav h-0 bg-ul-f7">
                                                     <li class="nav-item"><a href="" class="nav-link">سامسونگ</a>
                                                     </li>
-                                                    <li class="nav-item"><a href="" class="nav-link">هوآوی</a></li>
+                                                    <li class="nav-item"><a href="" class="nav-link">هوآوی</a>
+                                                    </li>
                                                     <li class="nav-item"><a href="" class="nav-link">شیائومی</a>
                                                     </li>
-                                                    <li class="nav-item"><a href="" class="nav-link">الجی</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link">سونی</a></li>
+                                                    <li class="nav-item"><a href="" class="nav-link">الجی</a>
+                                                    </li>
+                                                    <li class="nav-item"><a href="" class="nav-link">سونی</a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="">بر اساس رده بندی</a>
                                                 <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
                                                 <ul class="navbar-nav h-0 bg-ul-f7">
-                                                    <li class="nav-item"><a href="" class="nav-link">لمسی</a></li>
+                                                    <li class="nav-item"><a href="" class="nav-link">لمسی</a>
+                                                    </li>
                                                     <li class="nav-item"><a href="" class="nav-link">دکمه ای</a>
                                                     </li>
-                                                    <li class="nav-item"><a href="" class="nav-link">نظامی</a></li>
+                                                    <li class="nav-item"><a href="" class="nav-link">نظامی</a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -76,10 +81,13 @@
                                                 <a class="nav-link" href="">کشور</a>
                                                 <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
                                                 <ul class="navbar-nav h-0 bg-ul-f7">
-                                                    <li class="nav-item"><a href="" class="nav-link">ژاپن</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link">کره جنوبی</a>
+                                                    <li class="nav-item"><a href="" class="nav-link">ژاپن</a>
                                                     </li>
-                                                    <li class="nav-item"><a href="" class="nav-link">آمریکایی</a>
+                                                    <li class="nav-item"><a href="" class="nav-link">کره
+                                                            جنوبی</a>
+                                                    </li>
+                                                    <li class="nav-item"><a href=""
+                                                            class="nav-link">آمریکایی</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -87,10 +95,13 @@
                                                 <a class="nav-link" href="">بر اساس رده بندی</a>
                                                 <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
                                                 <ul class="navbar-nav h-0 bg-ul-f7">
-                                                    <li class="nav-item"><a href="" class="nav-link">لمسی</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link">دانش آموزی</a>
+                                                    <li class="nav-item"><a href="" class="nav-link">لمسی</a>
                                                     </li>
-                                                    <li class="nav-item"><a href="" class="nav-link">مخصوص بازی</a>
+                                                    <li class="nav-item"><a href="" class="nav-link">دانش
+                                                            آموزی</a>
+                                                    </li>
+                                                    <li class="nav-item"><a href="" class="nav-link">مخصوص
+                                                            بازی</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -104,22 +115,30 @@
                                                 <a class="nav-link" href="">برند</a>
                                                 <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
                                                 <ul class="navbar-nav h-0 bg-ul-f7">
-                                                    <li class="nav-item"><a href="" class="nav-link">ایسر</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link">مایکروسافت</a>
+                                                    <li class="nav-item"><a href="" class="nav-link">ایسر</a>
                                                     </li>
-                                                    <li class="nav-item"><a href="" class="nav-link">ایسوس</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link">اپل</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link">سونی</a></li>
+                                                    <li class="nav-item"><a href=""
+                                                            class="nav-link">مایکروسافت</a>
+                                                    </li>
+                                                    <li class="nav-item"><a href="" class="nav-link">ایسوس</a>
+                                                    </li>
+                                                    <li class="nav-item"><a href="" class="nav-link">اپل</a>
+                                                    </li>
+                                                    <li class="nav-item"><a href="" class="nav-link">سونی</a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="">بر اساس قیمت</a>
                                                 <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
                                                 <ul class="navbar-nav h-0 bg-ul-f7">
-                                                    <li class="nav-item"><a href="" class="nav-link">ارزان</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link">اقتصادی</a>
+                                                    <li class="nav-item"><a href="" class="nav-link">ارزان</a>
                                                     </li>
-                                                    <li class="nav-item"><a href="" class="nav-link">گران</a></li>
+                                                    <li class="nav-item"><a href=""
+                                                            class="nav-link">اقتصادی</a>
+                                                    </li>
+                                                    <li class="nav-item"><a href="" class="nav-link">گران</a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -194,7 +213,9 @@
                     </div>
                     <a href="/">
                         <div class="logo">
-                            <img src="{{asset('assets/img/logomat.png')}}" style="max-height: 100px;padding-right: 40px;margin-top:-15px;" alt="" class="img-fluid">
+                            <img src="{{ asset('assets/img/logomat.png') }}"
+                                style="max-height: 100px;padding-right: 40px;margin-top:-15px;" alt=""
+                                class="img-fluid">
                         </div>
                     </a>
                 </div>
@@ -204,9 +225,8 @@
             <!-- action -->
             <div class="d-lg-none d-block col-6 order-lg-5 order-2">
                 <div class="d-flex align-items-center justify-content-end">
-                    <a class="btn btn-light no-highlight btn-lg btn-action-cart shadow-sm"
-                        data-bs-toggle="offcanvas" href="#offcanvasCart" role="button"
-                        aria-controls="offcanvasCart">
+                    <a class="btn btn-light no-highlight btn-lg btn-action-cart shadow-sm" data-bs-toggle="offcanvas"
+                        href="#offcanvasCart" role="button" aria-controls="offcanvasCart">
                         <i class="bi bi-basket font-30"></i>
                         <span class="header-cart-counter main-color-one-bg d-inline-block rounded-pill">
                             5
@@ -220,9 +240,11 @@
                             </figure>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="" class="dropdown-item"><i class="bi bi-house-door me-2"></i>پروفایل</a>
+                            <li><a href="" class="dropdown-item"><i
+                                        class="bi bi-house-door me-2"></i>پروفایل</a>
                             </li>
-                            <li><a href="" class="dropdown-item"><i class="bi bi-cart-check me-2"></i>سفارش های
+                            <li><a href="" class="dropdown-item"><i class="bi bi-cart-check me-2"></i>سفارش
+                                    های
                                     من</a></li>
                             <li><a href="" class="dropdown-item"><i class="bi bi-pin-map me-2"></i>آدرس های
                                     من</a></li>
@@ -230,7 +252,8 @@
                                     اطلاعیه ها</a></li>
                             <li><a href="" class="dropdown-item"><i class="bi bi-chat-dots me-2"></i>نظرات
                                     من</a></li>
-                            <li><a href="" class="dropdown-item"><i class="bi bi-question-circle me-2"></i>درخواست
+                            <li><a href="" class="dropdown-item"><i
+                                        class="bi bi-question-circle me-2"></i>درخواست
                                     پشتیبانی</a></li>
                             <li><a href="" class="dropdown-item"><i class="bi bi-heart me-2"></i>محصولات مورد
                                     علاقه</a></li>
@@ -262,34 +285,44 @@
             <div class="col-lg-4 order-lg-3 d-lg-block d-none">
                 <div class="d-flex align-items-center justify-content-end">
                     <div class="btn-group header-btn-group shadow-sm rounded-pill">
-                        <div class="dropdown">
-                            <a href="#register" data-bs-toggle="dropdown" aria-expanded="false" role="button"
-                                class="btn btn-white header-register border-0 rounded-pill">
-                                <i class="bi bi-person-circle font-20 text-muted me-1"></i>
-                                <span>{{auth()->user() ? auth()->user()->name : "ثبت نام"}}</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="" class="dropdown-item"><i
-                                            class="bi bi-house-door me-2"></i>پروفایل</a></li>
-                                <li><a href="" class="dropdown-item"><i class="bi bi-cart-check me-2"></i>سفارش های
-                                        من</a></li>
-                                <li><a href="" class="dropdown-item"><i class="bi bi-pin-map me-2"></i>آدرس های
-                                        من</a></li>
-                                <li><a href="" class="dropdown-item"><i class="bi bi-bell me-2"></i>پیام ها و
-                                        اطلاعیه ها</a></li>
-                                <li><a href="" class="dropdown-item"><i class="bi bi-chat-dots me-2"></i>نظرات
-                                        من</a></li>
-                                <li><a href="" class="dropdown-item"><i
-                                            class="bi bi-question-circle me-2"></i>درخواست پشتیبانی</a></li>
-                                <li><a href="" class="dropdown-item"><i class="bi bi-heart me-2"></i>محصولات مورد
-                                        علاقه</a></li>
-                                <li><a href="" class="dropdown-item"><i class="bi bi-gift me-2"></i>کد های تخفیف
-                                        من</a></li>
-                                <li><a href="" class="dropdown-item mct-hover"><i
-                                            class="bi bi-arrow-right-square me-2"></i>خروج از حساب کاربری</a></li>
-                            </ul>
-                        </div>
-                        <a href="#login" class="btn btn-white header-login border-0 rounded-pill">ورود</a>
+                        @if (auth()->user())
+                            <div class="dropdown">
+                                <a href="#register" data-bs-toggle="dropdown" aria-expanded="false" role="button"
+                                    class="btn btn-white header-register border-0 rounded-pill">
+                                    <i class="bi bi-person-circle font-20 text-muted me-1"></i>
+                                    <span>{{ auth()->user() ? auth()->user()->name : 'ثبت نام' }}</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="" class="dropdown-item"><i
+                                                class="bi bi-house-door me-2"></i>پروفایل</a></li>
+                                    <li><a href="" class="dropdown-item"><i
+                                                class="bi bi-cart-check me-2"></i>سفارش های
+                                            من</a></li>
+                                    <li><a href="" class="dropdown-item"><i
+                                                class="bi bi-pin-map me-2"></i>آدرس های
+                                            من</a></li>
+                                    <li><a href="" class="dropdown-item"><i class="bi bi-bell me-2"></i>پیام
+                                            ها و
+                                            اطلاعیه ها</a></li>
+                                    <li><a href="" class="dropdown-item"><i
+                                                class="bi bi-chat-dots me-2"></i>نظرات
+                                            من</a></li>
+                                    <li><a href="" class="dropdown-item"><i
+                                                class="bi bi-question-circle me-2"></i>درخواست پشتیبانی</a></li>
+                                    <li><a href="" class="dropdown-item"><i
+                                                class="bi bi-heart me-2"></i>محصولات مورد
+                                            علاقه</a></li>
+                                    <li><a href="" class="dropdown-item"><i class="bi bi-gift me-2"></i>کد های
+                                            تخفیف
+                                            من</a></li>
+                                    <li><a href="" class="dropdown-item mct-hover"><i
+                                                class="bi bi-arrow-right-square me-2"></i>خروج از حساب کاربری</a></li>
+                                </ul>
+                            </div>
+                        @else
+                            <a href="/customer/login" class="btn btn-white header-login border-0 rounded-pill">ورود / ثبت نام</a>
+                        @endif
+
                     </div>
                     <div class="header-whishlist shadow-sm">
                         <a href="#whishlist">
