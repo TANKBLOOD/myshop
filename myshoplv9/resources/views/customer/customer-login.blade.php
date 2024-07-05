@@ -29,7 +29,7 @@
                             <div class="container-fluid">
                                 <div class="title-panel">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <h6 class="font-18">فرم ورود / عضویت</h6>
+                                        <h6 class="font-18">فرم ورود</h6>
                                         <a href="index.html">
                                             <img src="assets/image/logo.png" alt="" class="img-fluid" width="150">
                                         </a>
@@ -54,13 +54,13 @@
                                             placeholder="کد ارسال شده را وارد کنید" class="form-control py-4" required>
                                     </div>
                                     <div class="form-group step-one">
-                                        <button type="button" class="btn border-0 main-color-one-bg w-100 py-3">ورود / ثبت نام</button>
+                                        <button type="button" class="btn border-0 main-color-one-bg w-100 py-3">ورود</button>
                                     </div>
                                     <div class="form-group step-two">
                                         <button type="submit" class="btn border-0 btnForm main-color-one-bg w-100 py-3">تایید</button>
                                     </div>
                                     <div class="form-group text-center">
-                                        <a href="" class="text-center main-color-one-color border-animate fromCenter py-2  d-inline-block">فراموشی رمز عبور</a>
+                                        <a href="/customer/register" class="text-center main-color-one-color border-animate fromCenter py-2  d-inline-block">حساب ندارید ؟ ثبت نام کنید !</a>
                                     </div>
                                 </form>
                             </div>

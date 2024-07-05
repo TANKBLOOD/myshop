@@ -31,7 +31,7 @@
                             <div class="container-fluid">
                                 <div class="title-panel">
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <h6 class="font-18">فرم ورود / عضویت</h6>
+                                        <h6 class="font-18">فرم عضویت</h6>
                                         <a href="index.html">
                                             <img src="assets/image/logo.png" alt="" class="img-fluid"
                                                 width="150">
@@ -69,8 +69,7 @@
                                     </div>
 
                                     <div class="form-group step-one">
-                                        <button type="submit" class="btn border-0 main-color-one-bg w-100 py-3">ورود /
-                                            ثبت نام</button>
+                                        <button type="submit" class="btn border-0 main-color-one-bg w-100 py-3">ثبت نام</button>
                                     </div>
 
                                     <div class="form-group step-two">
@@ -79,9 +78,8 @@
                                     </div>
 
                                     <div class="form-group text-center">
-                                        <a href=""
-                                            class="text-center main-color-one-color border-animate fromCenter py-2  d-inline-block">فراموشی
-                                            رمز عبور</a>
+                                        <a href="/customer/login"
+                                            class="text-center main-color-one-color border-animate fromCenter py-2  d-inline-block">قبلا ثبت نام کردی ؟ برو صفحه ورود !</a>
                                     </div>
                                 </form>
                             </div>
