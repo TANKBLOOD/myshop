@@ -31,7 +31,7 @@
                                     </div>
                                     <div class="text ms-3">
                                         <p class="text-center font-14 text-overflow-1">{{$specialCat->title}}</p>
-                                        <a href=""
+                                        <a href="/category/{{$specialCat->slug}}/products"
                                             class="btn text-muted-two btn-sm font-14 px-3 light-btn shadow-sm"><span>مشاهده</span>
                                             <i
                                                 class="bi bi-chevron-double-left font-16 main-color-one-color ms-2"></i></a>

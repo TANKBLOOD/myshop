@@ -81,7 +81,7 @@
                                                             <h6 class="font-13 old-price ms-2">1,500,000</h6>
                                                         </div>
                                                         <div class="link">
-                                                            <a href=""
+                                                            <a href="/product/show/{{$product->slug}}"
                                                                 class="btn border-0 rounded-3 main-color-one-bg">
                                                                 <i class="bi bi-basket text-white"></i>
                                                                 <span class="text-white">خرید محصول</span>
