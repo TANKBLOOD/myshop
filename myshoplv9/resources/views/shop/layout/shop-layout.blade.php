@@ -82,8 +82,11 @@
         </div>
     </div>
 
-    @include('shop.layout.shop-cart-canvas')
-
+    @if (!isset($excludePortableCart))
+        @include('shop.layout.shop-cart-canvas')
+    @elseif (isset($excludePortableCart) && $excludePortableCart == false)
+        @include('shop.layout.shop-cart-canvas')
+    @endif
 
     <script src="/assets/shop-assets/js/jquery.min.js"></script>
     <script src="/assets/shop-assets/js/bootstrap.bundle.min.js"></script>

@@ -1,4 +1,4 @@
-@extends('shop.layout.shop-layout')
+@extends('shop.layout.shop-layout', ['excludePortableCart'=> true])
 
 @section('main-content')
     <!-- start breadcroumb -->
