@@ -87,6 +87,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/user/cart/add', [CartController::class, 'addToCart']);
     Route::post('/user/cart/remove', [CartController::class, 'removeFromCart']);
     Route::get('/user/cart', [CartController::class, 'cartInfo']);
+    Route::get('/user/cart/productCount', [CartController::class, 'getProductCountInUserCart'])->name('user.cart.productCount');
+    Route::get('/user/cart/checkout', [CartController::class, 'checkoutCartPage'])->name('user.cart.checkout');
 });
 
 Route::get('/customer/cart', [CartController::class, 'customerCartPage'])->name('customer.cart.page');

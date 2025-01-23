@@ -1,4 +1,4 @@
-@extends('shop.layout.shop-layout', ['excludePortableCart'=> true])
+@extends('shop.layout.shop-layout', ['excludePortableCart' => true])
 
 @section('main-content')
     <!-- start breadcroumb -->
@@ -79,20 +79,8 @@
                                         <p class="fw-bold mb-0">محصول</p>
                                         <p class="fw-bold mb-0">قیمت کل</p>
                                     </div>
-                                    <div
-                                        class="factor-item p-2 rounded-3 shadow-sm bg-light d-flex align-items-center justify-content-between">
-                                        <p class="mb-0">هدست مخصوص بازی پابجی</p>
-                                        <p class="mb-0">1,750,000 تومان</p>
-                                    </div>
-                                    <div
-                                        class="factor-item p-2 rounded-3 shadow-sm bg-light d-flex align-items-center justify-content-between">
-                                        <p class="mb-0 fw-bold">تخفیف:</p>
-                                        <p class="mb-0">500,000 تومان</p>
-                                    </div>
-                                    <div
-                                        class="factor-item p-2 rounded-3 shadow-sm bg-light d-flex align-items-center justify-content-between">
-                                        <p class="mb-0 fw-bold">جمع کل:</p>
-                                        <p class="mb-0">4,000,000 تومان</p>
+                                    <div id="factor-items-container">
+                                        <!-- Dynamic items will be inserted here -->
                                     </div>
                                     <div class="action mt-3 d-flex align-items-center justify-content-center">
                                         <a href="#"
@@ -174,8 +162,14 @@
                                                 <p class="mb-0 new-price font-16"></p>
                                             </div>
                                         </div>
-                                        <div class="counter">
-                                            <input type="text" name="count" class="counter" value="1">
+                                        <div class="counter d-flex align-items-center">
+                                            <button class="btn btn-primary btn-lg rounded-circle decrement"
+                                                id="decrement">-</button>
+                                            <input type="text" name="countr"
+                                                class="form-control text-center mx-3 count" value="1"
+                                                style="width: 60px;">
+                                            <button class="btn btn-primary btn-lg rounded-circle increment"
+                                                id="increment">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -189,48 +183,180 @@
     </div>
     <!-- end content -->
     <script>
-        const fetchUserCart = () => {
-            fetch('/user/cart', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Include the CSRF token for Laravel
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showItems(data.userCartItems);
-                        alert('data fetched');
-                    } else {
-                        alert('Error: ' + (data.error || 'Unknown error'));
+        document.addEventListener('DOMContentLoaded', function() {
+            const totalProductsList = [];
+            var totalDiscount = 0;
+            const fetchUserCart = () => {
+                fetch('/user/cart', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}' // Include the CSRF token for Laravel
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            showItems(data.userCartItems);
+                            alert('data fetched');
+                        } else {
+                            alert('Error: ' + (data.error || 'Unknown error'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred while sending the verification code.');
+                    });
+            }
+            const showItems = (itemsArray) => {
+                console.log(itemsArray);
+                itemsArray.map((item) => {
+                    console.log('in loope');
+                    var $template = $('#cart-item-template .cart-product-item').clone();
+                    console.log($template);
+                    $template.find('.product-image').attr('src',
+                        `/product/image/${item.product.avatar_image}`);
+                    $template.find('.product-title').prepend(item.product.title);
+                    $template.find('.discount').text(item.product.discount);
+                    $template.find('.product-seller').text(item.product.seller);
+                    $template.find('.product-color').css('background-color', item.product.colorCode);
+                    $template.find('.product-color-name').text(item.product.colorName);
+                    $template.find('.product-size').text(item.product.size);
+                    $template.find('.count').val(item.quantity).attr('data-product-id', item.product
+                        .id);
+                    if (item.product.discount) {
+                        $template.find('.old-price').text(item.product.price);
+                        $template.find('.new-price').text(item.product.price - (item.product.discount *
+                            item.product.price / 100));
                     }
+
+                    // Adding event listeners for increment and decrement buttons
+                    $template.find('.increment').on('click', function() {
+                        var $countInput = $(this).siblings('.count');
+                        var currentValue = parseInt($countInput.val(), 10) + 1;
+                        $countInput.val(currentValue).change();
+                        addItemToCart(item.product.id);
+                    });
+
+                    $template.find('.decrement').on('click', function() {
+                        var $countInput = $(this).siblings('.count');
+                        var currentValue = parseInt($countInput.val(), 10) - 1;
+                        if (currentValue >= 0) { // Prevent negative values
+                            $countInput.val(currentValue).change();
+                        }
+                        removeItemFromCart(item.product.id)
+                    });
+
+                    $('#cart-container').append($template);
+
+                    totalProductsList.push({
+                        name: item.product.title,
+                        count: item.quantity,
+                        price: item.product.discount ? item.quantity * (item.product.price - (item.product
+                            .discount * item.product.price / 100)) :  item.quantity * (item.product
+                            .price),
+                    });
+
+                    totalDiscount += (item.product.discount * item.product.price / 100) * item.quantity;
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('An error occurred while sending the verification code.');
+                setFactor();
+            }
+            fetchUserCart();
+
+            const setFactor = () => {
+                const $container = $('#factor-items-container');
+                $container.empty(); // Clear any existing items
+
+                totalProductsList.map((item) => {
+                    const $toAdd = $(`
+                        <div class="factor-item p-2 rounded-3 shadow-sm bg-light d-flex align-items-center justify-content-between">
+                            <p class="mb-0">${item.name}</p>
+                            <p class="mb-0">${item.price} تومان</p>
+                        </div>
+                    `);
+                    $container.append($toAdd);
+                })
+
+                const $discount = $(`
+                    <div class="factor-item p-2 rounded-3 shadow-sm bg-light d-flex align-items-center justify-content-between">
+                        <p class="mb-0 fw-bold">تخفیف:</p>
+                        <p class="mb-0">${totalDiscount} تومان</p>
+                    </div>
+                `);
+                $container.append($discount);
+            }
+            const addItemToCart = (productId) => {
+                // Define the data to be sent in the request body
+                const data = {
+                    productId: productId
+                };
+
+                // Send a POST request to the server
+                fetch('/user/cart/add', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        // Handle the response data
+                        alert(`Item added to cart with ID: ${data.itemId}`);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            }
+
+            const removeItemFromCart = (productId) => {
+                const data = {
+                    productId: productId
+                };
+
+                // Send a POST request to the server
+                fetch('/user/cart/remove', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        // Handle the response data
+                        alert(`Item removed from cart with ID: ${data.itemId}`);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            }
+            // Add event listeners to all add-to-cart buttons
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    addItemToCart();
                 });
-        }
-        const showItems = (itemsArray) => {
-            console.log(itemsArray);
-            itemsArray.map((item) => {
-                console.log('in loope');
-                var $template = $('#cart-item-template .cart-product-item').clone();
-                console.log($template);
-                $template.find('.product-image').attr('src', `/product/image/${item.product.avatar_image}`);
-                $template.find('.product-title').prepend(item.product.title);
-                $template.find('.discount').text(item.product.discount);
-                $template.find('.product-seller').text(item.product.seller);
-                $template.find('.product-color').css('background-color', item.product.colorCode);
-                $template.find('.product-color-name').text(item.product.colorName);
-                $template.find('.product-size').text(item.product.size);
-                if(item.product.discount) {
-                    $template.find('.old-price').text(item.product.price);
-                    $template.find('.new-price').text(item.product.price - (item.product.discount * item.product.price / 100));
+            });
+
+            // Handle value change event
+            $("input[name='count']").on('change', function() {
+                var currentValue = $(this).val(); // Get the current value
+                var productId = $(this).data('productId');
+
+                if (currentValue > previousItemCount) {
+                    addItemToCart(productId); // Call function to handle increase
+                } else if (currentValue < previousItemCount) {
+                    removeItemFromCart(productId); // Call function to handle decrease
                 }
-                $('#cart-container').append($template);
-            })
-        }
-        fetchUserCart();
+
+                previousItemCount = currentValue; // Update the previous value
+            });
+        });
     </script>
 @endsection

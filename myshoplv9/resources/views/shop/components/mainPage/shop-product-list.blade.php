@@ -36,6 +36,7 @@
                                         <a href="">
                                             <div class="title">
                                                 <h6 class="font-14 text-overflow-2">{{ $item->title }}</h6>
+                                                <p class="mb-0 text-muted font-12 mt-2 product-meta-title">{{ $item->meta_title }}</p>
                                             </div>
                                         </a>
                                     </div>

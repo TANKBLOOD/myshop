@@ -15,6 +15,7 @@ class CartController extends Controller
 
         return view('shop.cart.customer-cart');
     }
+
     public function cartInfo(Request $request) {
         $userCart= $request->user()->cart;
         $userCartItems= $userCart->items()->with('product')->get();
@@ -76,6 +77,26 @@ class CartController extends Controller
         // Redirect the user to a confirmation page or do any other necessary actions
         return response()->json([
             'checkedout' => true,
+        ]);
+    }
+
+    public function getProductCountInUserCart (Request $request) {
+
+        $userCart = auth()->user()->cart;
+        $productId= $request->product_id;
+
+        $productCount= $userCart->checkProductExists($productId);
+
+        return response()->json([
+            'productCount'=> $productCount,
+        ]);
+    }
+
+    public function checkoutCartPage () {
+        $cartSummery= auth()->user()->cart->getSummary();
+
+        return view('shop.cart.checkout', [
+            'summary'=> $cartSummery,
         ]);
     }
 }

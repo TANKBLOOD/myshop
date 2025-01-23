@@ -909,6 +909,29 @@
                 buttondown_class: "btn-counter waves-effect waves-light",
                 buttonup_class: "btn-counter waves-effect waves-light"
             });
+            const getProductCountInUserCart= ()=> {
+                // Get the product ID from the parent element's data attribute
+                const productId = "{{ $product->id }}";
+
+                // Send a POST request to the server
+                fetch(`/user/cart/productCount?product_id=${productId}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        // Handle the response data
+                        $("#product-count").val(data.productCount);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            }
+            getProductCountInUserCart();
             const addItemToCart = () => {
                 // Get the product ID from the parent element's data attribute
                 const productId = "{{ $product->id }}";

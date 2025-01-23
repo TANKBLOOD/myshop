@@ -71,7 +71,7 @@
                             </a>
                         </div>
                         <div class="counter">
-                            <input type="text" name="count" class="counter" value="1">
+                            <input type="text" name="count" class="counter count" value="1">
                         </div>
                     </div>
                 </a>
@@ -153,6 +153,7 @@
             $template.find('.product-color').css('background-color', item.product.colorCode);
             $template.find('.product-color-name').text(item.product.colorName);
             $template.find('.product-size').text(item.product.size);
+            $template.find('.count').val(item.quantity);
             if (item.product.discount) {
                 $template.find('.old-price').text(item.product.price);
                 $template.find('.new-price').text(item.product.price - (item.product.discount * item.product
