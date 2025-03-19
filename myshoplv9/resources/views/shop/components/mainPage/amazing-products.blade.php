@@ -21,13 +21,14 @@
                         <div class="swiper amazing-slider-slider">
                             <div class="swiper-wrapper">
                                 @foreach ($productsWithDiscount as $product)
-                                    <div class="swiper-slide" >
-                                        <div class="slider-item rounded-3 shadow-box bg-white" style="min-height: 400px;">
+                                    <div class="swiper-slide">
+                                        <div class="slider-item rounded-3 shadow-box bg-white"
+                                            style="min-height: 400px;">
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <div class="image">
                                                         <img src="/product/image/{{ $product->avatar_image }}"
-                                                            loading="lazy" class="img-fluid" alt="">
+                                                            loading="lazy" class="img-fluid" alt="" style="height: 350px;">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-8">
@@ -38,8 +39,10 @@
                                                     <div class="desc mt-3">
                                                         <div class="title">
                                                             <div class="d-flex align-items-center flex-wrap">
-                                                                <h3 class="text-overflow-1 font-18 me-2">{{$product->title}}</h3>
-                                                                <span class="discount danger-label mt-sm-0 mt-3">17%
+                                                                <h3 class="text-overflow-1 font-18 me-2">
+                                                                    {{ $product->title }}</h3>
+                                                                <span
+                                                                    class="discount danger-label mt-sm-0 mt-3">{{ $product->discount }}%
                                                                     تخفیف</span>
                                                             </div>
                                                         </div>
@@ -76,12 +79,18 @@
                                                     <div
                                                         class="foot mt-3 d-flex justify-content-between align-items-center flex-wrap">
                                                         <div class="price d-flex align-items-center">
-                                                            <h6 class="font-25 main-color-one-color">958,000</h6>
-                                                            <h6 class="font-12 ms-1">هزار تومان</h6>
-                                                            <h6 class="font-13 old-price ms-2">1,500,000</h6>
+                                                            @if ($product->discount && $product->discount != 0)
+                                                                <h6 class="font-25 main-color-one-color">{{ $product->discountedPrice() }}</h6>
+                                                                <h6 class="font-12 ms-1">هزار تومان</h6>
+
+                                                                <h6 class="font-13 old-price ms-2">{{ $product->price }}</h6>
+                                                            @else
+                                                                <h6 class="font-25 main-color-one-color">{{ $product->price }}</h6>
+                                                                <h6 class="font-12 ms-1">هزار تومان</h6>
+                                                            @endif
                                                         </div>
                                                         <div class="link">
-                                                            <a href="/product/show/{{$product->slug}}"
+                                                            <a href="/product/show/{{ $product->slug }}"
                                                                 class="btn border-0 rounded-3 main-color-one-bg">
                                                                 <i class="bi bi-basket text-white"></i>
                                                                 <span class="text-white">خرید محصول</span>
@@ -114,10 +123,8 @@
                                                 </div>
                                                 <div class="col-8">
                                                     <div class="title">
-                                                        <h6 class="font-14 text-overflow-2">لپ تاپ 14.2 اینچی اپل مدل
-                                                            2021 MacBook MKGR3 M1 Pro</h6>
-                                                        <p class="mb-0 text-muted font-12 mt-2 text-overflow-2">Apple
-                                                            MacBook MKGR3 M1 Pro 2021 14.2 inch laptop</p>
+                                                        <h6 class="font-14 text-overflow-2">{{ $product->title }}</h6>
+                                                        <p class="mb-0 text-muted font-12 mt-2 text-overflow-2">{{ $product->meta_title }}</p>
                                                     </div>
                                                     <div class="price">
                                                         <p class="text-end new-price mb-2 price-off fw-bold"><span

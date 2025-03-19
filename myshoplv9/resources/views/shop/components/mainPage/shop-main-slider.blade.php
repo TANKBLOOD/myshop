@@ -35,8 +35,8 @@
                                     <div class="product-action">
                                         <div class="price">
                                             @if ($products->discount && $products->discount != 0)
-                                                <p class="new-price">{{ $products->price }} تومان</p>
-                                                <p class="old-price">{{ $products->discountedPrice() }} تومان</p>
+                                                <p class="new-price">{{ $products->discountedPrice() }}تومان</p>
+                                                <p class="old-price">{{ $products->price }}  تومان</p>
                                             @else
                                                 <p class="new-price">{{ $products->price }} تومان</p>
                                                 <p class="old-price mt-4"></p>
@@ -65,19 +65,19 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <a href="">
-                                    <img src="/assets/shop-assets/image/slide2-2.jpg" loading="lazy" class="img-fluid"
+                                    <img src="/assets/img/hero1.webp" loading="lazy" class="img-fluid"
                                         alt="">
                                 </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="">
-                                    <img src="/assets/shop-assets/image/slide3-1.jpg" loading="lazy" class="img-fluid"
+                                    <img src="/assets/img/hero2.webp" loading="lazy" class="img-fluid"
                                         alt="">
                                 </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="">
-                                    <img src="/assets/shop-assets/image/slide4.jpg" loading="lazy" class="img-fluid"
+                                    <img src="/assets/img/hero3.webp" loading="lazy" class="img-fluid"
                                         alt="">
                                 </a>
                             </div>
