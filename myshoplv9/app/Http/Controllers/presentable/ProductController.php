@@ -90,7 +90,6 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $categories = Category::all();
-
         return view('admin.panel.product.product-edit', [
             'categories' => $categories,
             'product' => $product,

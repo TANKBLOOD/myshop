@@ -24,10 +24,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PagesController::class, 'landing'])->name('landingPage');
 
+Route::get('/admin/register', [AuthController::class, 'adminRegisterForm'])->name('admin.register.form');
+Route::post('/admin/register', [AuthController::class, 'adminRegister'])->name('admin.register.submit');
+
 Route::group(['middleware' => ['admin', 'auth']], function () {
     //user related routes section
-    Route::get('/admin/register', [AuthController::class, 'adminRegisterForm'])->name('admin.register.form');
-    Route::post('/admin/register', [AuthController::class, 'adminRegister'])->name('admin.register.submit');
+    
     Route::get('/admin/logout', [AuthController::class, 'adminLogout'])->name('admin.logout');
 
     Route::get('/admin/dashboard', function () {
