@@ -954,7 +954,7 @@
                     .then(data => {
                         console.log('Success:', data);
                         // Handle the response data
-                        alert(`Item added to cart with ID: ${data.itemId}`);
+                        // alert(`Item added to cart with ID: ${data.itemId}`);
                     })
                     .catch((error) => {
                         console.error('Error:', error);
@@ -983,7 +983,7 @@
                     .then(data => {
                         console.log('Success:', data);
                         // Handle the response data
-                        alert(`Item removed from cart with ID: ${data.itemId}`);
+                        // alert(`Item removed from cart with ID: ${data.itemId}`);
                     })
                     .catch((error) => {
                         console.error('Error:', error);

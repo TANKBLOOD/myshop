@@ -28,7 +28,8 @@
                                                 <div class="col-lg-4">
                                                     <div class="image">
                                                         <img src="/product/image/{{ $product->avatar_image }}"
-                                                            loading="lazy" class="img-fluid" alt="" style="height: 350px;">
+                                                            loading="lazy" class="img-fluid" alt=""
+                                                            style="height: 350px;">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-8">
@@ -80,12 +81,15 @@
                                                         class="foot mt-3 d-flex justify-content-between align-items-center flex-wrap">
                                                         <div class="price d-flex align-items-center">
                                                             @if ($product->discount && $product->discount != 0)
-                                                                <h6 class="font-25 main-color-one-color">{{ $product->discountedPrice() }}</h6>
+                                                                <h6 class="font-25 main-color-one-color">
+                                                                    {{ $product->discountedPrice() }}</h6>
                                                                 <h6 class="font-12 ms-1">هزار تومان</h6>
 
-                                                                <h6 class="font-13 old-price ms-2">{{ $product->price }}</h6>
+                                                                <h6 class="font-13 old-price ms-2">{{ $product->price }}
+                                                                </h6>
                                                             @else
-                                                                <h6 class="font-25 main-color-one-color">{{ $product->price }}</h6>
+                                                                <h6 class="font-25 main-color-one-color">
+                                                                    {{ $product->price }}</h6>
                                                                 <h6 class="font-12 ms-1">هزار تومان</h6>
                                                             @endif
                                                         </div>
@@ -124,14 +128,21 @@
                                                 <div class="col-8">
                                                     <div class="title">
                                                         <h6 class="font-14 text-overflow-2">{{ $product->title }}</h6>
-                                                        <p class="mb-0 text-muted font-12 mt-2 text-overflow-2">{{ $product->meta_title }}</p>
+                                                        <p class="mb-0 text-muted font-12 mt-2 text-overflow-2">
+                                                            {{ $product->meta_title }}</p>
                                                     </div>
                                                     <div class="price">
+                                                        @if ($product->discount && $product->discount != 0)
+                                                            <p class="text-end new-price mb-2 price-off fw-bold"><span
+                                                                    class="main-color-one-color">{{ $product->discountedPrice() }}</span> <small
+                                                                    class="font-11">تومان</small></p>
+                                                            <p class="text-end old-price price-discount">{{ $product->price }}
+                                                                <small class="font-11">تومان</small></p>
+                                                        @else
                                                         <p class="text-end new-price mb-2 price-off fw-bold"><span
-                                                                class="main-color-one-color">1,750,000</span> <small
-                                                                class="font-11">تومان</small></p>
-                                                        <p class="text-end old-price price-discount">2,750,000 <small
-                                                                class="font-11">تومان</small></p>
+                                                            class="main-color-one-color">{{ $product->price }}</span> <small
+                                                            class="font-11">تومان</small></p>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>

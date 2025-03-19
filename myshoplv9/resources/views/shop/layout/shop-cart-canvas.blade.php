@@ -80,7 +80,7 @@
     </div>
 </div>
 
-<div id="cart-summary">
+{{-- <div id="cart-summary">
     <div class="item">
         <div class="factor">
             <div class="title">
@@ -114,7 +114,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <script>
     const fetchUserCart = () => {
@@ -129,7 +129,7 @@
             .then(data => {
                 if (data.success) {
                     showItems(data.userCartItems);
-                    alert('data fetched');
+                    // alert('data fetched');
                 } else {
                     alert('Error: ' + (data.error || 'Unknown error'));
                 }

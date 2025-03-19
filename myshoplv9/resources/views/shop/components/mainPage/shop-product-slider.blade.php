@@ -27,7 +27,7 @@
                             <div class="product-box ">
                                 <div class="product-timer">
                                     <div class="timer-label">
-                                        <span>40% تخفیف</span>
+                                        <span>{{ $product->discount }}% تخفیف</span>
                                     </div>
                                     <div class="product-header-btn">
                                         <a href="" class="" data-bs-toggle="tooltip"
@@ -60,8 +60,8 @@
                                 <div class="product-action">
                                     <div class="price">
                                         @if ($product->discount && $product->discount != 0)
-                                            <p class="new-price">{{ $product->price }} تومان</p>
-                                            <p class="old-price">{{ $product->discountedPrice()}} تومان</p>
+                                            <p class="new-price">{{ $product->discountedPrice() }} تومان</p>
+                                            <p class="old-price">{{ $product->price}} تومان</p>
                                         @else
                                             <p class="new-price">{{ $product->price }} تومان</p>
                                             <p class="old-price mt-4"></p>
