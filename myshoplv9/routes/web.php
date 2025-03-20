@@ -83,6 +83,7 @@ Route::get('/product/show/{product}', [ProductController::class, 'show'])->name(
 
 Route::get('/product/similar/{product}', [ProductController::class, 'similarProducts'])->name('product.similar');
 
+Route::get('/product/search/{term}', [ProductController::class, 'searchProducts'])->name('product.searchProducts');
 Route::get('/category/{category}/products', [ProductController::class, 'getCategoryProducts'])->name('category.products');
 
 Route::group(['middleware' => ['auth']], function () {

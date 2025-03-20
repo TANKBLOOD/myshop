@@ -319,4 +319,15 @@ class ProductController extends Controller
             'products' => $products
         ]);
     }
+
+    public function searchProducts(Request $request, $term) {
+        $products = Product::where('title', 'LIKE', '%' . $term . '%')
+            ->orWhere('meta_title', 'LIKE', '%' . $term . '%')
+            ->with('category')->get();
+
+            return view('shop.product.product-search', [
+                'products' => $products,
+                'term' => $term
+            ]);
+    }
 }

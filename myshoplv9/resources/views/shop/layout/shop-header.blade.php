@@ -270,9 +270,9 @@
             <!-- form search -->
             <div class="col-lg-6 order-lg-2 d-lg-block d-none">
                 <div class="search-form">
-                    <form action="">
+                    <form id="headerSearchForm">
                         <div class="search-filed">
-                            <input type="text" placeholder="جستجوی محصولات ..." class="form-control search-input">
+                            <input type="text" placeholder="جستجوی محصولات ..." class="form-control search-input" id="headerSearchInput">
                             <button type="submit" class="btn search-btn main-color-one-bg rounded-pill"><i
                                     class="bi bi-search"></i></button>
                         </div>
@@ -346,3 +346,21 @@
         </div>
     </div>
 </header>
+
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("headerSearchForm").addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent default form submission
+                
+                let searchValue = document.getElementById("headerSearchInput").value.trim(); // Get input value
+                
+                if (searchValue !== '') {
+                    let prettyUrl = '/product/search/' + encodeURIComponent(searchValue); // Generate pretty URL
+                    window.location.href = prettyUrl; // Redirect to the new URL
+                } else {
+                    alert('Please enter a value before submitting.');
+                }
+            });
+        });
+    </script>
