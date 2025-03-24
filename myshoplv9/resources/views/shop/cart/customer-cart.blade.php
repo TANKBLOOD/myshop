@@ -187,7 +187,7 @@
             const totalProductsList = [];
             var totalDiscount = 0;
             const fetchUserCart = () => {
-                fetch('/user/cart', {
+                fetch('/api/user/cart', {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -205,7 +205,7 @@
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        alert('An error occurred while sending the verification code.');
+                        // alert('An error occurred while sending the verification code.');
                     });
             }
             const showItems = (itemsArray) => {
@@ -292,7 +292,7 @@
                 };
 
                 // Send a POST request to the server
-                fetch('/user/cart/add', {
+                fetch('/api/user/cart/add', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -317,7 +317,7 @@
                 };
 
                 // Send a POST request to the server
-                fetch('/user/cart/remove', {
+                fetch('/api/user/cart/remove', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

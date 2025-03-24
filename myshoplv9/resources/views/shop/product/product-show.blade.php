@@ -914,7 +914,7 @@
                 const productId = "{{ $product->id }}";
 
                 // Send a POST request to the server
-                fetch(`/user/cart/productCount?product_id=${productId}`, {
+                fetch(`/api/user/cart/productCount?product_id=${productId}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -942,7 +942,7 @@
                 };
 
                 // Send a POST request to the server
-                fetch('/user/cart/add', {
+                fetch('/api/user/cart/add', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -971,7 +971,7 @@
                 };
 
                 // Send a POST request to the server
-                fetch('/user/cart/remove', {
+                fetch('/api/user/cart/remove', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

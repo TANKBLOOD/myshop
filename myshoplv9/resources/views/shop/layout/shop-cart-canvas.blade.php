@@ -118,7 +118,7 @@
 
 <script>
     const fetchUserCart = () => {
-        fetch('/user/cart', {
+        fetch('/api/user/cart', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -136,7 +136,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('An error occurred while sending the verification code.');
+                // alert('An error occurred while sending the verification code.');
             });
     }
     const showItems = (itemsArray) => {

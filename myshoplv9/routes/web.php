@@ -58,9 +58,11 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::post('/admin/products/removePopular', [ProductController::class, 'removePopular']);
 
     Route::post('/upload/product/image', [ProductController::class, 'uploadProductImage'])->name('product.upload.image');
-    Route::get('/product/getImage/{filename}', [ProductController::class, 'getFile'])->name('product.getfile');
     Route::post('/admin/product/store', [ProductController::class, 'create'])->name('admin.product.store');
 });
+
+Route::get('/product/getImage/{filename}', [ProductController::class, 'getFile'])->name('product.getfile');
+
 
 
 Route::get('/admin/login', [AuthController::class, 'adminLoginForm'])->name('admin.login.form');
