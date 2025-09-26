@@ -16,10 +16,14 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('nickname');
+            $table->string('name');
+            $table->string('last_name');
+            $table->string('age');
+            $table->set('gender', ['male', 'female']);
+            $table->string('phone_number');
             $table->string('image')->nullable();
-            $table->unsignedBigInteger('profileable_id');
-            $table->unsignedBigInteger('profileable_type');
+            $table->unsignedBigInteger('profileable_id')->nullable();
+            $table->unsignedBigInteger('profileable_type')->nullable();
             $table->timestamps();
         });
     }

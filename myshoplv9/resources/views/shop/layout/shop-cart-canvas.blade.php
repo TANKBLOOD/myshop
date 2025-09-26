@@ -118,7 +118,7 @@
 
 <script>
     const fetchUserCart = () => {
-        fetch('/api/user/cart', {
+        fetch('/user/cart', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

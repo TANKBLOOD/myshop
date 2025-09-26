@@ -187,7 +187,7 @@
             const totalProductsList = [];
             var totalDiscount = 0;
             const fetchUserCart = () => {
-                fetch('/api/user/cart', {
+                fetch('/user/cart', {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -292,7 +292,7 @@
                 };
 
                 // Send a POST request to the server
-                fetch('/api/user/cart/add', {
+                fetch('/user/cart/add', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -317,7 +317,7 @@
                 };
 
                 // Send a POST request to the server
-                fetch('/api/user/cart/remove', {
+                fetch('/user/cart/remove', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

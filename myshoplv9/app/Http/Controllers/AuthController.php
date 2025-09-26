@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer\Customer;
+use App\Models\Shopping\Cart;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -188,6 +189,7 @@ class AuthController extends Controller
         $hashedPassword = Hash::make($randomPassword);
 
 
+
         $userData = [
             'name' => $data['name'],
             'email' => $data['email'],
@@ -197,6 +199,10 @@ class AuthController extends Controller
         ];
 
         $user = User::create($userData);
+
+        $customerCart = new Cart();
+        $customerCart->user_id = $user->id;
+        $customerCart->save();
 
         auth()->login($user);
 
